@@ -1,0 +1,572 @@
+/* Webforms buttons */
+.webform-buttons {
+	margin: 15px 0 0 0;
+	text-align: center;
+}
+
+.webform-button,
+.webform-small-button,
+.webform-button-upload {
+	background: #ecedef;
+	-webkit-box-shadow: 0 0 0 1px #c6cdd3 inset;
+	box-shadow: 0 0 0 1px #c6cdd3 inset;
+	border-radius: 2px;
+	cursor: pointer;
+	color: #7a818a;
+	display: inline-block;
+	height: 47px;
+	line-height: 47px;
+	margin: 0 16px 0 0;
+	font-family: "OpenSans-Bold", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	outline: none;
+	padding: 0 18px;
+	vertical-align: middle;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-shadow: none;
+	white-space: nowrap;
+	-webkit-font-smoothing: antialiased;
+
+	-webkit-transition: background-color 0.2s linear, color 0.2s linear;
+	transition: background-color 0.2s linear, color 0.2s linear;
+
+	border: none;
+}
+
+.webform-button:link,
+.webform-button:visited,
+.webform-small-button:link,
+.webform-small-button:visited,
+.webform-button-upload:link,
+.webform-button-upload:visited {
+	color: #7a818a;
+}
+
+.webform-small-button,
+.webform-button.webform-button-upload,
+.webform-small-button.webform-button-upload,
+.webform-field-upload {
+	height: 39px;
+	line-height: 39px;
+	margin: 0 12px 0 0;
+}
+
+
+.webform-button-text,
+.webform-small-button-text,
+.webform-button-upload .webform-button-text {
+	background: none !important;
+	border: none;
+	color: #7a818a;
+	display: inline;
+	height: auto;
+	font-family: "OpenSans-Bold", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 47px;
+	text-shadow: none !important;
+	text-transform: uppercase;
+	padding: 0;
+
+	-webkit-transition: color 0.25s linear;
+	transition: color 0.25s linear;
+}
+
+.webform-small-button-icon {
+	display: inline-block;
+	height: 20px;
+	line-height: 39px;
+	position: relative;
+	cursor:pointer;
+	vertical-align: top;
+	outline:none;
+	text-decoration:none !important;
+	background: none;
+	border: none;
+}
+
+.webform-small-button.webform-small-button-dropdown .webform-small-button-icon {
+	margin: -2px -5px 0 5px;
+	width: 12px;
+	height: 8px;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	-webkit-transition: background-image 0.25s linear;
+	transition: background-image 0.25s linear;
+}
+
+.webform-small-button.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23535C69%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+.webform-small-button:active.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+.webform-button-active.webform-small-button.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+.webform-button-disable.webform-small-button.webform-small-button-dropdown .webform-small-button-icon {
+	opacity: .3;
+	cursor: default;
+}
+
+.webform-small-button-transparent.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23535C69%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+
+.webform-small-button-accept.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23535C69%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+.webform-small-button-accept:active.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23535C69%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+.webform-button-active.webform-small-button-accept.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23535C69%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+
+.webform-small-button-decline.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+
+.webform-small-button-blue.webform-small-button-dropdown .webform-small-button-icon {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2012%208%22%3E%0A%20%20%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6.656%2C5.235%20L2.413%2C0.992%20L0.999%2C2.406%20L5.949%2C7.356%20L6.656%2C8.063%20L12.313%2C2.406%20L10.899%2C0.992%20L6.656%2C5.235%20Z%22%20transform%3D%22translate%28-1%20-1%29%22/%3E%0A%3C/svg%3E%0A');
+}
+.webform-button-disable.webform-small-button-blue .webform-small-button-text {
+	color: #95e3fa!important;
+}
+
+.webform-button-text,
+.webform-small-button-text,
+.webform-button-upload .webform-button-text {
+	background: none !important;
+	border: none;
+	color: #7a818a;
+	display: inline;
+	height: auto;
+	font-family: "OpenSans-Bold", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 47px;
+	text-shadow: none !important;
+	text-transform: uppercase;
+	padding: 0;
+
+	-webkit-transition: color 0.25s linear;
+	transition: color 0.25s linear;
+	vertical-align: top !important;
+	cursor: pointer;
+	text-decoration: none !important;
+	outline: none;
+}
+
+.webform-small-button-text {
+	line-height: 39px;
+	height: auto;
+}
+
+.webform-button-upload .webform-button-text {
+	display: inline-block;
+	height: auto;
+	line-height: 39px;
+	font-family: "OpenSans-Bold", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	cursor: pointer;
+	vertical-align: top;
+}
+
+.webform-button-upload {
+
+}
+
+.webform-button:hover,
+.webform-button:hover .webform-button-text,
+.webform-small-button:hover,
+.webform-small-button:hover .webform-small-button-text,
+.webform-button-upload:hover,
+.webform-field-upload:hover .webform-button-upload {
+	background: #cfd4d8;
+	color: #535c69;
+}
+
+.webform-button:active,
+.webform-button-active,
+.webform-button-active:link,
+.webform-button-active:visited,
+.webform-button-active:active,
+.webform-button-active:hover,
+
+.webform-small-button:active,
+.webform-small-button-active,
+.webform-small-button-active:link,
+.webform-small-button-active:visited,
+.webform-small-button-active:active,
+.webform-small-button-active:hover,
+.webform-small-button-active:hover .webform-button-text,
+.webform-small-button-active:hover .webform-small-button-text,
+
+.webform-button-active:hover .webform-small-button-text,
+.webform-button-active:hover .webform-button-text,
+
+.webform-button-transparent.webform-button-active,
+.webform-small-button-transparent.webform-button-active,
+.webform-small-button-transparent.webform-small-button-active,
+
+.webform-field-upload:active .webform-button-upload,
+.webform-field-upload:active .webform-button-text {
+	background: #868d95;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #fff;
+}
+
+
+.webform-button:active .webform-button-text,
+.webform-button-active .webform-button-text,
+.webform-button-active .webform-small-button-text,
+.webform-small-button:active .webform-small-button-text,
+.webform-small-button-active .webform-small-button-text,
+.webform-field-upload:active .webform-small-button-text {
+	color: #fff;
+}
+
+.webform-button-accept,
+.webform-button-accept:link,
+.webform-button-accept:visited,
+.webform-button-accept .webform-button-text,
+.webform-button-create,
+.webform-button-create:link,
+.webform-button-create:visited,
+.webform-button-create .webform-button-text,
+.webform-button-blue,
+.webform-button-blue:link,
+.webform-button-blue:visited,
+.webform-button-blue .webform-button-text,
+.webform-small-button-accept,
+.webform-small-button-accept:link,
+.webform-small-button-accept:visited,
+.webform-small-button-accept .webform-small-button-text,
+.webform-small-button-create,
+.webform-small-button-create:link,
+.webform-small-button-create:visited,
+.webform-small-button-create .webform-small-button-text {
+	background: #bbed21;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #535c69;
+}
+
+.webform-button-accept:hover,
+.webform-button-create:hover,
+.webform-small-button-accept:hover,
+.webform-small-button-create:hover {
+	background: #d2f95f;
+	color: #535c69;
+}
+
+
+.webform-button-accept:active,
+.webform-button-create:active,
+
+.webform-small-button-accept:active,
+.webform-small-button-create:active,
+
+.webform-button-accept.webform-button-active,
+.webform-button-create.webform-button-active,
+
+.webform-small-button-accept.webform-button-active,
+.webform-small-button-accept.webform-small-button-active,
+
+.webform-small-button-create.webform-button-active,
+.webform-small-button-create.webform-small-button-active {
+	background: #b2e233 !important;
+	color: #535c69;
+}
+
+
+.webform-button-accept:active .webform-button-text,
+.webform-button-create:active .webform-button-text,
+.webform-button-accept.webform-button-active .webform-button-text,
+.webform-button-create.webform-button-active .webform-button-text,
+.webform-small-button-accept:active .webform-small-button-text,
+.webform-small-button-create:active .webform-small-button-text,
+.webform-small-button-accept.webform-button-active .webform-small-button-text,
+.webform-small-button-accept.webform-small-button-active .webform-small-button-text {
+	color: #535c69;
+}
+
+
+.webform-button-decline,
+.webform-button-decline:link,
+.webform-button-decline:visited,
+.webform-button-decline .webform-button-text,
+.webform-small-button-decline,
+.webform-small-button-decline:link,
+.webform-small-button-decline:visited,
+.webform-small-button-decline .webform-small-button-text {
+	background: #f1361b;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #fff;
+}
+
+
+.webform-button-decline:hover,
+.webform-button-decline:hover .webform-button-text,
+.webform-small-button-decline:hover,
+.webform-small-button-decline:hover .webform-small-button-text {
+	background: #cc1a00;
+	color: #fff;
+}
+
+.webform-button-decline:active,
+.webform-button-decline.webform-button-active,
+.webform-small-button-decline:active,
+.webform-small-button-decline.webform-button-active,
+.webform-small-button-decline.webform-small-button-active {
+	background: #d24430 !important;
+	color: #fff;
+}
+
+.webform-button-blue,
+.webform-button-blue:link,
+.webform-button-blue:visited,
+.webform-button-blue .webform-button-text,
+.webform-small-button-blue,
+.webform-small-button-blue:link,
+.webform-small-button-blue:visited,
+.webform-small-button-blue .webform-small-button-text {
+	background: #3bc8f5;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #fff;
+}
+
+.webform-button-blue:hover,
+.webform-button-blue:hover .webform-button-text,
+.webform-small-button-blue:hover,
+.webform-small-button-blue:hover .webform-small-button-text {
+	background: #3fddff;
+	color: #fff;
+}
+
+.webform-button-blue:active,
+.webform-button-blue.webform-button-active,
+.webform-small-button-blue:active,
+.webform-small-button-blue.webform-button-active,
+.webform-small-button-blue.webform-small-button-active {
+	background: #13b1e3!important;
+	color: #fff;
+}
+
+.webform-button-transparent,
+.webform-small-button-transparent {
+	-webkit-box-shadow: inset 0 0 0 1px #a1a6ac;
+	box-shadow: inset 0 0 0 1px #a1a6ac;
+	background: none;
+	color: #535c69;
+}
+
+.webform-button-disable,
+.webform-button-disable .webform-button-text,
+.webform-button-disable .webform-small-button-text,
+.webform-small-button-disable,
+.webform-small-button-disable .webform-small-button-text {
+	color: #b6c1cf!important;
+	cursor: default;
+}
+
+.webform-button-disable,
+.webform-small-button-disable {
+	background: #ecedef !important;
+	-webkit-box-shadow: 0 0 0 1px #c6cdd3 inset !important;
+	box-shadow: 0 0 0 1px #c6cdd3 inset !important;
+}
+
+.webform-button-create.webform-button-disable,
+.webform-button-create.webform-button-disable .webform-button-text,
+.webform-button-accept.webform-button-disable,
+.webform-button-accept.webform-button-disable .webform-button-text,
+
+.webform-small-button-create.webform-button-disable,
+.webform-small-button-accept.webform-button-disable,
+.webform-small-button-create.webform-button-disable .webform-small-button-text,
+.webform-small-button-accept.webform-button-disable .webform-small-button-text,
+
+.webform-small-button-create.webform-small-button-disable,
+.webform-small-button-accept.webform-small-button-disable,
+.webform-small-button-create.webform-small-button-disable .webform-small-button-text,
+.webform-small-button-accept.webform-small-button-disable .webform-small-button-text {
+	background: #bbed21 !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	color: #a0c83c !important;
+}
+
+.webform-button-decline.webform-button-disable,
+.webform-button-decline.webform-button-disable .webform-button-text,
+
+.webform-small-button-decline.webform-button-disable,
+.webform-small-button-decline.webform-small-button-disable,
+.webform-small-button-decline.webform-small-button-disable .webform-small-button-text,
+.webform-small-button-decline.webform-button-disable .webform-small-button-text {
+	background: #f1361b !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	color: #f8a498 !important;
+}
+
+
+.webform-button-blue.webform-button-disable,
+.webform-small-button-blue.webform-button-disable,
+.webform-small-button-blue.webform-small-button-disable {
+	background: #3bc8f5 !important;
+	-webkit-box-shadow: none!important;
+	box-shadow: none!important;
+	color: #95e3fa!important;
+}
+
+.webform-button-link {
+	display: inline-block;
+	cursor: pointer;
+	margin: 8px 15px 0 0;
+	border-bottom: 1px solid transparent;
+	font: normal normal normal 14px/normal "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-transition: border-bottom-color 0.25s linear;
+	transition: border-bottom-color 0.25s linear;
+	text-decoration: none !important;
+}
+
+
+.webform-button-link:hover {
+	border-bottom: 1px solid;
+}
+
+.webform-button-link-cancel {
+	color: #d20000 !important;
+}
+
+.webform-small-button-link {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 15px 0 0;
+	text-decoration: underline !important;
+}
+
+.webform-small-button-separate-wrap {
+	display: inline-block;
+	height: 39px;
+	vertical-align: middle;
+	border-radius: 0;
+	box-shadow: none;
+	padding-right: 0;
+	font-size: 0;
+	position: relative;
+	margin-right: 12px;
+}
+
+.webform-small-button-separate-wrap .webform-small-button {
+	margin: 0;
+	box-shadow: 0 0 0 1px #c6cdd3 inset;
+	border-radius: 0;
+	padding-right: 44px;
+	vertical-align: top;
+}
+
+.webform-small-button-right-part {
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%220%200%208%204%22%3E%3Cpath%20fill%3D%22%23535c68%22%20d%3D%22M4%2C4L0%2C0.015H8Z%22/%3E%3C/svg%3E%0A') no-repeat center center;
+	cursor: pointer;
+	display: block;
+	height: 37px;
+	vertical-align: top;
+	width: 30px;
+
+	-webkit-transition: background-color 0.3s linear;
+	transition: background-color 0.25s linear;
+	border-radius: 0;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	margin: 0;
+}
+
+.webform-small-button-right-part:before,
+.webform-small-button-accept + .webform-small-button-right-part:before {
+	background: rgba(83, 92, 104, 0.2);
+	content: '';
+	display: block;
+	height: 26px;
+	margin-top: 6px;
+	width: 1px;
+}
+
+.webform-small-button-accept + .webform-small-button-right-part:before,
+.webform-small-button-decline + .webform-small-button-right-part:before {
+	margin-top: 7px;
+}
+
+.webform-small-button-right-part:after {
+	display: none;
+}
+
+.webform-small-button-right-part:hover {
+	background-color: #cfd4d8;
+}
+
+.webform-small-button-separate-wrap .webform-small-button-accept,
+.webform-small-button-separate-wrap .webform-small-button-blue,
+.webform-small-button-separate-wrap .webform-small-button-decline {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.webform-small-button-blue + .webform-small-button-right-part,
+.webform-small-button-decline + .webform-small-button-right-part {
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%220%200%208%204%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M4%2C4L0%2C0.015H8Z%22/%3E%3C/svg%3E%0A') no-repeat center center #ecedef;
+	height: 39px;
+	width: 31px;
+	top: 0;
+	right: 0;
+}
+
+.webform-small-button-accept + .webform-small-button-right-part {
+	background-color: #bbed21;
+}
+
+.webform-small-button-accept + .webform-small-button-right-part:hover {
+	background-color: #d2f95f;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%220%200%208%204%22%3E%3Cpath%20fill%3D%22%23535c68%22%20d%3D%22M4%2C4L0%2C0.015H8Z%22/%3E%3C/svg%3E%0A');
+}
+
+.webform-small-button-decline + .webform-small-button-right-part,
+.webform-small-button-decline + .webform-small-button-right-part:hover,
+.webform-small-button-blue + .webform-small-button-right-part,
+.webform-small-button-blue + .webform-small-button-right-part:hover {
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%220%200%208%204%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M4%2C4L0%2C0.015H8Z%22/%3E%3C/svg%3E%0A');
+}
+
+.webform-small-button-decline + .webform-small-button-right-part:before,
+.webform-small-button-blue + .webform-small-button-right-part:before {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.webform-small-button-decline + .webform-small-button-right-part {
+	background-color: #f1361b;
+}
+
+.webform-small-button-decline + .webform-small-button-right-part:hover {
+	background-color: #cc1a00;
+}
+
+.webform-small-button-blue + .webform-small-button-right-part {
+	background-color: #3bc8f5;
+}
+
+.webform-small-button-blue + .webform-small-button-right-part:hover {
+	background-color: #3fddff;
+}
+
+.webform-small-button-blue + .webform-small-button-right-part:active {
+	background-color: #13b1e3;
+}

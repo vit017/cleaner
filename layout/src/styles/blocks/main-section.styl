@@ -1,0 +1,127 @@
+.main-section
+  padding 42px 20px
+
+  &_type_what
+    padding 42px 0 0 0
+    overflow hidden
+
+  &_type_who
+    background #f8cc69
+    padding-left 0
+    padding-right 0
+    padding-bottom 12px
+
+  &_type_form
+    padding 90px 0 260px 0 !important
+    background #eff1f1
+    display table
+    width 100%
+    //min-height 400px
+
+  &_type_footer
+    padding 50px 0 0 0
+    margin -260px 0 0 0
+    height 260px
+    width 100%
+    background #eff1f1
+
+    .landing-footer
+      //display table-cell
+      height 100%
+      //vertical-align middle
+
+      &__links
+        margin 0 0 50px 0
+
+        .btn
+          margin 0 10px
+
+          &_type_vk
+          &_type_fb
+          &_type_insta
+            width 60px
+            height 40px
+
+            .btn__title
+              display none
+
+            .btn__icon
+              margin 0
+
+              &_type_vk
+                width 14px
+                &::before
+                  background url64('../images/icons/icon-vk.png') 0 center no-repeat
+
+              &_type_fb
+                width 10px
+                &::before
+                  background url64('../images/icons/icon-fb.png') 0 center no-repeat
+
+  &__title
+    font-family Medium
+    font-size 25px
+    line-height 35px
+    font-weight normal
+    margin 0 0 15px 0
+    padding 0
+    text-align center
+
+  @media screen and (min-width: 630px)
+    &_type_form
+      min-height 100vh
+      padding 90px 0 300px 0 !important
+
+    &_type_footer
+      padding 40px 0 0 0 !important
+      margin -260px 0 0 0
+      height 260px
+      width 100%
+      background #eff1f1
+
+      .landing-footer
+        //display table-cell
+        height 100%
+        //vertical-align middle
+
+        &__links
+          margin 0 0 60px 0
+
+          .btn
+            margin 0 10px
+
+            &_type_vk
+            &_type_fb
+            &_type_insta
+              width auto
+              height 50px
+
+              .btn__title
+                display inline
+
+              .btn__icon
+                margin 0 10px 0 0
+
+  @media screen and (min-width: 1000px)
+    padding 90px 0
+
+    &_type_who
+      padding-bottom 90px
+
+    &_type_what
+      padding-top 68px
+      padding-bottom 0
+
+    &__title
+      font-size 50px
+      line-height 1.5
+      margin-bottom 40px
+
+    &_type_form
+      padding 0
+      min-height auto
+
+      .main-section__title
+        margin-bottom 27px
+
+

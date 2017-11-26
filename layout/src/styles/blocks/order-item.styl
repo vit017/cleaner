@@ -1,0 +1,120 @@
+.order-item
+  position relative
+  background colorGrey
+  color baseColor
+  padding 18px 20px 19px 20px
+  font-family Medium
+  font-size 15px
+  line-height 20px
+  margin 0 0 10px 0
+
+  &__title
+    display block
+    position relative
+    padding 0 30px 0 40px
+    margin 0 0 8px 0
+    font-family Regular
+    font-size 15px
+    line-height 2
+    font-weight normal
+    color #6e7677
+
+    &::before
+      content ""
+      display inline-block
+      vertical-align top
+      position absolute
+      left 0
+      top 0
+      bottom 0
+      width 45px
+      background-position left center
+      background-repeat no-repeat
+
+    &_date
+      &::before
+        background-image url64('../images/icons/icon-32.svg')
+
+    &_params
+      &::before
+        background-image url64('../images/icons/icon-34.svg')
+
+    &_cleaner
+      &::before
+        background-image url64('../images/icons/icon-38.svg')
+
+    &_contacts
+      &::before
+        background-image url64('../images/icons/icon-36.svg')
+
+    &_price
+      &::before
+        background-image url64('../images/icons/icon-40.svg')
+
+  &__param
+    margin 0
+    padding 5px 0
+    font-size inherit
+    line-height inherit
+
+    &-name
+      color #6e7677
+
+    &-pic
+      display inline-block
+      vertical-align top
+      width 50px
+      height 50px
+      border-radius 50%
+      overflow hidden
+      float left
+      margin -3px 20px 0 0
+
+      img
+        display inline-block
+        vertical-align top
+        width 100%
+        height 100%
+
+    &_cleaner
+      max-width 370px
+      padding 8px 0 0 0
+      line-height 1.5
+      position relative
+
+  &__edit
+    display block
+    width 32px
+    height 32px
+    background url64('../images/icons/edit_grey-m.svg') 0 0 no-repeat
+    cursor pointer
+    position absolute
+    top 10px
+    right 10px
+
+  @media screen and (min-width: 930px)
+    padding 18px 130px 30px 40px
+    font-size 20px
+    line-height 25px
+    margin 0 0 20px 0
+
+    &__title
+      margin-bottom 16px
+
+    &__edit
+      top 50%
+      right 40px
+      width 52px
+      height 52px
+      margin -(@height/2) 0 0 0
+      background-image url64('../images/icons/edit_grey.svg')
+
+      &:hover
+        background-image url64('../images/icons/edit_green.svg')
+
+      &:active
+        background-image url64('../images/icons/edit_black.svg')
+
+    &__param
+      &-pic
+        margin-top 5px

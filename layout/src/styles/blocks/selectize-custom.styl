@@ -1,0 +1,312 @@
+.select
+  width 280px
+  display inline-block
+  vertical-align top
+  font-size 20px
+  font-family Medium
+  line-height: 1.5
+  text-align left
+  color baseColor
+
+  &_width_full
+    width 100%
+
+  &_search_false
+    .selectize-input > input
+    display none
+
+input
+  @media screen and (max-width: 570px)
+  display none
+  pointer-events none
+
+ input
+   @media screen and (max-width: 570px)
+     display none
+     pointer-events none
+
+
+.selectize-control
+  .plugin-drag_drop.multi
+    > .selectize-input
+      > div.ui-sortable-placeholder
+        visibility visible !important
+        border 0 none !important
+  .plugin-drag_drop
+    .ui-sortable-placeholder::after
+      content '!'
+      visibility hidden
+  .plugin-drag_drop
+    .ui-sortable-helper
+      box-shadow 0 2px 5px rgba(0, 0, 0, 0.2)
+
+.selectize-dropdown-header
+  position relative
+  padding 5px 8px
+  border-bottom 1px solid #d0d0d0
+  background #f8f8f8
+  border-radius 3px 3px 0 0
+
+  &-close
+    position absolute
+    right 8px
+    top 50%
+    color #303030
+    opacity 0.4
+    margin-top -12px
+    line-height 20px
+    font-size 20px !important
+
+  &-closehover
+    color #000000
+
+.selectize-dropdown.plugin-optgroup_columns
+  .optgroup
+    border-right 1px solid #f2f2f2
+    border-top 0 none
+    float left
+    box-sizing border-box
+  .optgroup:last-child
+    border-right 0 none
+  .optgroup:before
+    display none
+  .optgroup-header
+    border-top 0 none
+
+.selectize-control.plugin-remove_button [data-value]
+  position relative
+  padding-right 24px !important
+
+.selectize-control.plugin-remove_button [data-value]
+  .remove
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    width 17px
+    text-align center
+    font-weight bold
+    font-size 12px
+    color inherit
+    text-decoration none
+    vertical-align middle
+    display inline-block
+    padding 2px 0 0 0
+    border-left 1px solid #d0d0d0
+    border-radius 0 2px 2px 0
+    box-sizing border-box
+
+    &:hover
+      background rgba(0, 0, 0, 0.05)
+
+.selectize-control.plugin-remove_button [data-value].active
+  .remove
+    border-left-color #cacaca
+
+.selectize-control.plugin-remove_button
+  .disabled [data-value]
+    .remove:hover
+      background none
+    .remove
+      border-left-color #ffffff
+
+.selectize-control
+  position relative
+
+.selectize-dropdown
+.selectize-input
+.selectize-input input
+  color #303030
+  font-family inherit
+  font-size inherit
+  line-height inherit
+  -webkit-font-smoothing inherit
+
+.selectize-input
+.selectize-control.single .selectize-input.input-active
+  background #ffffff
+  cursor text
+  display inline-block
+
+.selectize-input
+  border 2px solid btnBg2Color
+  padding 9px 65px 7px 15px
+  display inline-block
+  vertical-align top
+  width 100%
+  overflow hidden
+  position relative
+  z-index 1
+  box-sizing border-box
+
+  &.full
+    background-color #ffffff
+    cursor pointer !important
+
+    input
+      display none
+
+  &.disabled
+  &.disabled *
+    cursor default !important
+
+  &.focus
+    box-shadow none
+
+  &.dropdown-active
+    border-radius 0
+    border-color #ccc
+
+  & > *
+    vertical-align baseline
+    display -moz-inline-stack
+    display inline-block
+
+  &:hover
+    border-color btnBg2ColorHover
+
+.selectize-control.multi
+  .selectize-input.has-items
+    padding 6px 8px 3px
+  .selectize-input
+    > div
+      cursor pointer
+      margin 0 3px 3px 0
+      padding 2px 6px
+      background #f2f2f2
+      color #303030
+      border 0 solid #d0d0d0
+    > div.active
+      background #e8e8e8
+      color #303030
+      border 0 solid #cacaca
+
+    &.disabled
+      > div
+      > div.active
+        color #7d7d7d
+        background #ffffff
+        border 0 solid #ffffff
+
+.selectize-input
+  > input
+    padding 0 !important
+    min-height 0 !important
+    max-height none !important
+    max-width 100% !important
+    margin 0 2px 0 0 !important
+    text-indent 0 !important
+    border 0 none !important
+    background none !important
+    line-height inherit !important
+    -webkit-user-select auto !important
+    box-shadow none !important
+    width 100% !important
+  > input:focus
+    outline none !important
+
+  &::after
+    content ' '
+    display block
+    clear left
+
+  &.dropdown-active::before
+    content ' '
+    display block
+    position absolute
+    background #f0f0f0
+    height 1px
+    bottom 0
+    left 0
+    right 0
+
+.selectize-dropdown
+  position absolute
+  z-index 10
+  border 2px solid btnBg2ColorActive
+  background #ffffff
+  margin 0
+  border-top 0 none
+  box-sizing border-box
+  //color #6e6e6e
+
+  & [data-selectable]
+    cursor pointer
+    overflow hidden
+    .highlight
+      background rgba(125, 168, 208, 0.2)
+
+  & [data-selectable]
+  & .optgroup-header
+    padding 10px 15px 9px 15px
+
+  &
+    .optgroup:first-child
+      .optgroup-header
+        border-top 0 none
+    .optgroup-header
+      color #303030
+      background #ffffff
+      cursor default
+    .active
+      background-color colorGrey
+      color #000
+    .active.create
+      color #dddddd
+    .create
+      color rgba(48, 48, 48, 0.5)
+    .selected
+      color #000000
+
+.selectize-dropdown-content
+  overflow-y auto
+  overflow-x hidden
+  max-height 200px
+
+.selectize-control.single
+  .selectize-input
+  .selectize-input input
+    cursor pointer
+
+.selectize-control.single
+  .selectize-input.input-active
+  .selectize-input.input-active input
+    cursor text
+  .selectize-input
+    &:after
+      content ' '
+      display block
+      position absolute
+      top 0
+      right 0
+      margin -2px -2px 0 0
+      width 50px
+      height 50px
+      background-color btnBg2Color
+      background-position center center
+      background-repeat no-repeat
+      background-image url64('../images/icons/icon-11.svg')
+
+  &:hover
+    .selectize-input:after
+      background-color btnBg2ColorHover
+
+  .selectize-input.dropdown-active
+    border-color btnBg2ColorActive
+    &:after
+      background-color btnBg2ColorActive
+      background-image url64('../images/icons/icon-12.svg')
+
+.selectize-control.rtl.single
+  .selectize-input:after
+    left 15px
+    right auto
+
+.selectize-control.rtl
+  .selectize-input > input
+    margin 0 4px 0 -2px !important
+
+.selectize-control
+  .selectize-input.disabled
+    opacity 0.5
+    background-color #fafafa

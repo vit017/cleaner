@@ -1,0 +1,49 @@
+.time-picker
+  position relative
+  display block
+  margin -10px 0 0 -10px
+  padding 0
+
+  &__item
+    display inline-block
+    vertical-align top
+    float left
+    width 135px
+    height 50px
+    position relative
+    margin 10px 0 0 10px
+
+    &-control
+      position absolute
+      left 0
+      top 0
+      opacity 0
+
+      &:disabled + .time-picker__item-content
+        cursor default
+        background #ffffff
+        color #c2c5c5
+
+      &:checked + .time-picker__item-content
+        background #f8cc69
+        border-color transparent
+        font-family Medium
+
+    &-content
+      display block
+      background colorGrey
+      border 1px solid colorGrey
+      color baseColor
+      text-align center
+      font-size 15px
+      line-height 30px
+      padding 10px 10px 8px 10px
+      cursor pointer
+
+      &:hover
+        background #e2e4e4
+
+  @media screen and (min-width: 930px)
+
+    &__item
+      width 90px

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>{{title}} | {{site.title}}</title>
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1"/>
+
+  <link rel="stylesheet" href="{{assets}}/css/normalize.css">
+  <link rel="stylesheet" href="{{assets}}/css/style.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="{{assets}}/css/ie/ie-lt-9.css">
+  <![endif]-->
+  <!--[if lt IE 8]>
+  <link rel="stylesheet" href="{{assets}}/css/ie/ie-lt-8.css">
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+  <script src="{{assets}}/js/ie/html5.js"></script>
+  <script src="{{assets}}/js/ie/es5-shim.min.js"></script>
+  <script src="{{assets}}/js/ie/selectivizr-min.js"></script>
+  <script src="{{assets}}/js/ie/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body class=" {{#is anotherBodyBg "true"}}main-bg{{/is}}">
+
+  <!-- page -->
+  <div class="page-container">
+    <div class="page-wrapper {{#is wrapperBg "false"}}page-wrapper_background_none{{/is}}">
+      {{> page-header}}
+      <div class="page-content">
+        {{> body }}
+      </div>
+    </div>
+    {{> page-footer}}
+  </div>
+
+  {{> modal-menu}}
+  {{> modal-what-we-clean}}
+  {{> modal-tools}}
+
+  <!-- scripts -->
+  <script src="{{assets}}/js/vendor/jquery-1.11.0.min.js"></script>
+  <script src="{{assets}}/js/vendor/plugins.min.js"></script>
+  <script src="{{assets}}/js/main.js"></script>
+
+</body>
+
+</html>

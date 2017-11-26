@@ -1,0 +1,7 @@
+<nav class="main-nav__menu">
+    <ul class="main-nav__menu-list">
+        {% for item in result %}
+            <li class="main-nav__menu-item"><a {% if item.TEXT=='Блог' %}target="_blank"{% endif %} href="{{ item.LINK }}">{{ item.TEXT }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>

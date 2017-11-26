@@ -1,0 +1,80 @@
+.modal-menu
+  position fixed
+  height 100%
+  width 100%
+  left 0
+  top 0
+  background #001b1f
+  overflow-y visible
+  opacity 0
+  transition all 0.3s ease
+  display none
+  visibility hidden
+  z-index 3000
+
+  &_state_visible
+    visibility visible
+    opacity 1
+
+  &__header
+    min-height 50px
+    position relative
+
+    &-logo
+      display inline-block
+      vertical-align top
+      width 95px
+      height 50px
+      background url('../images/logo_small.png') 0 center no-repeat
+      position absolute
+      left 50%
+      top 0
+      margin 0 0 0 -47px
+
+    &-close
+      display inline-block
+      vertical-align top
+      cursor pointer
+      font-family Medium
+      font-size 15px
+      line-height 50px
+      color #c2c5c5
+      position absolute
+      left 20px
+      top 0
+      width 25px
+      overflow hidden
+      padding 0 0 0 25px
+
+      &::before
+        content ""
+        display inline-block
+        vertical-align top
+        width 15px
+        height 15px
+        background url64('../images/icons/icon-41.svg') 0 0 no-repeat
+        position absolute
+        left 0
+        top 50%
+        margin -8px 0 0 0
+
+    @media screen and (min-width: 480px)
+      padding 10px 0
+
+      &-logo
+      &-close
+        position relative
+        left auto
+        top auto
+        margin 0
+
+      &-close
+        float right
+        width auto
+
+        &:hover
+          &::before
+            background-image url64('../images/icons/icon-42.svg')
+
+      &-logo
+        float left

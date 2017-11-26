@@ -1,0 +1,160 @@
+<fieldset class="order-form__fieldset">
+    <h2 class="order-form__fieldset-title">Площадь квартиры</h2>
+    <div class="single-input clearfix">
+        <label class="single-input__control">
+            <select class="select select_width_full js-custom-select">
+                <option value="до 45м2 - 2.5ч">до 45м2 - 2.5ч</option>
+                <option value="до 55м2 - 3ч">до 55м2 - 3ч</option>
+                <option value="до 70м2 - 3,5ч">до 70м2 - 3,5ч</option>
+                <option value="до 85м2 - 4ч">до 85м2 - 4ч</option>
+                <option value="до 100м2 - 4,5ч">до 100м2 - 4,5ч</option>
+                <option value="до 115м2 - 5ч">до 115м2 - 5ч</option>
+                <option value="до 130м2 - 5,5ч">до 130м2 - 5,5ч</option>
+                <option value="до 145м2 - 6ч">до 145м2 - 6ч</option>
+                <option value="до 160м2 - 6,5ч">до 160м2 - 6,5ч</option>
+                <option value="до 175м2 - 7ч">до 175м2 - 7ч</option>
+            </select>
+        </label>
+        <span class="single-input__tip">Уборка займет не меньше <strong>2.5</strong> часов</span>
+    </div>
+
+    <!--<div class="count-input-wrapper clearfix">
+    <div class="count-input-wrapper__item">{{> rooms-input}}</div>
+    <div class="count-input-wrapper__item">{{> bathrooms-input}}</div>
+  </div>-->
+
+    <div class="order-form__fieldset-tip order-form__fieldset-tip_mobile-visible">
+        <h3>Что входит в уборку</h3>
+        <p>
+            По умолчанию в заказ входит уборка нежилых помещений: коридора и прихожей.
+        </p>
+        <p class="mobile-visible">
+            <span class="link" data-target="#what-we-clean" data-toggle="modal"><strong>Что входит в уборку</strong></span> <br/>
+            <span class="link" data-target="#clean-tools" data-toggle="modal"><strong>Чем мы убираем</strong></span>
+        </p>
+        <h3>100% гарантия</h3>
+        <p>
+            Если вы не довольны уборкой,
+            мы вернемся и уберемся еще раз бесплатно!
+        </p>
+    </div>
+</fieldset>
+
+<fieldset class="order-form__fieldset">
+    <h2 class="order-form__fieldset-title">Дополнительно</h2>
+    <div class="additional-control">
+    <span class="additional-control__item">
+      <label class="additional-control__item-content">
+          <input class="additional-control__item-input" type="checkbox" checked/>
+          <span class="additional-control__item-bg"></span>
+        <span class="additional-control__item-title">
+          <img src="assets/images/icons/fridge.svg" alt=""/>
+          Помыть внутри <br/> холодильника
+        </span>
+      </label>
+    </span>
+    <span class="additional-control__item">
+      <label class="additional-control__item-content">
+          <input class="additional-control__item-input" type="checkbox"/>
+          <span class="additional-control__item-bg"></span>
+        <span class="additional-control__item-title">
+          <img src="assets/images/icons/cooker.svg" alt=""/>
+          Почистить внутри <br/> духовки
+        </span>
+      </label>
+    </span>
+    <span class="additional-control__item">
+      <label class="additional-control__item-content">
+          <input class="additional-control__item-input" type="checkbox"/>
+          <span class="additional-control__item-bg"></span>
+        <span class="additional-control__item-title">
+          <img src="assets/images/icons/cupboard.svg" alt=""/>
+          Убраться внутри <br/> кухонных шкафов
+        </span>
+      </label>
+    </span>
+    </div>
+</fieldset>
+
+<fieldset class="order-form__fieldset">
+    <div class="order-form__fieldset-tip order-form__fieldset-tip_mobile-visible">
+        <h3>Что входит в уборку</h3>
+        <p class="mobile-visible">
+            Исходя из нашего опыта и выбранных вами параметров, мы рекомендуем  <strong>4 часа</strong> на уборку.
+        </p>
+    </div>
+    <!--<div class="single-input clearfix">
+      <label class="single-input__control">
+        <select class="select select_width_full select_search_false js-custom-select">
+          <option value="3" selected>3 часа</option>
+          <option value="4">4 часа</option>
+          <option value="5">5 часа</option>
+          <option value="6">6 часа</option>
+          <option value="7">7 часа</option>
+          <option value="8">8 часа</option>
+          <option value="9">9 часа</option>
+          <option value="10">10 часа</option>
+          <option value="11">11 часа</option>
+          <option value="12">12 часа</option>
+        </select>
+      </label>
+      <span class="single-input__tip">3 часа минимум</span>
+    </div>-->
+    <h3>Уборка займет 2.5 часа</h3>
+    <p>Час работы — 700 <span class="rouble">Р</span></p>
+</fieldset>
+
+<fieldset class="order-form__fieldset">
+    <h2 class="order-form__fieldset-title">Подписка на уборку</h2>
+    <div class="additional-control">
+    <span class="additional-control__item additional-control__item_size_small">
+      <label class="additional-control__item-content">
+          <input class="additional-control__item-input"  type="radio" name="subscribe" checked/>
+          <span class="additional-control__item-bg"></span>
+        <span class="additional-control__item-title">
+          <span class="subscribe-item">
+            <span class="subscribe-item__title">Раз в месяц</span>
+            <span class="subscribe-item__price">650<span class="rouble">Р</span> за час</span>
+          </span>
+        </span>
+      </label>
+    </span>
+    <span class="additional-control__item additional-control__item_size_small">
+      <label class="additional-control__item-content">
+          <input class="additional-control__item-input" type="radio" name="subscribe"/>
+          <span class="additional-control__item-bg"></span>
+        <span class="additional-control__item-title">
+          <span class="subscribe-item">
+            <span class="subscribe-item__title">2 раза в месяц</span>
+            <span class="subscribe-item__price">600<span class="rouble">Р</span> за час</span>
+          </span>
+        </span>
+      </label>
+      <span class="additional-control__item-tip">— оптимальный тариф </span>
+    </span>
+    <span class="additional-control__item additional-control__item_size_small">
+      <label class="additional-control__item-content">
+          <input class="additional-control__item-input" type="radio" name="subscribe"/>
+          <span class="additional-control__item-bg"></span>
+        <span class="additional-control__item-title">
+          <span class="subscribe-item">
+            <span class="subscribe-item__title">4 раза в месяц</span>
+            <span class="subscribe-item__price">550<span class="rouble">Р</span> за час</span>
+          </span>
+        </span>
+      </label>
+    </span>
+    </div>
+</fieldset>
+
+<fieldset class="order-form__fieldset">
+    <div class="total">
+        <p class="total__item total__item_summary clearfix">
+            <span class="pull-left">Итого</span><span class="pull-right">1 750 <span class="rouble">Р</span></span>
+        </p>
+    </div>
+</fieldset>
+
+<button class="order-form__next btn btn_with_icons btn_responsive_true">
+    <span class="btn__icon btn__icon_type_date"></span>Выбрать время<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>

@@ -1,0 +1,172 @@
+{% if result.CurrentStep >= 6 and (result.USER_LOGIN|length > 0) and result.ORDER.PAY_SYSTEM_ID == 1 %}
+
+    {% include templateFolder~"/step6.twig" %}
+
+{% else %}
+    <div id="js-basket_form" >
+        <div class="container">
+
+            <h1 class="page-title">Заказ уборки</h1>
+
+            <section class="order">
+                <!-- временно скроем старые данные -->
+                <header class="order__header clearfix" style="display: none">
+                    {% if params.SHOW_MENU == 'Y' %}
+                        {% if result.CurrentStep < 6 %}
+
+                            {% for item in result.MENU %}
+                                {% if item.URL|length > 0 %}
+                                    <a class="order__header-item {% if item.PASSED == true %}order__header-item_passed{% elseif item.ACTIVE == true %}order__header-item_current{% endif %}" data-step="{{ loop.index }}" href="{{ item.URL }}">{{ item.NAME }}</a>
+                                {% else %}
+                                    <span class="order__header-item {% if item.PASSED == true %}link order__header-item_passed{% elseif item.ACTIVE == true %}order__header-item_current{% endif %}" data-step="{{ loop.index }}" {% if item.PASSED == true %}onclick="document.order_form.CurrentStep.value='{{ item.ID + 1 }}'; document.order_form.BACK.value='Y'; document.order_form.submit();"{% endif %}>{{ item.NAME }}</span>
+                                {% endif %}
+
+                            {% endfor %}
+
+                        {% endif %}
+                    {% endif %}
+                </header>
+                <div class="page-block order__content">
+                    {% if result.CurrentStep >= 6 and (result.USER_LOGIN|length > 0) %}
+                        {% if result.PAY_SYSTEM.ACTION_FILE|length > 0 %}
+                                {{ includeFile(result.PAY_SYSTEM.PATH_TO_ACTION) }}
+                        {% else %}
+                             {% include templateFolder~"/step6.twig" %}
+                        {% endif %}
+
+                    {% else %}
+
+                    {% if result.CurrentStep < 6 %}
+
+                    <form class="order-form js-form-validate" name="order_form" method="post" action="{{ params.PATH_TO_ORDER|e }}">
+                        {{ bitrix_sessid_post() }}
+
+                        {% endif %}
+
+                            {% if not result.CurrentStep == 2.5 %}
+                                {{ ShowError(result.ERROR_MESSAGE) }}
+                            {% endif %}
+
+                            {% if result.CurrentStep == 1 %}
+                                {% include templateFolder~"/step1.twig" %}
+                            {% elseif result.CurrentStep == 2 %}
+                                {% include templateFolder~"/step2.twig" %}
+                            {% elseif result.CurrentStep == 2.5 %}
+                                {% include templateFolder~"/confirm.twig" %}
+                            {% elseif result.CurrentStep == 3 %}
+                                {% include templateFolder~"/step3.twig" %}
+                            {% elseif result.CurrentStep == 5 %}
+                                {% include templateFolder~"/step4.twig" %}
+                            {% elseif result.CurrentStep == 4 %}
+                                {% include templateFolder~"/step5.twig" %}
+                            {% endif %}
+
+                            {% if not IsUserAuthorized and result.CurrentStep!=2 %}
+
+                                <input type="hidden" name="USER_LOGIN" value="{{ result.USER_LOGIN }}">
+                                <input type="hidden" name="USER_PASSWORD" value="{{ result.USER_PASSWORD }}">
+
+                            {% endif %}
+
+                        {% if result.CurrentStep > 0 and result.CurrentStep <= 7 %}
+
+                            <input type="hidden" name="ORDER_PRICE" value="{{ result.ORDER_PRICE }}">
+                            <input type="hidden" name="ORDER_WEIGHT" value="{{ result.ORDER_WEIGHT }}">
+                            <input type="hidden" name="SKIP_FIRST_STEP" value="{{ result.SKIP_FIRST_STEP }}">
+                            <input type="hidden" name="SKIP_SECOND_STEP" value="{{ result.SKIP_SECOND_STEP }}">
+                            <input type="hidden" name="SKIP_THIRD_STEP" value="{{ result.SKIP_THIRD_STEP }}">
+                            <input type="hidden" name="SKIP_FORTH_STEP" value="{{ result.SKIP_FORTH_STEP }}">
+
+                        {% endif %}
+
+                        <input type="hidden" name="PERSON_TYPE" value="{{ result.PERSON_TYPE }}">
+
+                        {% if result.CurrentStep > 1 and result.CurrentStep <= 6 %}
+
+                            <input type="hidden" name="BACK" value="">
+                            <input type="hidden" name="ORDER_PROP_DATE" value="{{ result.POST.ORDER_PROP_DATE }}">
+                            <input type="hidden" name="ORDER_PROP_TIME" value="{{ result.POST.ORDER_PROP_TIME }}">
+
+                        {% endif %}
+
+                        <input type="hidden" name="ORDER_PROP_DURATION" value="{{ result.TOTAL_TIME }}">
+
+                        {% if (result.CurrentStep !=2 or result.BACK=='Y' and result.CurrentStep <= 6) %}
+
+                            <input type="hidden" name="PROFILE_ID" value="{{ result.PROFILE_ID }}">
+                            <input type="hidden" name="DELIVERY_LOCATION" value="{{ result.DELIVERY_LOCATION }}">
+
+                            {% for arOrderProp in result['hidden_props'] %}
+
+                                {% set propParam = 'ORDER_PROP_'~arOrderProp.CODE %}
+
+                                {% if arOrderProp.TYPE == 'MULTISELECT' %}
+
+                                    {% if result.POST.propParam|length > 0 %}
+
+                                        {% for i in range(0, result.POST.propParam|length) %}
+                                            <input type="hidden" name="ORDER_PROP_{{ arOrderProp.COODE }}[]" value="{{ result.POST.propParam.i }}">
+                                        {% endfor %}
+
+                                    {% else %}
+
+                                        <input type="hidden" name="ORDER_PROP_{{ arOrderProp.CODE }}[]" value="">
+
+                                    {% endif %}
+
+                                {% else %}
+
+                                    <input type="hidden" name="ORDER_PROP_{{ arOrderProp.CODE }}" value="{{ arOrderProp.VALUE }}">
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                        {% endif %}
+
+                        {% if result.CurrentStep > 3 and result.CurrentStep <= 6 %}
+
+                            <input type="hidden" name="DELIVERY_ID" value="{% if result.DELIVERY_ID.count() > 1 %} {{ result.DELIVERY_ID|join(':') }} {% else %} {{ result.DELIVERY_ID // 1 }} {% endif %}">
+
+                        {% endif %}
+
+                        {% if result.CurrentStep > 4 and result.CurrentStep <= 6 %}
+
+                            <input type="hidden" name="TAX_EXEMPT" value="{{ result.TAX_EXEMPT }}">
+                            <input type="hidden" name="PAY_CURRENT_ACCOUNT" value="{{ result.PAY_CURRENT_ACCOUNT }}">
+
+                        {% endif %}
+
+                        {% if result.CurrentStep < 6 %}
+
+                            <input type="hidden" name="CurrentStep" value="{{ (result.CurrentStep // 1) + 1 }}">
+
+                        {% endif %}
+
+                        {% if result.hidden_props.count() > 0 %}
+
+                            {% for prop in result['hidden_props'] %}
+
+                                <input type="hidden" name="ORDER_PROP_{{ prop.CODE }}" value="{{ prop.VALUE }}">
+
+                            {% endfor %}
+
+                        {% endif %}
+                        {% if result.VALID_COUPON %}
+                            <input type="hidden" name="VALID_COUPON" value="{{ result.VALID_COUPON }}">
+                        {% endif %}
+
+                        {% if result.CurrentStep < 6 %}
+
+                    </form>
+
+                    {% endif %}
+
+                </div>
+                {% endif %}
+            </section>
+
+        </div>
+    </div>
+{% endif %}
+

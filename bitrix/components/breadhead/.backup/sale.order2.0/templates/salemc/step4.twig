@@ -1,0 +1,254 @@
+<div class="row">
+        <input type="hidden" value="{{result.POST.ORDER_PROP_NAME}}" name="ORDER_PROP_NAME" >
+        <input type="hidden" value="{{result.POST.ORDER_PROP_PERSONAL_STREET}}" name="ORDER_PROP_PERSONAL_STREET" >
+        <input type="hidden" value="{{result.POST.ORDER_PROP_PERSONAL_CITY}}" name="ORDER_PROP_PERSONAL_CITY" >
+        <input type="hidden" value="{{result.POST.ORDER_PROP_PERSONAL_PHONE}}" name="ORDER_PROP_PERSONAL_PHONE" >
+
+    <div class="col-lg-10 order_steps">
+        <ul class="nav nav-tabs nav-justified hidden-xs">
+            <li class="params"><a href="/order/basket/" class="v"><span data-step="1"></span>Параметры помещения</a></li>
+            <li class="date_time"><a href="/order/" class="v"><span data-step="2"></span>Дата и время</a></li>
+            <li class="your_data"><a onclick="document.order_form.CurrentStep.value='2'; document.order_form.BACK.value='Y'; document.order_form.submit();" class="v" class="v"><span data-step="3"></span>Ваши данные</a></li>
+            <li class="order_check"><a onclick="document.order_form.CurrentStep.value='3'; document.order_form.BACK.value='Y'; document.order_form.submit();" class="v"><span data-step="4"></span>Проверка заказа</a></li>
+            <li class="paying active"><a><span data-step="5"></span>Оплата</a></li>
+        </ul>
+
+        <div class="tab-content">
+            {% if result.ERROR_TIME == 'Y' %}
+                <div id="time-picker-error">
+
+                    К сожалению, выбранное вами время уже занято.
+                    <a class="link" data-step="32" onclick="document.order_form.CurrentStep.value='1'; document.order_form.BACK.value='Y'; document.order_form.submit();">Изменить</a>
+
+                </div>
+            {% endif %}
+            <div id="paying" class="tab-pane fade in active">
+                <!-- <form class="form-inline" role="form">-->
+                <div class="row">
+                    <div class="col-sm-12"><h3>Способ оплаты</h3></div>
+                    <div class="col-sm-7"  >
+                        <input type="radio" name="pay" value="card" id="pay_card" >
+                        <label for="pay_card" class="radio_label" onclick="$('#ID_PAY_SYSTEM_ID_2').click();">
+                            <div class="pic p_card"></div>
+                            <p>Банковской картой</p>
+                            <p class="visible-xs">Скоро мы добавим новый способ оплаты.</p>
+                        </label>
+                    </div>
+                    <div class="col-sm-5 hidden-xs"><p>Скоро мы добавим новый способ оплаты.</p></div>
+                    <div class="col-sm-7">
+                        <input checked type="radio" name="pay" value="cash" id="pay_cash">
+                        <label for="pay_cash" class="radio_label" onclick="$('#ID_PAY_SYSTEM_ID_1').click();  ">
+                            <div class="pic p_cash"></div>
+                            <p>Наличными</p>
+                            <p class="visible-xs">Оплата после завершения уборки.</p>
+                        </label>
+                    </div>
+                    <div class="col-sm-5 hidden-xs"><p>Оплата после завершения уборки.</p></div>
+                    <div class="col-sm-7" style="display: none" disabled >
+                        <input type="radio" name="pay" value="cashless" id="pay_cashless" disabled>
+                        <label for="pay_cashless" class="radio_label"  onclick="$('#ID_PAY_SYSTEM_ID_1').click();  ">
+                            <div class="pic p_cashless"></div>
+                            <p>Безналичный расчет</p>
+                            <p class="visible-xs">Оказание услуг возможно только после поступления средств на счет компании.</p>
+                        </label>
+                    </div>
+                    <div style="display: none" class="col-sm-5 hidden-xs"><p>Оказание услуг возможно только после поступления средств на счет компании.</p></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button onclick="yaCounter38469730.reachGoal('confirmbuttonstep5'); return true;" type="submit" class="btn btn-default">
+                            <i class="icon rouble"></i>Подтвердить >
+                        </button>
+                    </div>
+                </div>
+                <!--  </form>-->
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 visible-lg">
+        <a data-toggle="modal" data-target="#places" class="faq">Где мы наводим чистоту</a><br>
+        <a data-toggle="modal" data-target="#tools" class="faq">Чем мы наводим чистоту</a><br>
+    </div>
+</div>
+
+<!-- ВСПЛЫВАШКА "Где мы наводим чистоту" -->
+<div id="places" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-body">
+                <h2>Что входит в уборку</h2>
+                <div class="clean-content">
+                    <h3 class="clean-content_title">Комната</h3>
+                    <div class="clearfix">
+                        <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_bedroom_pointed.jpg">
+                        <ol class="clean-content_list">
+                            <li>Протираем поверхности и плинтус</li>
+                            <li>Убираем мусор</li>
+                            <li>Заправляем постель</li>
+                            <li>Убираем пыль со светильников</li>
+                            <li>Поправляем небольшие вещи</li>
+                            <li>Пылесосим, моем пол</li>
+                            <li>Чистим зеркала и стеклянные поверхности</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="clean-content">
+                    <h3 class="clean-content_title">Кухня</h3>
+                    <div class="clearfix">
+                        <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_kitchen_pointed.jpg">
+                        <ol class="clean-content_list">
+                            <li>Протираем стол и столешницу</li>
+                            <li>Моем снаружи холодильник, духовой шкаф и плиту</li>
+                            <li>Пылесосим, моем пол</li>
+                            <li>Чистим раковину</li>
+                            <li>Выносим мусор</li>
+                            <li>Протираем поверхности и плинтус</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="clean-content">
+                    <h3 class="clean-content_title">Ванная</h3>
+                    <div class="clearfix">
+                        <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_bathroom_pointed.jpg">
+                        <ol class="clean-content_list">
+                            <li>Чистим зеркала и стеклянные поверхности</li>
+                            <li>Выносим мусор</li>
+                            <li>Пылесосим, моем пол</li>
+                            <li>Моем и дезинфицируем раковину, ванну, душевую кабину, унитаз</li>
+                            <li>Протираем поверхности</li>
+                            <li>Убираем разводы снаружи шкафа и стен</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="clean-content">
+                    <h3 class="clean-content_title">Коридор</h3>
+                    <div class="clearfix">
+                        <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_corridor_pointed.jpg">
+                        <ol class="clean-content_list">
+                            <li>Убирамем пыль со светильников</li>
+                            <li>Пылесосим, моем пол</li>
+                            <li>Протираем поверхности и плинтус</li>
+                            <li>Чистим зеркала и стеклянные поверхности</li>
+                            <li>Расставляем обувь</li>
+                            <li>Выносим мусор</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ВСПЛЫВАШКА "Чем мы наводим чистоту" -->
+<div id="tools" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-body">
+                <h2>Чем мы убираем</h2>
+                <p>
+                    Вы получите лучшую уборку в жизни. <br>
+                    Взгляните на список того, что принесут с собой профессиональные клинеры GetTidy.
+                </p>
+                <h3>Что мы принесем с собой</h3>
+                <div class="tools-item">
+                    <div class="tools-item_pic pic_1 hidden-xs"></div>
+                    <div class="tools-item_content">
+                        <h4 class="tools-item_title">Экологические средства Attitude</h4>
+                        <ul class="list-unstyled">
+                            <li>— Средство для пола</li>
+                            <li>— Спрей для ванных комнат</li>
+                            <li>— Спрей для зеркал</li>
+                            <li>— Универсальный спрей для поверхностей</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tools-item">
+                    <div class="tools-item_pic pic_2 hidden-xs"></div>
+                    <div class="tools-item_content">
+                        <h4 class="tools-item_title">Одноразовые расходные материалы</h4>
+                        <ul class="list-unstyled">
+                            <li>— Салфетки для пола</li>
+                            <li>— Губки</li>
+                            <li>— Салфетки из микрофибры</li>
+                            <li>— Перчатки</li>
+                            <li>— Мешки для мусора</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tools-item">
+                    <div class="tools-item_pic pic_3 hidden-xs"></div>
+                    <div class="tools-item_content">
+                        <h4 class="tools-item_title">Инвентарь</h4>
+                        <ul class="list-unstyled">
+                            <li>— Швабра для пола</li>
+                            <li>— Щетка для мытья окон</li>
+                            <li>— Чистящий ролик</li>
+                        </ul>
+                    </div>
+                </div>
+                <h3>Что вам необходимо иметь</h3>
+                <div class="tools-item">
+                    <div class="tools-item_pic pic_4 hidden-xs"></div>
+                    <div class="tools-item_content">
+                        <ul class="list-unstyled">
+                            <li>— Пылесос</li>
+                            <li>— Утюг</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<fieldset class="order-form__fieldset" style="display: none">
+    <h2 class="order-form__fieldset-title">Способ оплаты</h2>
+    <div class="order-form__fieldset-tip">
+        <h3>Простота и безопасность</h3>
+        <p>
+            Мы принимаем безналичную оплату. Оплата банковской картой производится через защищенный платежный шлюз.
+        </p>
+    </div>
+
+    {% if result.PAY_SYSTEM|length > 0 %}
+
+        {% for arPaySystem in result.PAY_SYSTEM %}
+
+            <label class="payment-type">
+                <input style="display: block" class="payment-type__input" {% if arPaySystem.ID == 3 %}disabled{% endif %} type="radio" value="{{ arPaySystem.ID }}" name="PAY_SYSTEM_ID" id="ID_PAY_SYSTEM_ID_{{ arPaySystem.ID }}" {% if arPaySystem.CHECKED == 'Y' %} checked {% endif %}/>
+                <span class="payment-type__content">
+                  <span class="payment-type__content-title">{{ arPaySystem.PSA_NAME }}</span>
+                  <span class="payment-type__content-desc">
+                    {{ arPaySystem.DESCRIPTION }}
+                  </span>
+                    {% if arPaySystem.ID == 3 %}
+                        <span class="input-error filled input-error__item parsley-custom-error-message">
+                        Данный способ оплаты временно недоступен. Мы работаем над устранением проблемы. Приносим свои извинения за возможные неудобства.
+                    </span>
+
+                    {% endif %}
+
+                    {% if arPaySystem.ID == 2 %}
+                        <img src="/layout/assets/images/content/cards.png" alt="">
+                    {% endif %}
+                </span>
+
+            </label>
+
+        {% endfor %}
+
+    {% endif %}
+
+</fieldset>
+
+<button onclick="yaCounter38469730.reachGoal('confirmbuttonstep5'); return true;" class="order-form__next btn btn_with_icons btn_responsive_true" name="contButton" id="enter_card">
+    Подтвердить<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>
+<script>$('#ID_PAY_SYSTEM_ID_1').click();
+</script>
+<style>
+    #enter_card{display: none}
+</style>

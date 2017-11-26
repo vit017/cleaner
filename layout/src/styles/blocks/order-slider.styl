@@ -1,0 +1,176 @@
+.order-slider
+  position relative
+  margin 0 auto
+  width 280px
+
+  &__frame
+    display block
+    position absolute
+    overflow hidden
+
+    &-content
+      position absolute
+      overflow hidden
+
+    &_type_phone
+      width 179px
+      height 336px
+      background url('../images/order-slider/iphone_frame.png') 0 0 no-repeat
+      top 0
+      left 50%
+      margin 0 0 0 -90px
+
+      .order-slider__frame-content
+        width 135px
+        height 229px
+        background #ffffff
+        left 22px
+        top 59px
+
+    &_type_desktop
+      display none
+
+      .order-slider__frame-content
+        width 539px
+        height 316px
+        background #ffffff
+        left 99px
+        top 51px
+
+  &__content
+    position relative
+    height 336px
+
+  &__indicator
+    text-align center
+    padding 30px 0 0 0
+
+    &-item
+      display inline-block
+      vertical-align top
+      width 10px
+      height 10px
+      background #e5e5e5
+      border-radius 50%
+      margin 0 5px
+      cursor pointer
+
+      &_active
+        background #f8cc69
+        cursor default
+
+  &__frame
+    display block
+    position absolute
+    overflow hidden
+
+    img
+      display block
+      position absolute
+      left 0
+      top 0
+      width 100%
+      height 100%
+
+  &__list
+    display none
+
+  &__title
+    display block
+    text-align center
+    font-family Medium
+    font-size 15px
+    line-height 25px
+    margin 20px auto 10px
+    padding 0
+    max-width 570px
+
+  &__nav
+    position absolute
+    top 0
+    width 30px
+    height 336px
+
+    &::before
+      content ""
+      display block
+      position absolute
+      top 50%
+      width 33px
+      height 20px
+      margin -10px 0 0 0
+
+    &_prev
+      left 0
+
+      &::before
+        background url64('../images/icons/arrow_left.svg') 0 0 no-repeat
+        left 0
+
+    &_next
+      right 0
+
+      &::before
+        background url64('../images/icons/arrow_right.svg') 0 0 no-repeat
+        right 0
+
+    &_disabled
+      pointer-events none
+      opacity 0.5
+
+  @media screen and (min-width: 1020px)
+    width 1000px
+
+    &__content
+      height 434px
+
+    &__frame
+      /*display block
+      position absolute
+      overflow hidden*/
+
+      /*img
+        display block
+        position absolute
+        left 0
+        top 0
+        width 100%
+        height 100%*/
+
+      &_type_phone
+        width 179px
+        height 336px
+        background url('../images/order-slider/iphone_frame.png') 0 0 no-repeat
+        top auto
+        left auto
+        margin 0
+        right 120px
+        bottom 0
+
+      &_type_desktop
+        width 736px
+        height 434px
+        background url('../images/order-slider/macbook_frame.png') 0 0 no-repeat
+        display block
+        top 0
+        left 50%
+        margin 0 0 0 -368px
+
+    &__nav
+      height 434px
+      cursor pointer
+      user-select none
+
+      &_prev
+        left 10px
+
+      &_next
+        right 10px
+
+    &__title
+      font-size 30px
+      line-height 40px
+      margin-top 5px
+      margin-bottom 0
+
+

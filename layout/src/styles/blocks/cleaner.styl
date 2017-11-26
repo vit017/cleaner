@@ -1,0 +1,59 @@
+.cleaner
+  display block
+  position relative
+  text-align center
+  margin 0 0 30px 0
+
+  &__pic
+    display block
+    overflow hidden
+    width 190px
+    //height 190px
+    max-width 100%
+    border-radius 50%
+    margin 0 auto 23px
+
+    img
+      display block
+      width 100%
+      height auto
+
+  &__name
+    display block
+    font-family Medium
+    font-weight normal
+    width 150px
+    margin 0 auto 5px
+
+  &__inf
+    display none
+    font-size basefont
+    line-height 25px
+    padding 0
+
+  &__experience
+    font-size 12px
+
+  @media screen and (min-width: 1023px)
+    margin-bottom -5px
+
+    &__pic
+      width 230px
+      //height 230px
+      margin-bottom 48px
+
+    &__name
+      width 100%
+      font-size 20px
+      line-height 1.5
+      margin 0 0 22px 0
+
+    &__inf
+      display block
+      max-width 320px
+      margin 0 auto 45px
+
+    &__experience
+      font-size 15px
+      font-family Medium
+

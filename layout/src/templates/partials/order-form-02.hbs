@@ -1,0 +1,23 @@
+<fieldset class="order-form__fieldset">
+  <h2 class="order-form__fieldset-title">Выберите дату</h2>
+  {{> date-picker}}
+  <div class="order-form__fieldset-tip">
+    <h3>Трудимся без устали</h3>
+    <p>
+      Мы работаем по будням и выходным без перерывов на обед.
+    </p>
+  </div>
+</fieldset>
+<fieldset class="order-form__fieldset">
+  <h2 class="order-form__fieldset-title">Выберите время</h2>
+  {{> time-picker}}
+  <div class="order-form__fieldset-tip">
+    <h3>Суровая реальность</h3>
+    <p>
+      Клинер может немного задержаться. К сожалению, мы не властны над пробками.
+    </p>
+  </div>
+</fieldset>
+<button class="order-form__next btn btn_with_icons btn_responsive_true">
+  <span class="btn__icon btn__icon_type_place"></span>Контакты<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>

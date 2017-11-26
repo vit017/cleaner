@@ -1,0 +1,424 @@
+<!--<pre>
+   {{ dump(result) }}
+</pre>-->
+<div class="row">
+    <div class="col-lg-10 order_steps">
+        <ul class="nav nav-tabs nav-justified hidden-xs">
+            <li class="params"><a class="v" href="/order/basket/" ><span data-step="1"></span>Параметры помещения</a></li>
+            <li class="date_time"><a href="/order/" class="v"><span data-step="2"></span>Дата и время</a></li>
+            <li class="your_data" onclick="document.order_form.CurrentStep.value='2'; document.order_form.BACK.value='Y'; document.order_form.submit();"><a class="v"><span data-step="3"></span>Ваши данные</a></li>
+            <li class="order_check active"><a><span data-step="4"></span>Проверка заказа</a></li>
+            <li class="paying"><a><span data-step="5"></span>Оплата</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="order_check" class="tab-pane fade in active">
+             <!--   <form class="form-inline" role="form">-->
+                    <div class="row">
+                        <div class="col-sm-12"><h3>Проверьте данные <span>Вы можете внести изменения в заказ прямо сейчас.</span></h3></div>
+                        <div class="col-sm-8">
+                            <div class="row order_check" id="term_1">
+                                <a class="edit" href="/order/basket/"></a>
+                                <div class="col-sm-5">
+                                    <h5><i class="icon obj_data"></i>Параметры объекта</h5>
+                                </div>
+                                <div class="col-sm-7">
+                                    <b> {% for arBasketItem in result.BASKET_ITEMS.MAIN %}
+
+                                            {{ arBasketItem.NAME }}м&#178;
+                                            {% if not loop.last %} + {% endif %}
+
+                                        {% endfor %}</b>
+                                </div>
+                                <div class="clearfix"></div>
+                                {% if result.ADD_LINE|length > 0 %}
+                                    <div class="col-sm-5">
+                                        <span class="empty hidden-xs"></span>Дополнительно:
+                                    </div>
+
+                                {% endif %}
+
+                                <div class="col-sm-7">
+                                    <ul class="list-unstyled">
+                                        <li> {{ result.ADD_LINE }}</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row order_check" id="term_2">
+                                <a class="edit" onclick="document.order_form.CurrentStep.value='1'; document.order_form.BACK.value='Y'; document.order_form.submit();"></a>
+                                <div class="col-sm-5">
+                                    <h5><i class="icon date_time"></i>Дата и время</h5>
+                                </div>
+                                {% set date = result.POST.ORDER_PROP_DATE|date("d.m.y") %}
+                                <div class="col-sm-7">
+                                    <b>{{ result.WEEK_DAY }}, {{ date|formatDate('DD MMMM YYYY') }}</b>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-5 hidden-xs">
+                                    &nbsp;
+                                </div>
+                                <div class="col-sm-7">
+                                    <b>  {{ result.POST.ORDER_PROP_TIME }} - {{ result.TIME_PERIOD_TO }}:{% if result.TIME_PERIOD_HALF %}30{% else %}00{% endif %} (&#126;{{ result.TOTAL_TIME_FORMATED }} )</b>
+                                </div>
+                            </div>
+                            <div class="row order_check">
+                                <a class="edit" onclick="document.order_form.CurrentStep.value='2'; document.order_form.BACK.value='Y'; document.order_form.submit();"></a>
+                                <div class="col-sm-5">
+                                    <h5><i class="icon your_data"></i>Ваши данные</h5>
+                                </div>
+                                <div class="col-sm-7">
+                                    <ul class="list-unstyled">
+                                        <li>E-mail: <b>{{ result.USER_LOGIN }}</b></li>
+                                        {% for arProperties in result.ORDER_PROPS_PRINT %}
+                                            {% if arProperties.NAME != 'Телефон' %}
+                                                <li>{{ arProperties.NAME }}: <b  {% if arProperties.NAME == 'Город' %} id="cit2" {% endif %}>{{ arProperties.VALUE_FORMATED }}</b></li>
+                                            {% endif %}
+
+                                            {% if arProperties.NAME == 'Телефон' %}
+                                                <li>Телефон: <b>
+                                                        {% set tw = 1 %}
+                                                        {% if arProperties.VALUE_FORMATED == '' %}
+                                                            {{ result.POST.PERSONAL_PHONE }}
+                                                        {% endif %}
+                                                        {% if arProperties.VALUE_FORMATED != '' %}
+                                                            {{ arProperties.VALUE_FORMATED  }}
+                                                        {% endif %}
+                                                    </b></li>
+                                            {% endif %}
+                                            {% if arProperties.NAME == 'Ваше имя' %}
+                                                <input  type="hidden" class="input-txt__field " type="text" value="{{ arProperties.VALUE_FORMATED }}" name="ORDER_PROP_NAME">
+                                            {% endif %}
+                                            {% if arProperties.NAME == 'Адрес' %}
+                                                <input type="hidden"  class="input-txt__field " type="text" value="{{ arProperties.VALUE_FORMATED }}" name="ORDER_PROP_PERSONAL_STREET">
+                                            {% endif %}
+                                            {% if arProperties.NAME == 'Телефон' %}
+                                                <input type="hidden" value="{{ arProperties.VALUE_FORMATED }}" name="ORDER_PROP_PERSONAL_PHONE">
+
+                                            {% endif %}
+                                            {#{% if arProperties.NAME == 'Город' %}#}
+                                                {#<input type="hidden" value="{{ arProperties.VALUE }}" name="ORDER_PROP_PERSONAL_CITY">#}
+                                                {#<select hidden class="select select_width_full select_search_false js-city-select" name="ORDER_PROP_PERSONAL_CITY" id="" required="required" data-parsley-error-message="Укажите город">#}
+
+                                                    {#<option id="335" value="617" selected="selected">Санкт-Петербург</option>#}
+
+                                                {#</select>#}
+                                            {#{% endif %}#}
+                                        {% endfor %}
+                                        <input type="hidden" value="{{ result.POST.ORDER_PROP_PERSONAL_CITY }}" name="ORDER_PROP_PERSONAL_CITY">
+                                        {#{% if tw != 1 %}#}
+                                            {#<li>Телефон: <b>#}
+                                                {#{{ result.POST.PERSONAL_PHONE }}#}
+                                            {#</b></li>#}
+                                        {#{% endif %}#}
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="positioner hidden-xs"></div>
+                            Введите Ваш промокод
+                            <input type="text" name="COUPON"> <button class="promo-code__btn btn btn_type_second {#{% if result.VALID_COUPON == 'true' %}btn_state_disabled{% endif %}#}" {#{% if result.VALID_COUPON == 'true' %}disabled="disabled"{% endif %}#}>Ок</button>
+                                <h3 class="inline">К оплате <span>{{ result.ORDER_TOTAL_PRICE_FORMATED }}</span> &#8381;</h3>
+
+                        </div>
+                        <style>
+                            textarea#ORDER_COMMENT {
+                                font-size: 13px;
+                                padding: 4px 20px;
+                                border: 1px solid #1D1D3F;
+                                border-radius: 5px;
+                                margin-bottom: 10px;
+                                min-height: 90px;
+                            }
+                        </style>
+                        <div class="col-sm-12">
+                            <textarea id="ORDER_COMMENT" name="ORDER_COMMENT" value="" placeholder="Вы можете оставить свой комментарий"></textarea>
+                            <input required type="checkbox" name="agreement" value="agree" id="agreement">
+                            <label for="agreement" class="checkbox_label">
+                                Подтверждая заказ, вы соглашаетесь с условиями <a href="/terms/">Пользовательского соглашения</a> и <a href="/policies/">Правилами сайта и защиты информации.</a>
+                            </label>
+
+                            <input checked type="checkbox" name="spam_ok" value="spam_ok" id="spam_ok">
+                            <label for="spam_ok" class="checkbox_label">Я даю свое согласие на получение рекламных и информационных сообщений от MaxClean на указанный email-адрес.</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button onclick="yaCounter38469730.reachGoal('nextbuttonstep4'); return true;" type="submit" class="btn btn-default">
+                                <i class="icon rouble"></i>Далее >
+                            </button>
+                        </div>
+                    </div>
+               <!-- </form>-->
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 visible-lg">
+        <a data-toggle="modal" data-target="#places" class="faq">Где мы наводим чистоту</a><br>
+        <a data-toggle="modal" data-target="#tools" class="faq">Чем мы наводим чистоту</a><br>
+    </div>
+</div>
+
+<!--
+<select class="select select_width_full select_search_false js-city-select" name="ORDER_PROP_PERSONAL_CITY" id="" required="required" data-parsley-error-message="Укажите город">
+
+    <option value="617" selected="selected">Санкт-Петербург</option>
+
+</select>-->
+<!------------------------------------->
+
+<!-- ВСПЛЫВАШКА "Где мы наводим чистоту" -->
+<div id="places" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-body">
+                <h2>Что входит в уборку</h2>
+                <div class="clean-content">
+                    <h3 class="clean-content_title">Комната</h3>
+                    <div class="clearfix">
+                        <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_bedroom_pointed.jpg">
+                        <ol class="clean-content_list">
+                            <li>Протираем поверхности и плинтус</li>
+                            <li>Убираем мусор</li>
+                            <li>Заправляем постель</li>
+                            <li>Убираем пыль со светильников</li>
+                            <li>Поправляем небольшие вещи</li>
+                            <li>Пылесосим, моем пол</li>
+                            <li>Чистим зеркала и стеклянные поверхности</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="clean-content">
+                    <h3 class="clean-content_title">Кухня</h3>
+                    <div class="clearfix">
+                        <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_kitchen_pointed.jpg">
+                        <ol class="clean-content_list">
+                            <li>Протираем стол и столешницу</li>
+                            <li>Моем снаружи холодильник, духовой шкаф и плиту</li>
+                            <li>Пылесосим, моем пол</li>
+                            <li>Чистим раковину</li>
+                            <li>Выносим мусор</li>
+                            <li>Протираем поверхности и плинтус</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="clean-content">
+                    <h3 class="clean-content_title">Ванная</h3>
+                    <div class="clearfix">
+                        <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_bathroom_pointed.jpg">
+                        <ol class="clean-content_list">
+                            <li>Чистим зеркала и стеклянные поверхности</li>
+                            <li>Выносим мусор</li>
+                            <li>Пылесосим, моем пол</li>
+                            <li>Моем и дезинфицируем раковину, ванну, душевую кабину, унитаз</li>
+                            <li>Протираем поверхности</li>
+                            <li>Убираем разводы снаружи шкафа и стен</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="clean-content">
+                    <h3 class="clean-content_title">Коридор</h3>
+                    <div class="clearfix">
+                        <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_corridor_pointed.jpg">
+                        <ol class="clean-content_list">
+                            <li>Убирамем пыль со светильников</li>
+                            <li>Пылесосим, моем пол</li>
+                            <li>Протираем поверхности и плинтус</li>
+                            <li>Чистим зеркала и стеклянные поверхности</li>
+                            <li>Расставляем обувь</li>
+                            <li>Выносим мусор</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ВСПЛЫВАШКА "Чем мы наводим чистоту" -->
+<div id="tools" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-body">
+                <h2>Чем мы убираем</h2>
+                <p>
+                    Вы получите лучшую уборку в жизни. <br>
+                    Взгляните на список того, что принесут с собой профессиональные клинеры GetTidy.
+                </p>
+                <h3>Что мы принесем с собой</h3>
+                <div class="tools-item">
+                    <div class="tools-item_pic pic_1 hidden-xs"></div>
+                    <div class="tools-item_content">
+                        <h4 class="tools-item_title">Экологические средства Attitude</h4>
+                        <ul class="list-unstyled">
+                            <li>— Средство для пола</li>
+                            <li>— Спрей для ванных комнат</li>
+                            <li>— Спрей для зеркал</li>
+                            <li>— Универсальный спрей для поверхностей</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tools-item">
+                    <div class="tools-item_pic pic_2 hidden-xs"></div>
+                    <div class="tools-item_content">
+                        <h4 class="tools-item_title">Одноразовые расходные материалы</h4>
+                        <ul class="list-unstyled">
+                            <li>— Салфетки для пола</li>
+                            <li>— Губки</li>
+                            <li>— Салфетки из микрофибры</li>
+                            <li>— Перчатки</li>
+                            <li>— Мешки для мусора</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tools-item">
+                    <div class="tools-item_pic pic_3 hidden-xs"></div>
+                    <div class="tools-item_content">
+                        <h4 class="tools-item_title">Инвентарь</h4>
+                        <ul class="list-unstyled">
+                            <li>— Швабра для пола</li>
+                            <li>— Щетка для мытья окон</li>
+                            <li>— Чистящий ролик</li>
+                        </ul>
+                    </div>
+                </div>
+                <h3>Что вам необходимо иметь</h3>
+                <div class="tools-item">
+                    <div class="tools-item_pic pic_4 hidden-xs"></div>
+                    <div class="tools-item_content">
+                        <ul class="list-unstyled">
+                            <li>— Пылесос</li>
+                            <li>— Утюг</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<fieldset class="order-form__fieldset" style="display: none">
+    <h2 class="order-form__fieldset-title">Проверьте данные</h2>
+    <div class="order-form__fieldset-tip">
+        <h3>Редактирование</h3>
+        <p>
+            Ошиблись при заполнении данных? Ничего страшного! Вы можете отредактировать их прямо сейчас.
+        </p>
+    </div>
+    <div class="order-item">
+        <h4 class="order-item__title order-item__title_params">Параметры квартиры55</h4>
+        <a class="order-item__edit hide-text" href="/order/basket/" title="Редактировать">Редактировать</a>
+        <p class="order-item__param">
+
+            {% for arBasketItem in result.BASKET_ITEMS.MAIN %}
+
+                {{ arBasketItem.NAME }}м&#178;
+                {% if not loop.last %} + {% endif %}
+
+            {% endfor %}
+
+        </p>
+
+        {% if result.ADD_LINE|length > 0 %}
+            <p class="order-item__param">
+                <span class="order-item__param-name">Дополнительно: </span>
+                {{ result.ADD_LINE }}
+            </p>
+
+        {% endif %}
+    </div>
+    <div class="order-item">
+        <h4 class="order-item__title order-item__title_date">Дата и время</h4>
+        <span class="order-item__edit hide-text" onclick="document.order_form.CurrentStep.value='1'; document.order_form.BACK.value='Y'; document.order_form.submit();" title="Редактировать">Редактировать</span>
+        {% set date = result.POST.ORDER_PROP_DATE|date("d.m.y") %}
+        <p class="order-item__param">{{ result.WEEK_DAY }}, <span class="lowercase">{{ date|formatDate('DD MMMM YYYY') }}</span></p>
+        <p class="order-item__param">
+            {{ result.POST.ORDER_PROP_TIME }}:00 - {{ result.TIME_PERIOD_TO }}:{% if result.TIME_PERIOD_HALF %}30{% else %}00{% endif %} <span class="grey">(&#126;{{ result.TOTAL_TIME_FORMATED }})</span>
+        </p>
+    </div>
+    <div class="order-item">
+        <h4 class="order-item__title order-item__title_contacts">Контактные данные</h4>
+        <span class="order-item__edit hide-text" onclick="document.order_form.CurrentStep.value='2'; document.order_form.BACK.value='Y'; document.order_form.submit();" title="Редактировать">Редактировать</span>
+        <p class="order-item__param"><span class="order-item__param-name">E-mail: </span>{{ result.USER_LOGIN }}</p>
+        {% for arProperties in result.ORDER_PROPS_PRINT %}
+            <p class="order-item__param"><span class="order-item__param-name">{{ arProperties.NAME }}: </span>{{ arProperties.VALUE_FORMATED }}</p>
+        {% endfor %}
+
+    </div>
+    {% if (result.HIDE_COUPONS != 'Y' or result.PAY_FROM_ACCOUNT == 'Y') %}
+        <div class="order-discount clearfix">
+            {% if result.HIDE_COUPONS != 'Y' %}
+                <div class="order-discount__item">
+                    <h4 class="order-discount__item-title">Промокод</h4>
+                    <div class="promo-code js-promocode">
+                        <label class="promo-code__input input-txt" data-placeholder="Промокод">
+                         <!--   <input class="input-txt__field js-promocode-input" type="text" name="COUPON" placeholder="Промокод" />-->
+                        </label>
+                        <button class="promo-code__btn btn btn_type_second {#{% if result.VALID_COUPON == 'true' %}btn_state_disabled{% endif %}#}" {#{% if result.VALID_COUPON == 'true' %}disabled="disabled"{% endif %}#}>Ок</button>
+                    </div>
+                </div>
+            {% endif %}
+            {% if result.PAY_FROM_ACCOUNT == 'Y' %}
+            <div class="order-discount__item" style="width:210px">
+                <h4 class="order-discount__item-title"><!--Бесплатные часы-->Бонусы</h4>
+                <input type="hidden" name="current_b" value="{% if result.PAY_CURRENT_ACCOUNT == 'Y'%}Y{% endif %}">
+                <input type="hidden" name="CURRENT_BUDGET" value="{{ result.USER_ACCOUNT.CURRENT_BUDGET}}">
+                    <label class="checkbox" style="line-height:20px">
+                        <input class="checkbox__input" type="checkbox" value="Y" name="PAY_CURRENT_ACCOUNT" id="PAY_CURRENT_ACCOUNT" {% if result.PAY_CURRENT_ACCOUNT == 'Y'%}checked{% endif %}>
+                        <span class="checkbox__icon js-send-basketForm"></span>
+                        <span class="checkbox__title">{{ result.CURRENT_BUDGET_FORMATED }}</span>
+                    </label>
+            </div>
+            {% elseif result.BH_SALE_BASKET_MESSAGE|length and false %}
+                {{ result.BH_SALE_BASKET_MESSAGE }}
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="total">
+        {% if result.VALID_COUPON == true or result.PAYED_FROM_ACCOUNT_FORMATED>0%}
+            <p class="total__item clearfix">
+                <span class="pull-left">Уборка <span class="grey">({{ result.TOTAL_TIME_FORMATED }})</span></span><span class="pull-right">{{ result.BASKET_PRICE_FORMATED }} <span class="rouble">Р</span></span>
+            </p>
+        {% endif %}
+        {% if result.VALID_COUPON == true %}
+            <input type="hidden" name="coupon_discount" value="{{  result.DISCOUNT_PRICE }}">
+            <p class="total__item clearfix">
+                <span class="pull-left">Скидка</span><span class="pull-right">- {{ result.DISCOUNT_PRICE_ALL_FORMATED }} <span class="rouble">Р</span></span>
+            </p>
+
+        {% endif %}
+        {% if result.PAYED_FROM_ACCOUNT_FORMATED>0 %}
+            <p class="total__item clearfix">
+                <span class="pull-left"><!--Бесплатные часы ({{ result.PAYED_FROM_ACCOUNT_HOURS_FORMATED }} ч)-->Бонусы</span><span class="pull-right">-{{ result.PAYED_FROM_ACCOUNT_FORMATED }} <span class="rouble">Р</span></span>
+            </p>
+        {% endif %}
+        <p class="total__item total__item_summary clearfix">
+            <input type="hidden" name="summ_to_pay" value="{{ result.ORDER_TOTAL_PRICE }}">
+            <span class="pull-left">Итого</span><span class="pull-right">{{ result.ORDER_TOTAL_PRICE_FORMATED }} <span class="rouble">Р</span></span>
+        </p>
+    </div>
+</fieldset>
+{% if result.ERROR_TIME == 'Y' %}
+    <div id="time-picker-error">
+        <span class="input-error filled" id="" style="margin-bottom:20px;">
+            <span class="input-error__item parsley-custom-error-message">
+                К сожалению, выбранное вами время уже занято.
+                <strong class="link" data-step="32" onclick="document.order_form.CurrentStep.value='1'; document.order_form.BACK.value='Y'; document.order_form.submit();">Изменить</strong>
+            </span>
+        </span>
+    </div>
+{% endif %}
+<button class="order-form__next btn btn_with_icons btn_responsive_true" id="confirm_order">
+    <span class="btn__icon btn__icon_type_pay"></span>Подтвердить<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>
+<style>
+    #confirm_order{display: none}
+</style>
+<script>
+    if (!$('#ORDER_COMMENT').val()) $('#ORDER_COMMENT').val(CLIENT_PARAMS.ORDER_COMMENT);
+</script>

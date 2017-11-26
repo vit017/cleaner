@@ -1,0 +1,43 @@
+#php_value upload_max_filesize 50M
+#php_value post_max_size 50M
+#
+php_value display_errors 1
+php_value display_startup_errors 1
+
+AddDefaultCharset UTF-8
+AddType text/x-component .htc
+
+Options -Indexes
+
+ErrorDocument 403 /errors/403
+ErrorDocument 404 /errors/404
+ErrorDocument 500 /errors/500
+
+RewriteEngine On
+
+RewriteRule ^(\.(php|phtml|php3|php4|php5|pl|hgignore)|README)$ /errors/404
+
+RewriteCond $1 ^(taxi373_console_sue37dioxp)
+RewriteRule ^(.*)$ adapters/taxi373/taxiApiServer/console [L]
+
+RewriteCond $1 ^(taxi_navigator_console_Sui78eoXp2)
+RewriteRule ^(.*)$ adapters/navigator/taxiApiServer/console [L]
+
+RewriteCond $1 ^updates$
+RewriteRule ^(.*)$ index_updates.php [L]
+
+RewriteCond $1 ^server$
+RewriteRule ^(.*)$ index_server.php [L]
+
+RewriteCond $1 ^developer$
+RewriteRule ^(.*)$ index_developer.php [L]
+
+RewriteCond $1 ^client$
+RewriteRule ^(.*)$ index_client.php [L]
+
+RewriteCond $1 !(assets|assets_min|developer|server|client|updates|console_sue37dioxp|include|docs|html|test_public)
+RewriteRule ^(.*)$ /errors/404 [L]
+
+
+
+

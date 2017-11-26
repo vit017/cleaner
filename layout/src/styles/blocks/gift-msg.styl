@@ -1,0 +1,35 @@
+.gift-msg
+  position relative
+  background #f8cc69
+  margin 0 0 10px 0
+  padding 15px 20px
+  text-align center
+  color #001b1f
+  font-family Medium
+  font-size 15px
+  line-height 20px
+
+  &::after
+    content ""
+    display inline-block
+    width 20px
+    height 10px
+    position absolute
+    top 100%
+    left 50%
+    margin 0 0 0 -10px
+    background url64('../images/msg-arrow-down.png') 0 0 no-repeat
+
+  @media screen and (min-width: 930px)
+    &
+      font-size 20px
+      line-height 30px
+
+.page-content
+
+  & > .gift-msg
+    margin-top -16px
+
+  @media screen and (min-width: 930px)
+    & > .gift-msg
+      margin-top -40px

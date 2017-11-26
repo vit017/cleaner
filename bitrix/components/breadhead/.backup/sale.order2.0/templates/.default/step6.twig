@@ -1,0 +1,33 @@
+{% if result.PAY_SYSTEM.ACTION_FILE|length > 0 %}
+
+    {% if result.PAY_SYSTEM.NEW_WINDOW == 'Y' %}
+        {% set url = result.ORDER.ACCOUNT_NUMBER|url_encode(true) %}
+        {% set paymentUrl = params.PATH_TO_PAYMENT~'?ORDER_ID='~url %}
+        <script language="JavaScript">
+            window.open('{{ paymentUrl }}');
+        </script>
+
+    {% else %}
+
+        {{ includeFile(result.PAY_SYSTEM.PATH_TO_ACTION) }}
+
+    {% endif %}
+
+    <div class="container">
+
+        <div class="order-final">
+            <h1 class="order-final__title">Спасибо!</h1>
+            <div class="order-final__msg">
+                <h2 class="order-final__msg-title">Ваш заказ принят</h2>
+                <p class="order-final__msg-text">
+                    Вы всегда можете просмотреть детали заказа в вашем личном кабинете.
+                </p>
+            </div>
+            <a href="/user/" class="order-form__next btn btn_with_icons btn_responsive_true">
+                <span class="btn__icon btn__icon_type_user"></span>В личный кабинет<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+            </a>
+        </div>
+
+    </div>
+
+{% endif %}

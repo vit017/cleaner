@@ -1,0 +1,228 @@
+.btn
+  position relative
+  display inline-block
+  vertical-align top
+  background btnBgColor
+  color btnColor
+  font-family Medium
+  font-weight normal
+  font-size 20px
+  line-height 1.5
+  text-align center
+  text-decoration none !important
+  padding 10px 20px 10px 20px
+  border none
+  outline none
+  cursor pointer
+  user-select none
+  transform translateY(0)
+  transition all .25s
+  -webkit-appearance none
+  border-radius 0
+  box-shadow none
+  white-space nowrap
+  text-overflow ellipsis
+  backface-visibility hidden
+
+  &::after
+    content ""
+    display block
+    position absolute
+    left -1px
+    top -1px
+    bottom -1px
+    right -1px
+
+  &:hover
+    background btnBgColorHover
+    color btnColorHover
+
+  &:active
+    transform translateY(1px)
+    background btnBgColorActive
+    color btnColorActive
+
+    &::after
+      top -2px
+      left -2px
+      right -2px
+
+  &_type_vk
+    color #ffffff !important
+    background #4d739c
+
+    &:hover
+      background #43678d
+
+    &:active
+      background #315376
+
+  &_type_fb
+    color #ffffff !important
+    background #537bbd
+
+    &:hover
+      background #456dae
+
+    &:active
+      background #355a96
+
+
+  &_type_insta
+    color #ffffff !important
+    background #3f729b
+
+    &:hover
+      background #32648d
+
+    &:active
+      background #215075
+
+  &_type_third
+    background btnBg2Color
+    color #6e7677 !important
+    font-size 15px
+    line-height 2
+
+    &:hover
+      background btnBg2ColorHover
+
+    &:active
+      background btnBg2ColorActive
+
+  &_type_second
+    background btnBgSecondColor
+    color baseColor !important
+    font-size 15px
+    line-height 2
+
+    &:hover
+      background btnBgSecondColorHover
+
+    &:active
+      background btnBgSecondColorActive
+
+
+  &_width_full
+    width 100%
+
+  &_size_small
+    font-size 15px
+    line-height 30px
+    padding 5px 15px 5px 15px
+
+  &_size_big
+    font-size 24px
+    padding 12px 30px 12px 30px
+
+  &_size_biggest
+    font-size 30px
+    padding 13px 40px 12px 40px
+
+  @media screen and (min-width: 930px)
+    &.btn_responsive_true
+      font-size 24px
+      padding 12px 30px 12px 30px
+
+    &_size_small.btn_responsive_true
+      font-size 20px
+      padding 10px 20px 10px 20px
+
+    &_size_big.btn_responsive_true
+      font-size 30px
+      padding 13px 40px 12px 40px
+
+  &_with_icons
+    padding-left 20px !important
+    padding-right 20px !important
+
+  &__icon
+    display inline-block
+    vertical-align top
+    line-height 1.5
+    margin 0 20px 0 0
+
+    &_right
+      margin 0 0 0 30px
+
+    &::before
+      content "'"
+      display block
+      visibility visible
+      color transparent
+      position absolute
+      top 0
+      bottom 0
+      width 100%
+      max-width 30px
+
+    &_type_date
+      width 24px
+      &::before
+        background url64('../images/icons/icon-31.svg') 0 center no-repeat
+
+    &_type_forward
+      width 20px
+      &::before
+        background url64('../images/icons/icon-15.svg') 0 center no-repeat
+
+    &_type_place
+      width 16px
+      &::before
+        background url64('../images/icons/icon-35.svg') 0 center no-repeat
+
+    &_type_save
+      width 20px
+      &::before
+        background url64('../images/icons/icon-49.svg') 0 center no-repeat
+
+    &_type_pay
+      width 20px
+      &::before
+        background url64('../images/icons/icon-39.svg') 0 center no-repeat
+
+    &_type_user
+      width 15px
+      margin-right 10px
+      &::before
+        background url64('../images/icons/icon-30.svg') 0 center no-repeat
+
+    &_type_vk
+      width 14px
+      margin 0 10px 0 0
+      &::before
+        background url64('../images/icons/icon-vk.png') 0 center no-repeat
+
+      @media screen and (min-width: 930px)
+        width 14px
+        margin 0 10px 0 0
+        &::before
+          background url64('../images/icons/icon-vk.png') 0 center no-repeat
+
+    &_type_fb
+      width 10px
+      margin 0 10px 0 0
+      &::before
+        background url64('../images/icons/icon-fb.png') 0 center no-repeat
+
+      @media screen and (min-width: 930px)
+        width 10px
+        margin 0 10px 0 0
+        &::before
+          background url64('../images/icons/icon-fb.png') 0 center no-repeat
+
+    &_type_insta
+      width 18px
+      &::before
+        background url64('../images/icons/icon_insta.png') 0 center no-repeat
+
+    &_type_back
+      width 11px
+      margin-right 10px
+      &::before
+        background url64('../images/icons/icon-20.svg') 0 center no-repeat
+
+    &_type_login
+      width 20px
+      &::before
+        background url64('../images/icons/icon-51.svg') 0 center no-repeat

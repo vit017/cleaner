@@ -1,0 +1,55 @@
+.order
+  position relative
+
+  &__header
+    display none
+
+  @media screen and (min-width: 930px)
+    width 870px
+
+    &__header
+      display block
+      position relative
+      color #c2c5c5
+      background #ffffff
+      font-size 13px
+      line-height 20px
+      font-family Regular
+
+      &-item
+        display inline-block
+        vertical-align top
+        float left
+        position relative
+        padding 16px 20px 14px 55px
+
+        &::before
+          content attr(data-step)
+          position absolute
+          left 20px
+          top 50%
+          height 25px
+          width 25px
+          margin -12px 0 0 0
+          background #eff1f1
+          font-family Medium
+          line-height 25px
+          text-align center
+          border-radius 50%
+
+        &_passed
+          background #eff1f1
+          color baseColor
+          font-family Medium
+          cursor pointer
+
+          &::before
+            content ""
+            background #ffffff url64('../images/icons/icon-21.svg') center center no-repeat
+
+        &_current
+          color baseColor
+          font-family Medium
+
+          &::before
+            background #f8cc69

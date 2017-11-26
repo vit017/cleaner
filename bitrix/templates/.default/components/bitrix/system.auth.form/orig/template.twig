@@ -1,0 +1,39 @@
+{% if result.FORM_TYPE == 'login' %}
+
+    <div class="auth-block">
+        <form class="auth-form js-form-validate" name="system_auth_form{{ result.RND }}" method="post" target="_top" action="{{ result.AUTH_URL }}">
+
+            {% if result.BACKURL != '' %}
+                <input type="hidden" name="backurl" value="{{ result.BACKURL }}" />
+            {% endif %}
+            {% for key, value in result.POST %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}" />
+            {% endfor %}
+
+            <input type="hidden" name="AUTH_FORM" value="Y" />
+            <input type="hidden" name="TYPE" value="AUTH" />
+
+            <h2 class="auth-form__title">Вход</h2>
+
+            <label class="input-txt input-txt_width_full {% if result.ERROR  %}input-txt_state_error{% endif %}" data-placeholder="E-mail">
+                <input class="input-txt__field" type="email" name="USER_LOGIN" value="{{ result.USER_LOGIN }}" placeholder="E-mail" autofocus="autofocus" required="required" data-parsley-type="email" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Неправильно введен e-mail"/>
+                {% if result.SHOW_ERRORS == 'Y' and result.ERROR  %}
+                    <span class="input-txt__error">{{ result.ERROR_MESSAGE.MESSAGE }}</span>
+                {% endif %}
+            </label>
+            <label class="input-txt input-txt_width_full {% if result.ERROR  %}input-txt_state_error{% endif %}" data-placeholder="Пароль">
+                <input class="input-txt__field" name="USER_PASSWORD" type="password" placeholder="Пароль"   required="required" data-parsley-minlength="6" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Минимальная длина пароля - 6 символов"/>
+                {% if result.SHOW_ERRORS == 'Y' and result.ERROR  %}
+                    <span class="input-txt__error">{{ result.ERROR_MESSAGE.MESSAGE }}</span>
+                {% endif %}
+            </label>
+          <span class="auth-form__forgot-pass">
+            <a href="{{ result.AUTH_FORGOT_PASSWORD_URL }}" rel="nofollow">Забыли пароль?</a>
+          </span>
+            <button class="btn btn_responsive_true" name="Login"><span class="btn__icon btn__icon_type_login"></span>Войти<span class="btn__icon btn__icon_right btn__icon_type_forward"></span></button>
+        </form>
+    </div>
+
+{% else %}
+
+{% endif %}

@@ -1,0 +1,117 @@
+{#<pre>
+   {{ dump(result) }}
+</pre>#}
+<fieldset class="order-form__fieldset">
+    <h2 class="order-form__fieldset-title">Проверьте данные</h2>
+    <div class="order-form__fieldset-tip">
+        <h3>Редактирование</h3>
+        <p>
+            Ошиблись при заполнении данных? Ничего страшного! Вы можете отредактировать их прямо сейчас.
+        </p>
+    </div>
+    <div class="order-item">
+        <h4 class="order-item__title order-item__title_params">Параметры квартиры</h4>
+        <a class="order-item__edit hide-text" href="/order/basket/" title="Редактировать">Редактировать</a>
+        <p class="order-item__param">
+
+            {% for arBasketItem in result.BASKET_ITEMS.MAIN %}
+
+                {{ arBasketItem.NAME }}м&#178;
+                {% if not loop.last %} + {% endif %}
+
+            {% endfor %}
+
+        </p>
+
+        {% if result.ADD_LINE|length > 0 %}
+            <p class="order-item__param">
+                <span class="order-item__param-name">Дополнительно: </span>
+                {{ result.ADD_LINE }}
+            </p>
+
+        {% endif %}
+    </div>
+    <div class="order-item">
+        <h4 class="order-item__title order-item__title_date">Дата и время</h4>
+        <span class="order-item__edit hide-text" onclick="document.order_form.CurrentStep.value='1'; document.order_form.BACK.value='Y'; document.order_form.submit();" title="Редактировать">Редактировать</span>
+        {% set date = result.POST.ORDER_PROP_DATE|date("d.m.y") %}
+        <p class="order-item__param">{{ result.WEEK_DAY }}, <span class="lowercase">{{ date|formatDate('DD MMMM YYYY') }}</span></p>
+        <p class="order-item__param">
+            {{ result.POST.ORDER_PROP_TIME }}:00 - {{ result.TIME_PERIOD_TO }}:{% if result.TIME_PERIOD_HALF %}30{% else %}00{% endif %} <span class="grey">(&#126;{{ result.TOTAL_TIME_FORMATED }})</span>
+        </p>
+    </div>
+    <div class="order-item">
+        <h4 class="order-item__title order-item__title_contacts">Контактные данные</h4>
+        <span class="order-item__edit hide-text" onclick="document.order_form.CurrentStep.value='2'; document.order_form.BACK.value='Y'; document.order_form.submit();" title="Редактировать">Редактировать</span>
+        <p class="order-item__param"><span class="order-item__param-name">E-mail: </span>{{ result.USER_LOGIN }}</p>
+        {% for arProperties in result.ORDER_PROPS_PRINT %}
+            <p class="order-item__param"><span class="order-item__param-name">{{ arProperties.NAME }}: </span>{{ arProperties.VALUE_FORMATED }}</p>
+        {% endfor %}
+
+    </div>
+    {% if (result.HIDE_COUPONS != 'Y' or result.PAY_FROM_ACCOUNT == 'Y') %}
+        <div class="order-discount clearfix">
+            {% if result.HIDE_COUPONS != 'Y' %}
+                <div class="order-discount__item">
+                    <h4 class="order-discount__item-title">Промокод</h4>
+                    <div class="promo-code js-promocode">
+                        <label class="promo-code__input input-txt" data-placeholder="Промокод">
+                            <input class="input-txt__field js-promocode-input" type="text" name="COUPON" placeholder="Промокод" {#{% if result.VALID_COUPON == 'true' %}disabled="disabled"{% endif %}#} />
+                        </label>
+                        <button class="promo-code__btn btn btn_type_second {#{% if result.VALID_COUPON == 'true' %}btn_state_disabled{% endif %}#}" {#{% if result.VALID_COUPON == 'true' %}disabled="disabled"{% endif %}#}>Ок</button>
+                    </div>
+                </div>
+            {% endif %}
+            {% if result.PAY_FROM_ACCOUNT == 'Y' %}
+            <div class="order-discount__item" style="width:210px">
+                <h4 class="order-discount__item-title"><!--Бесплатные часы-->Бонусы</h4>
+                <input type="hidden" name="current_b" value="{% if result.PAY_CURRENT_ACCOUNT == 'Y'%}Y{% endif %}">
+                <input type="hidden" name="CURRENT_BUDGET" value="{{ result.USER_ACCOUNT.CURRENT_BUDGET}}">
+                    <label class="checkbox" style="line-height:20px">
+                        <input class="checkbox__input" type="checkbox" value="Y" name="PAY_CURRENT_ACCOUNT" id="PAY_CURRENT_ACCOUNT" {% if result.PAY_CURRENT_ACCOUNT == 'Y'%}checked{% endif %}>
+                        <span class="checkbox__icon js-send-basketForm"></span>
+                        <span class="checkbox__title">{{ result.CURRENT_BUDGET_FORMATED }}</span>
+                    </label>
+            </div>
+            {% elseif result.BH_SALE_BASKET_MESSAGE|length and false %}
+                {{ result.BH_SALE_BASKET_MESSAGE }}
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="total">
+        {% if result.VALID_COUPON == true or result.PAYED_FROM_ACCOUNT_FORMATED>0%}
+            <p class="total__item clearfix">
+                <span class="pull-left">Уборка <span class="grey">({{ result.TOTAL_TIME_FORMATED }})</span></span><span class="pull-right">{{ result.BASKET_PRICE_FORMATED }} <span class="rouble">Р</span></span>
+            </p>
+        {% endif %}
+        {% if result.VALID_COUPON == true %}
+            <input type="hidden" name="coupon_discount" value="{{  result.DISCOUNT_PRICE }}">
+            <p class="total__item clearfix">
+                <span class="pull-left">Скидка</span><span class="pull-right">- {{ result.DISCOUNT_PRICE_ALL_FORMATED }} <span class="rouble">Р</span></span>
+            </p>
+
+        {% endif %}
+        {% if result.PAYED_FROM_ACCOUNT_FORMATED>0 %}
+            <p class="total__item clearfix">
+                <span class="pull-left"><!--Бесплатные часы ({{ result.PAYED_FROM_ACCOUNT_HOURS_FORMATED }} ч)-->Бонусы</span><span class="pull-right">-{{ result.PAYED_FROM_ACCOUNT_FORMATED }} <span class="rouble">Р</span></span>
+            </p>
+        {% endif %}
+        <p class="total__item total__item_summary clearfix">
+            <input type="hidden" name="summ_to_pay" value="{{ result.ORDER_TOTAL_PRICE }}">
+            <span class="pull-left">Итого</span><span class="pull-right">{{ result.ORDER_TOTAL_PRICE_FORMATED }} <span class="rouble">Р</span></span>
+        </p>
+    </div>
+</fieldset>
+{% if result.ERROR_TIME == 'Y' %}
+    <div id="time-picker-error">
+        <span class="input-error filled" id="" style="margin-bottom:20px;">
+            <span class="input-error__item parsley-custom-error-message">
+                К сожалению, выбранное вами время уже занято.
+                <strong class="link" data-step="32" onclick="document.order_form.CurrentStep.value='1'; document.order_form.BACK.value='Y'; document.order_form.submit();">Изменить</strong>
+            </span>
+        </span>
+    </div>
+{% endif %}
+<button class="order-form__next btn btn_with_icons btn_responsive_true" id="confirm_order">
+    <span class="btn__icon btn__icon_type_pay"></span>Подтвердить<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>

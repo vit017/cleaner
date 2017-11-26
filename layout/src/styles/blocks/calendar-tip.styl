@@ -1,0 +1,49 @@
+.calendar-tip
+  list-style none
+  padding 28px
+  margin 0
+  color #6e7677
+  font-family Regular
+  font-size 15px
+  width 260px
+  border 2px solid colorGrey
+
+  &__item
+    margin 10px 0 0 0
+    line-height 50px
+
+    &-icon
+      display inline-block
+      vertical-align top
+      width 50px
+      height 50px
+      line-height 48px
+      color #c2c5c5
+      border 1px solid colorGrey
+      background #ffffff
+      text-align center
+
+      &_type_today
+        border-color #c2c5c5
+        background #c2c5c5
+        color baseColor
+        font-family Medium
+
+      &_type_selected
+        font-family Medium
+        background #f8cc69
+        color baseColor
+        border-color #f8cc69
+
+      &_type_available
+        color baseColor
+        background colorGrey
+
+    &-dash
+      display inline-block
+      vertical-align top
+      width 50px
+      text-align center
+
+    &:first-child
+      margin-top 0

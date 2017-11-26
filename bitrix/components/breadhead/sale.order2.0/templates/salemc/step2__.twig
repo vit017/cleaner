@@ -1,0 +1,229 @@
+{% set arSourse = result.PRINT_PROPS_FORM.USER_PROPS_N %}
+
+{% if not arSourse is empty %}
+    {#<pre>
+        {{ dump(arSourse) }}
+    </pre>#}
+
+    <script>
+        //areds
+       // alert(rf_sponsor);
+
+        function concat() {
+          //  alert();
+            $("#areds").val($("#street" ).val()+" д "+$( "#house" ).val()+" к."+$( "#corpse" ).val()+" этаж "+$( "#flat" ).val()+" домофон "+$( "#speaker" ).val());
+
+        }
+    </script>
+
+    <h1 class="text-uppercase">Заказ услуг</h1>
+    <div class="row">
+        <div class="col-lg-10 order_steps">
+            <ul class="nav nav-tabs nav-justified hidden-xs">
+                <li class="params"><a href="/order/basket/" class="v"><span data-step="1"></span>Параметры помещения</a></li>
+                <li class="date_time"><a href="/order/" class="v"><span data-step="2"></span>Дата и время</a></li>
+                <li class="your_data active"><a><span data-step="3"></span>Ваши данные</a></li>
+                <li class="order_check"><a><span data-step="4"></span>Проверка заказа</a></li>
+                <li class="paying"><a><span data-step="5"></span>Оплата</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="your_data" class="tab-pane fade in active">
+                  <!--  <form class="form-inline" role="form">-->
+                        <div class="row">
+                            <div class="col-sm-12"><h3>Немного о вас</h3>
+                                <p>Уже зарегистрированы?
+                                    <button type="button" onclick="location.href='/user/?backurl=/'" class="btn btn-link enter"><i class="icon key"></i>Войти</button>
+                                </p>
+                            </div>
+                            <div class="col-sm-12"><h3>Куда приехать</h3></div>
+                            <div class="col-sm-6 wtg">
+                                {% for arProperties in arSourse %}
+                                    {% if arProperties.CODE =='PERSONAL_CITY' or arProperties.CODE=='PERSONAL_STREET' %}
+                                        {% if arProperties.TYPE == 'LOCATION' %}
+                                                <select class="select selectpicker select_width_full select_search_false js-city-select" name="{{ arProperties.FIELD_NAME }}" id="city" required="required" data-parsley-error-message="Укажите город">
+                                                    {% for arVariants in arProperties.VARIANTS %}
+                                                        <option value="{{ arVariants.ID }}" {% if arVariants.SELECTED == 'Y' %} selected="selected"{% endif %}>{{ arVariants.NAME }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <!--<span class="order-form__contacts-input-tip">
+                                                    Сейчас мы работаем только в Санкт-Петербурге
+                                                </span>-->
+                                            </label>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                <input required type="text" name="street" id="street" value="{{arProperties.ORDER_PROP_PERSONAL_STREET}}" placeholder="Улица" onchange="concat();">
+                            </div>
+                            <div class="col-sm-6">
+                                <input required type="number" id="house" min="1" name="house" placeholder="Дом" onchange="concat();">
+                                <input type="number" min="1" id="corpse" name="corpse" placeholder="Корп." onchange="concat();">
+                                <div class="clearfix visible-sm visible-xs"></div>
+                                <input required type="number" min="1" id="flat" name="flat" placeholder="Кв." onchange="concat();">
+                                <input type="text" name="speaker" id="speaker" placeholder="Домофон" onchange="concat();">
+                            </div>
+                            <div class="col-sm-6">
+                                <h3>Расскажите о себе <span>Мы отправим вам напоминание в день уборки</span></h3>
+
+                                {% for arProperties in arSourse %}
+
+                                    {% if arProperties.CODE=='NAME' or arProperties.CODE=='PERSONAL_PHONE' %}
+
+
+                                        {% if arProperties.TYPE == 'TEXT' %}
+
+                                                <input class="input-txt__field {% if arProperties.CODE == 'PERSONAL_PHONE'%}js-phone-format{% endif %}" {% if arProperties.CODE == 'PERSONAL_PHONE'%}type="tel"{% endif %} {% if arProperties.FIELD_NAME == 'ORDER_PROP_NAME'%} type="text" {% endif %}   {% if arProperties.CODE == 'PERSONAL_PHONE'%}js-phone-format{% endif %} value="{{ arProperties.VALUE }}" name="{{ arProperties.FIELD_NAME }}" placeholder="{{ arProperties.NAME }}" required="required" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Поле не заполнено"/>
+
+                                        {% endif %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                            <div class="col-sm-6" style="display:none">
+                                <h3 class="inline">Вы из компании?</h3>
+                                <div class="radio">
+                                    <input type="radio" name="company" value="y" id="company_y"><label for="company_y" class="radio_label">Да</label>
+                                    <input type="radio" name="company" value="n" id="company_n"><label for="company_n" class="radio_label">Нет</label>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="hidden-xs hidden-sm">&nbsp;</div>
+                                <input disabled="disabled" type="text" id="company_name" name="company_name" placeholder="Название компании">
+                                <input disabled="disabled" type="text" id="company_inn" name="company_inn" placeholder="ИНН компании">
+                            </div>
+                            <div class="col-sm-12">
+                                <h3>Для входа в личный кабинет <span>Укажите ваш e-mail и пароль для регистрации</span></h3>
+                                {% if result.ERRORS.USER_LOGIN %}
+                                    <span class="input-txt__error">{{ result.ERRORS.USER_LOGIN  }}</span><br />
+                                {% endif %}
+                                <input required type="email" name="USER_LOGIN" placeholder="E-mail" value="{{ result.USER_LOGIN }}">
+                                <input required type="password" name="USER_PASSWORD" value="{{ result.USER_PASSWORD }}" placeholder="Пароль">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-default"><i class="icon map_marker"></i>Далее ></button>
+                            </div>
+                        </div>
+                  <!--  </form>-->
+                </div>
+            </div>
+        </div>
+        <!--
+    <div style="display: none" class="col-lg-2 visible-lg">
+        <a href="/gde-my-navodim-chistotu/" class="faq">Где мы наводим чистоту</a><br>
+        <a href="#" class="faq">Чем мы наводим чистоту</a><br>
+        <a href="#" class="faq">Что такое реулярные уборки</a>
+    </div>-->
+    </div>
+
+
+
+
+    <fieldset class="order-form__fieldset">
+
+        <div class="order-form__fieldset-tip">
+            <h3>Приватность</h3>
+            <p>
+                Все введенные вами данные абсолютно конфиденциальны
+                и необходимы только для работы сервиса.
+            </p>
+        </div>
+
+        <div class="order-form__contacts">
+
+           <!-- <div class="order-form__contacts-block">
+                {% if result.USER_LOGIN|length and result.SHOW_EMAIL %}
+                <h3 class="order-form__contacts-title">Email</h3>
+                <h4>{{ result.USER_LOGIN }} {#(<span class="link"  onclick="document.order_form.CurrentStep.value='2'; document.order_form.USER_LOGOUT.value='Y'; document.order_form.BACK.value='Y'; document.order_form.submit();">изменить</span>)#}</h4>
+                <input type="hidden" name="USER_LOGOUT" value="">
+                {% else %}
+                    <a href="/user/?backurl=/order/">Войдите</a>, если вы уже зарегистрированы
+                {% endif %}
+            </div>-->
+            <div class="order-form__contacts-block" style="visibility: hidden;">
+                <h3 class="order-form__contacts-title">Адрес</h3>
+
+
+                {% for arProperties in arSourse %}
+                     {% if arProperties.CODE =='PERSONAL_CITY' or arProperties.CODE=='PERSONAL_STREET' %}
+
+                        {% if arProperties.TYPE == 'LOCATION' %}
+
+                            <label class="order-form__contacts-input">
+                                <select class="select select_width_full select_search_false js-city-select" name="{{ arProperties.FIELD_NAME }}" id="" required="required" data-parsley-error-message="Укажите город">
+                                    {% for arVariants in arProperties.VARIANTS %}
+
+                                       11 <option value="{{ arVariants.ID }}" {% if arVariants.SELECTED == 'Y' %} selected="selected"{% endif %}>{{ arVariants.NAME }}</option>
+
+                                    {% endfor %}
+                                </select>
+                                <!--<span class="order-form__contacts-input-tip">
+                                    Сейчас мы работаем только в Санкт-Петербурге
+                                </span>-->
+                            </label>
+
+                        {% endif %}
+
+                        {#% if arProperties.TYPE == 'TEXT' %#}
+                        {% if arProperties.FIELD_NAME == 'ORDER_PROP_PERSONAL_STREET' %}
+
+                            <label class="order-form__contacts-input input-txt" data-placeholder="Улица, дом, корпус, номер квартиры">
+                                <input class="input-txt__field" type="text" value="{{ arProperties.VALUE }}" name="{{ arProperties.FIELD_NAME }}" id="areds" placeholder="Улица, дом, корпус, номер квартиры" required="required" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Поле не заполнено"/>
+                            </label>
+
+                        {% endif %}
+                 {% endif %}
+                {% endfor %}
+            </div>
+           <!--
+            <div class="order-form__contacts-block">
+                <h3 class="order-form__contacts-title">Личные данные</h3>
+                <span class="order-form__contacts-tip">Мы пришлем вам напоминание в день уборки</span>
+                {% for arProperties in arSourse %}
+                    {% if arProperties.CODE=='NAME' or arProperties.CODE=='PERSONAL_PHONE' %}
+                        {% if arProperties.TYPE == 'TEXT' %}
+                            <label class="order-form__contacts-input input-txt" data-placeholder="{{ arProperties.NAME }}">
+                                <input class="input-txt__field {% if arProperties.CODE == 'PERSONAL_PHONE'%}js-phone-format{% endif %}" type="text" value="{{ arProperties.VALUE }}" name="{{ arProperties.FIELD_NAME }}" placeholder="{{ arProperties.NAME }}" required="required" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Поле не заполнено"/>
+                            </label>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            -->
+            {% if not result.SHOW_EMAIL %}
+                <div class="order-form__contacts-block order-login" style="visibility: hidden;">
+                    <h3 class="order-form__contacts-title">Email и пароль</h3>
+                    <span class="order-form__contacts-tip">Укажите ваш email и желаемый пароль для регистрации</span>
+                    <label class="order-login__input input-txt {% if result.ERRORS.USER_LOGIN %}input-txt_state_error{% endif %}" data-placeholder="E-mail">
+                        <!--<input class="input-txt__field" type="email" name="USER_LOGIN" value="{{ result.USER_LOGIN }}" placeholder="E-mail" required="required" data-parsley-type="email" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Неправильно введен e-mail" />-->
+                        {% if result.ERRORS.USER_LOGIN %}
+                            <!--<span class="input-txt__error">{{ result.ERRORS.USER_LOGIN  }}</span>-->
+                        {% endif %}
+                    </label>
+                  <!-- <label class="order-login__input input-txt" data-placeholder="Пароль">
+                        <input value="{{ result.USER_PASSWORD }}" class="input-txt__field" type="password" name="USER_PASSWORD" placeholder="Пароль"  required="required" data-parsley-minlength="6" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Минимальная длина пароля - 6 символов"/>
+                    </label>-->
+                </div>
+                <input type="hidden" name="AUTH" value="Y" />
+            {% endif %}
+        </div>
+        <input type="hidden" name="PERSONAL_PHONE" value="{{result.ORDER_PROP_PERSONAL_PHONE}}" />
+    </fieldset>
+    <button class="order-form__next btn btn_with_icons btn_responsive_true" id="save_contactinfo" style="visibility: hidden;">
+        <span class="btn__icon btn__icon_type_place"></span>Сохранить<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+    </button>
+    <script>
+        //areds
+       // alert(rf_sponsor);
+        $("#street").val(rf_sponsor);
+        $("#house").val(house);
+        $("#corpse").val(corpse);
+        $("#flat").val(flat);
+        $("#speaker").val(speaker);
+        $("#company_name").val(company_name);
+        $("#company_inn").val(company_inn);
+
+    </script>
+
+{% endif %}

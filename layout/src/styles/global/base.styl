@@ -1,0 +1,276 @@
+*
+  box-sizing border-box
+
+html
+  -webkit-font-smoothing antialiased
+
+body
+  margin 0
+  font-family Regular
+  font-size basefont
+  line-height 1.35
+  color #001b1f
+  background #ffffff url('../images/background.jpg') right 0 no-repeat
+  background-size cover
+  background-attachment fixed
+  overflow-x hidden
+
+  &.landing-page
+    background #ffffff;
+
+  &.main-bg
+    background-size auto 640px
+    background-position center 0
+    background-image url('../images/header_bg2.jpg')
+
+    @media screen and (max-width: 930px)
+    background-size 100% auto
+    background-image url('../images/m-background2.jpg')
+
+    @media screen and (min-width: 1180px)
+    background-size 100% auto
+
+.rouble
+  font-family MediumRouble
+
+h1, h2, h3
+  font-family Medium
+  font-weight normal
+  line-height 1.3
+
+h1
+  font-size 29px
+  margin 0 0 15px 0
+  @media screen and (min-width: 930px)
+  font-size 40px
+  margin-bottom 25px
+
+h2
+  font-size 25px
+  margin 0 0 10px 0
+  @media screen and (min-width: 930px)
+  font-size 30px
+  margin-bottom 20px
+
+h3
+  font-size 20px
+  margin 0 0 15px 0
+//@media screen and (min-width: 930px)
+//  margin-bottom 20px
+
+.hour-price
+  font-family Medium
+  font-size 20px
+
+.strong
+  font-family Medium
+  font-weight normal
+
+p
+  font-size 15px
+  line-height 25px
+  margin 0 0 20px 0
+
+a
+.link
+  color linkColor
+  text-decoration none
+  cursor pointer
+
+  &:hover
+    color linkColorHover
+    text-decoration underline
+
+.link
+  &_color_grey
+    color linkColor2
+
+    &:hover
+      color linkColor2Hover
+
+.page-title
+  margin-bottom 7px
+
+  &__icon
+    display inline-block
+    margin 0 10px 0 0
+    background-position 0 0
+    background-repeat no-repeat
+    background-size 100% 100%
+
+    &_ok
+      width 20px
+      height 15px
+      background-image  url64('../images/icons/icon-22.svg')
+
+    &_error
+      width 15px
+      height 15px
+      background-image  url64('../images/icons/icon-26.svg')
+
+  @media screen and (min-width: 930px)
+  margin-bottom 25px
+
+  &__icon
+    display inline-block
+    margin 0 20px 0 0
+
+    &_ok
+      width 40px
+      height 30px
+
+    &_error
+      width 30px
+      height 30px
+
+.cancel-link
+  display inline-block
+  padding 0 0 0 25px
+  position relative
+  color #6e7677
+  font-family Medium
+  font-size 15px
+  line-height 2
+  font-weight normal
+  cursor pointer
+  text-decoration none
+
+  &::before
+    content ""
+    display block
+    width 25px
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    background url64('../images/icons/icon-25.svg') 0 center no-repeat
+
+  &:hover
+    &::before
+      background-image  url64('../images/icons/icon-26.svg')
+
+  &_icon_no
+    padding 0
+
+    &::before
+      display none
+
+.input-error
+  display block
+  font-family Medium
+  font-size 12px
+  line-height 1
+  color #ea4c6c
+  margin 0
+
+  &__item
+    display block
+    margin 15px 0 0 0
+
+.lowercase
+  text-transform lowercase
+
+.form
+  display block
+
+  p
+    margin 0 0 20px 0
+
+  .input-txt_width_full
+    margin 0 0 10px 0
+
+    &:last-of-type
+      margin-bottom 20px
+
+  &__controls
+    .btn
+    width 100%
+
+  @media screen and (min-width: 620px)
+    p
+      margin-bottom 23px
+
+    .input-txt_width_full
+      margin-bottom 20px
+
+      &:last-of-type
+        margin-bottom 30px
+
+    &__controls
+      text-align right
+
+      .btn
+        width auto
+
+    .phone
+      display inline-block
+      font-size 20px
+      line-height 1.5
+      font-family Medium
+
+      &_big
+        font-size 25px
+
+    .phone-block
+      display block
+      position relative
+      font-family Medium
+      font-size 15px
+      color #001b1f
+      padding 0 0 0 20px
+      background url64('../images/icons/icon-53.svg') 0 center no-repeat
+      text-decoration none !important
+      cursor default
+
+      &_light
+        background-image  url64('../images/icons/icon-54.svg')
+        color #c2c5c5 !important
+
+    .copyright
+      display inline-block
+      vertical-align top
+      font-size 13px
+      color #001b1f
+      line-height 40px
+      margin 10px 0 0 0
+
+      &__link
+        color #001b1f !important
+        font-family Medium
+
+    .grey
+      color #6e7677
+
+    .txt-list
+      font-family Medium
+      margin 0 0 30px 0
+      padding 0
+      list-style none
+
+      li
+        margin 0 0 5px 0
+
+      @media screen and (min-width: 620px)
+      font-size 20px
+      line-height 30px
+      li
+        margin-bottom 10px
+
+    .subscribe-item
+      display inline-block
+      vertical-align middle
+      text-align center
+      color baseColor
+      font-family Medium
+      line-height 1.5
+      padding 8px 10px
+
+      &__title
+      &__price
+        display block
+
+      &__title
+        font-size 20px
+
+      &__price
+        font-size 16px

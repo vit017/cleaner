@@ -1,0 +1,40 @@
+.checkbox
+  display inline-block
+  position relative
+  padding 0 0 0 30px
+  cursor pointer
+
+  &__input
+    position absolute
+    left 0
+    top 0
+    opacity 0
+
+    &:checked + .checkbox__icon
+      border-color btnBg2ColorActive !important
+      &:before
+        display block
+        content ""
+        position absolute
+        left 0
+        top 0
+        width 16px
+        height 16px
+        background url64('../images/icons/icon-48.svg') center center no-repeat
+
+  &__icon
+    display block
+    position absolute
+    left 0
+    top 50%
+    margin -10px 0 0 0
+    width 20px
+    height 20px
+    border 2px solid btnBg2Color
+
+  &__title
+    font-family Medium
+
+  &:hover
+    .checkbox__icon
+      border-color btnBg2ColorHover

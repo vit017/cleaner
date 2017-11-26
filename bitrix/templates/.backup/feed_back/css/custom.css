@@ -1,0 +1,12 @@
+﻿.nav.navbar-nav li {
+    margin-right: 50px;
+}
+
+.enter span a{
+    text-decoration:none;
+    font-weight:normal;
+}
+
+#get_clean{
+    text-decoration: none;
+}

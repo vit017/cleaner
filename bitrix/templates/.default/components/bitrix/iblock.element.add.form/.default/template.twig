@@ -1,0 +1,91 @@
+{#<pre>
+    {{ dump(result) }}
+</pre>#}
+<div class="container">
+
+    {% if result.ORDER_STATUS == 'F' %}
+        <h1 class="page-title"><span class="page-title__icon page-title__icon_ok"></span>Отзыв на уборку {{ result.TITLE_DATE }}</h1>
+    {% elseif result.ORDER_STATUS == 'C' %}
+        <h1 class="page-title"><span class="page-title__icon page-title__icon_error"></span>Отзыв на уборку {{ result.TITLE_DATE }}</h1>
+    {% else %}
+        <h1 class="page-title"><span class="page-title__icon"></span>Отзыв на уборку {{ result.REVIEW.PROPERTY_DATE_VALUE }}</h1>
+    {% endif %}
+
+    <section class="page-blocks clearfix">
+        <div class="page-blocks__item page-blocks__item_type_main">
+            <div class="page-blocks__item-controls">
+                <a class="btn btn_type_third btn_size_small" href="/user/history/?ID={{ result.ORDER_ID }}"><span class="btn__icon btn__icon_type_back"></span>Детали уборки</a>
+            </div>
+
+            <form class="feedback-form" action="">
+                {% if result.ERRORS %}
+                    {{  result.ERRORS}}
+                {% endif %}
+                {% if result.MESSAGE or result.REVIEW|length %}
+                    <h4 class="cleaner-profile__inf-name">Ваш отзыв:</h4>
+                    <p>
+                        {{ result.REVIEW.TITLE_DATE }}
+                    </p>
+                    <p class="feedback-form__intro-desc">
+                        {#% if result.REVIEW.PROPERTY_MARK_VALUE|length  %#}
+                        <span class="rating">
+                            {% for i in range(1, 5) %}
+                                <i class="rating__item {% if i <= result.REVIEW.PROPERTY_MARK_VALUE %}rating__item_active{% endif %}">&nbsp;</i>
+                            {% endfor %}
+                        </span>
+                        {#% endif %#}
+                    </p>
+                    <p class="feedback-form__intro-desc">
+                        {{ result.REVIEW.PREVIEW_TEXT }}
+                    </p>
+
+                {% else %}
+                    {{ bitrix_sessid_post() }}
+                    <input type="hidden" name="ORDER" value="{{ result.ORDER_ID }}">
+                    {% for code, val in result.HIDDEN %}
+                        <input type="hidden" name="PROPERTY[{{ code }}][0]" value="{{ val }}">
+                    {% endfor %}
+                    <div class="feedback-form__intro clearfix">
+                        <p class="feedback-form__intro-desc">
+                            Вы можете оценить работу клинера и оставить отзыв. Это поможет нам улучшить сервис.
+                        </p>
+                        <div class="feedback-form__intro-controls">
+                            {% if result.MARK.ENUM %}
+                                <span class="rating-input">
+                               {% for MARK in result.MARK.ENUM %}
+                                   <i class="rating-input__item" data-id="{{ MARK.ID }}" title="{{ MARK.VALUE }}">&nbsp;</i>
+                               {% endfor %}
+                                    —
+                              <span class="rating-input__txt">1</span>
+                              <input type="hidden" name="PROPERTY[17]" value="0" class="rating-input__value">
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <fieldset class="feedback-form__fieldset">
+                        <label class="input-txt input-txt_width_full" data-placeholder="Ваш отзыв">
+                            <textarea class="input-txt__field input-txt__field_area" name="PROPERTY[PREVIEW_TEXT][0]" id="" placeholder="Ваш отзыв"></textarea>
+                        </label>
+                    </fieldset>
+                    <div class="feedback-form__controls clearfix">
+                        <a href="/user/history/?ID={{ result.ORDER_ID }}" class="cancel-link cancel-link_icon_no">Оценить позже</a>
+                        <input type="submit" name="iblock_submit" class="btn btn_type_second" value="Отправить">
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+        <div class="page-blocks__item page-blocks__item_type_aside">
+            {{ getComponent("bitrix:menu", "aside",
+            {
+                'ROOT_MENU_TYPE':'left',
+                'MENU_CACHE_TYPE' : 'N',
+                'MENU_CACHE_TIME' : '3600',
+                'MENU_CACHE_USE_GROUPS' : 'Y'
+            }
+            )
+            }}
+            <a class="btn btn_width_full btn_responsive_true" href="/order/basket/">Заказать уборку</a>
+        </div>
+    </section>
+
+</div>

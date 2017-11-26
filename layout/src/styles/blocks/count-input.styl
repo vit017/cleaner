@@ -1,0 +1,74 @@
+.count-input
+  display inline-block
+  vertical-align top
+  min-width 280px
+  height 50px
+  overflow hidden
+  position relative
+  background #eff1f1
+  font-size 20px
+  font-family Medium
+  font-weight normal
+  line-height 50px
+  padding 0 50px
+  margin 0 0 15px 0
+
+  &_width_full
+    width 100%
+
+  &__content
+    text-align center
+    display block
+    user-select none
+    cursor default
+
+  &__btn
+    display inline-block
+    vertical-align top
+    position absolute
+    top 0
+    width 50px
+    height 50px
+    transition all 0.3s ease
+    border none
+    outline none
+    transform translateY(0)
+    -webkit-appearance none
+    border-radius 0
+    box-shadow none
+
+    &_type_minus
+      left 0
+      background btnBg2Color url64('../images/icons/icon-05.svg') center center no-repeat
+
+      &:hover
+        background-color btnBg2ColorHover
+
+      &:active
+        background-color btnBg2ColorActive
+
+      &:disabled
+      &.count-input__btn_state_disabled
+        background-image url64('../images/icons/icon-07.svg')
+
+    &_type_plus
+      right 0
+      background btnBgColor url64('../images/icons/icon-09.svg') center center no-repeat
+
+      &:hover
+        background-color btnBgColorHover
+
+      &:active
+        background-color btnBgColorActive
+
+      &:disabled
+      &.count-input__btn_state_disabled
+        background-image url64('../images/icons/icon-08.svg')
+
+
+    &:disabled
+    &_state_disabled
+      background-color #eff1f1 !important
+      opacity 0.5
+      cursor default
+      pointer-events none

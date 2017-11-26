@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1251"?>
+    <batch>
+    <enterpriseGroup enterpriseId="2251">
+    <accountGroup accountId="3037022">
+    <receipt number="4104" date="2017-09-02" card="12870611" action="approve" status="approved">
+        <entry name="orderDate" value="2017-09-01" />
+        <entry name="sum" value="1701.0000" />
+        </receipt>
+        <receipt number="4110" date="2017-10-02" card="12870611" action="approve" status="approved">
+        <entry name="orderDate" value="2017-09-02" />
+        <entry name="sum" value="1701.0000" />
+        </receipt>
+        <receipt number="4116" date="2017-09-15" card="03102854" action="reject" status="rejected">
+        <entry name="orderDate" value="2017-09-07" />
+        <entry name="sum" value="2580.0000" />
+        </receipt>
+        <receipt number="4134" date="2017-10-02" card="12870611" action="create" status="waiting">
+        <entry name="orderDate" value="2017-10-02" />
+        <entry name="sum" value="1701.0000" />
+        </receipt>
+        </accountGroup>
+    </enterpriseGroup>
+    </batch>

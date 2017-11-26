@@ -1,0 +1,47 @@
+.feature
+  background #001b1f
+  background rgba(0, 27, 31, 0.9)
+  width 395px
+  //min-height 110px
+  max-height 145px
+  padding 22px 35px 32px 90px
+  border-radius 7px
+  font-size 12px
+  line-height 1.5
+
+  &::after
+    content ""
+    display block
+    width 20px
+    height 8px
+    position absolute
+    top 100%
+    left 50%
+    margin 0 0 0 -10px
+    background url64('../images/icons/arrow_black_mini.svg') 0 0 no-repeat
+    opacity 0.8
+
+  &__icon
+    position absolute
+    width 70px
+    height 50px
+    left 15px
+    top 30px
+
+    img
+      max-height 100%
+      max-width 100%
+
+  &__title
+    display block
+    font-family Medium
+    font-size 20px
+    margin 0 0 5px 0
+    text-align left
+
+  &__txt
+    margin 0
+    padding 0
+
+  &__desc
+    min-height 50px

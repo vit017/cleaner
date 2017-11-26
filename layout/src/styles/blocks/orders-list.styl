@@ -1,0 +1,126 @@
+.orders-list
+  position relative
+  display block
+  margin 0
+  padding 0
+  list-style none
+
+  &__item
+    margin 10px 0 0 0
+    font-family Medium
+    font-size 15px
+    line-height 2
+    position relative
+
+    &-addition
+      display none
+
+    &-link
+      display block
+      position relative
+      text-decoration none
+      background colorGrey
+      min-height 70px
+      padding 20px 60px 20px 55px
+      text-decoration none !important
+
+      &::after
+        content ""
+        display inline-block
+        vertical-align top
+        width 20px
+        height 16px
+        background url64('../images/icons/icon-16.svg') 0 center no-repeat
+        position absolute
+        right 20px
+        top 50%
+        margin -(@height/2) 0 0 0
+
+    &-date
+      display inline-block
+      vertical-align top
+      color baseColor
+
+    &-status
+      position absolute
+      left 20px
+      top 50%
+      margin -15px 0 0 0
+      width 25px
+      overflow hidden
+      padding 0 0 0 25px
+      display inline-block
+      vertical-align top
+      color #6e7677
+      font-family Regular
+      height 30px
+      line-height 30px
+
+      &::before
+        content ""
+        position absolute
+        display block
+        left 0
+        top 0
+        bottom 0
+        width 25px
+        background url64('../images/icons/icon-22.svg') 0 center no-repeat
+
+      &_waiting
+        &::before
+          background-image url64('../images/icons/icon-27.svg')
+
+      &_canceled
+        &::before
+          background-image url64('../images/icons/icon-25.svg')
+
+      &_uncompleted
+        &::before
+          background-image url64('../images/icons/icon-47.svg')
+
+  @media screen and (min-width: 930px)
+    &__item
+      width 500px
+      margin 20px 0 0 0
+      font-size 20px
+      line-height 1.5
+
+      &-addition
+        display block
+        position absolute
+        left 100%
+        top 0
+        margin 20px 0 0 20px
+
+      &-comment
+        display inline-block
+        vertical-align top
+        position relative
+        padding 0 0 0 25px
+        font-family Medium
+        font-size 15px
+        line-height 2
+        background url64('../images/icons/icon-50.svg') 0 center no-repeat
+
+      &-link
+        padding-left 40px
+
+        &:hover
+          background-color #e2e4e4
+          &::after
+            background-image url64('../images/icons/icon-17.svg')
+
+        &:active
+          &::after
+            background-image url64('../images/icons/icon-18.svg')
+
+      &-date
+        width 180px
+        max-width 180px
+        margin 0 16px 0 0
+
+      &-status
+        width auto
+        position relative
+        margin 0
+        font-size 15px

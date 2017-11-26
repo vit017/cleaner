@@ -1,0 +1,27 @@
+.aside-nav
+  position relative
+  display block
+  font-size 20px
+  line-height 1.5
+  font-family Medium
+  margin 0 0 25px 0
+
+  &__item
+    display block
+    padding 5px 0
+    position relative
+
+    &_active
+      .aside-nav__item-link
+        cursor default
+        color baseColor
+        text-decoration none !important
+
+    &-link
+      text-decoration none
+
+  @media screen and (min-width: 930px)
+    margin-bottom 45px
+
+    &__item
+      padding 10px 0

@@ -1,0 +1,43 @@
+#params input[type=radio]:checked + .checkbox_label[for=no_vac]:before, #settings input[type=radio]:checked + .checkbox_label[for=no_vac]:before {
+    background: url(../img/icon_sprite_ordering_set.png) no-repeat -65px -311px;
+    border: 1px solid #3257FE;
+}
+.input-txt__error {
+    color: red;
+}
+.slider-holder .do {
+    /*background: url(../img/not_do_vert.png) no-repeat 0% 50%;*/
+    padding: 25px 0px 25px 39px;
+}
+.slider-holder .do li {
+    font-size: 14px;
+    font-weight: 100;
+    margin: 0;
+    line-height: 25px;
+}
+.do li h5 {
+    font-size: 18px;
+}
+.slider-holder .not_do {
+    background: none;
+}
+.not_do h4 {
+    color: #fff;
+    padding: 15px 0;
+    cursor: pointer;
+    position: relative;
+}
+.not_do h4 b {
+    color: #3cc;
+}
+.formcommentresult {
+    font-size: 18px;
+    margin: 5px 0;
+}
+.formcommentresult .errfield {
+    color: red;
+}
+.formcommentresult .success {
+    color: #3257fe;
+    display: none;
+}

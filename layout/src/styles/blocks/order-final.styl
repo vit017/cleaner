@@ -1,0 +1,92 @@
+.order-final
+  position relative
+  margin 0 0 40px 0
+
+  &__title
+    display block
+    margin 0 0 8px 0
+    padding 0 0 0 30px
+    position relative
+    font-size 30px
+    line-height 1.5
+    font-family Medium
+    font-weight normal
+
+    &::before
+      content ""
+      position absolute
+      left 0
+      top 50%
+      width 20px
+      height 16px
+      margin -(@height/2) 0 0 0
+      background url64('../images/icons/icon-22.svg') 0 0 no-repeat
+
+    &_error
+      &::before
+        width 15px
+        height 15px
+        background-image  url64('../images/icons/icon-26.svg')
+
+  &__msg
+    margin 0 0 25px 0
+
+    &-title
+      display block
+      margin 0 0 15px
+      font-family Medium
+      font-size 25px
+      line-height 30px
+
+    &-text
+      display block
+      margin 0
+      padding 0
+      font-family Regular
+      font-size 15px
+      line-height 22px
+
+  & > .btn
+    max-width 100%
+
+    .btn__icon_right
+      margin 0 0 0 15px
+
+  @media screen and (min-width: 930px)
+    background #ffffff
+    width 770px
+    margin 20px auto 0
+    padding 60px
+    text-align center
+
+    &__title
+      display block
+      margin 0 0 55px 0
+      padding 0
+      font-size 100px
+      line-height 1
+
+      &:before
+        content ""
+        display block
+        position relative
+        left auto
+        top auto
+        width 40px
+        height 30px
+        margin 0 auto 25px
+        background-size 100% 100%
+
+      &_error
+        &::before
+          width 30px
+          height 30px
+
+    &__msg
+      margin 0 auto 55px
+      width 430px
+
+      &-title
+        margin 0 0 17px
+        font-size 30px
+        line-height 1.5

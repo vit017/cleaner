@@ -1,0 +1,118 @@
+.city-dropdown
+  display inline-block
+  position relative
+
+  &_width_full
+    display block
+
+  &__title
+    display block
+    position relative
+    font-family Medium
+    font-size 15px
+    line-height 30px
+    color #898989
+    padding 0 0 0 20px
+    background url64('../images/icons/icon-52.svg') 0 center no-repeat
+    cursor pointer
+
+    &_light
+      color #c2c5c5
+
+    &::after
+      content ""
+      display inline-block
+      vertical-align middle
+      width 14px
+      height 9px
+      //position absolute
+      //right 0
+      //top 1px
+      //bottom 0
+      margin 0 0 0 30px
+      background url64('../images/icons/icon-43.svg') 0 center no-repeat
+      transform rotate(0)
+      transition all 0.3s ease
+
+  &_state_open
+
+    .city-dropdown__title
+      &::after
+        transform rotate(180deg)
+
+    .city-dropdown__content
+      visibility visible
+      opacity 1
+      transform translateY(0)
+      pointer-events auto
+
+  &__content
+    display block
+    position absolute
+    top 100%
+    left 50%
+    width 300px
+    padding 30px 25px
+    margin 15px 0 0 0
+    margin-left -(@width/2)
+    background #ffffff
+    font-family Medium
+    font-size 15px
+    line-height 25px
+    color #000000
+    z-index 1000
+    box-shadow 0px 5px 10px 0px rgba(0, 0, 0, 0.05)
+    opacity 0
+    visibility hidden
+    pointer-events none
+    transform translateY(10px)
+    transition all 0.3s ease
+
+    &:after
+      bottom 100%
+      left 50%
+      border solid transparent
+      content " "
+      height 0
+      width 0
+      position absolute
+      pointer-events none
+      border-color rgba(255, 255, 255, 0)
+      border-bottom-color #fff
+      border-width 12px
+      margin-left -12px
+
+    &-title
+      display block
+      color #6e7677
+      font-size 18px
+      margin 0 0 7px 0
+
+  &__list
+    display block
+    margin 0
+    padding 0
+    list-style none
+    
+    &-item
+      display block
+      cursor pointer
+      font-size 20px
+      line-height 1.5
+      color #3ce1c2
+      text-decoration none !important
+      margin 0 0 5px 0
+
+      &:hover
+        color #3ce1c2
+
+      &_active
+        color #001b1f !important
+        cursor default
+
+  @media screen and (max-width: 480px)
+
+    &__content
+      width 300px
+      margin-left -(@width/2)
+

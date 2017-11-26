@@ -1,0 +1,43 @@
+Options -Indexes 
+ErrorDocument 404 /404.php
+#AuthType Basic
+#AuthUserFile /home/u429586/.htpasswd
+#AuthName "TEST"
+#require valid-user
+
+<IfModule mod_php5.c>
+  php_flag session.use_trans_sid off
+  php_flag allow_url_fopen on
+  #php_value display_errors 1
+  #php_value mbstring.internal_encoding UTF-8
+  php_value session.gc_maxlifetime 43200
+  php_value mbstring.func_overload 0
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+#SetEnvIfNoCase Authorization "Basic ([a-z0-9=]+)" QUERY_STRING=$1
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
+  RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
+  RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+
+  #RewriteCond %{HTTP:PORT} !^443$
+  #RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
+</IfModule>
+
+<IfModule mod_dir.c>
+  DirectoryIndex index.php index.html
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresByType image/jpeg "access plus 3 day"
+  ExpiresByType image/gif "access plus 3 day"
+  ExpiresByType image/png "access plus 3 day"
+  ExpiresByType text/css "access plus 3 day"
+  ExpiresByType application/javascript "access plus 3 day"  
+</IfModule>

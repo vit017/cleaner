@@ -1,0 +1,30 @@
+<fieldset class="order-form__fieldset">
+    <h2 class="order-form__fieldset-title">Подтверждение номера телефона</h2>
+    <p>
+        На ваш номер телефона <strong>{{ result.POST.ORDER_PROP_PERSONAL_PHONE }}</strong> (<strong class="link" data-step="32" onclick="document.order_form.CurrentStep.value='2'; document.order_form.BACK.value='Y'; document.order_form.submit();">изменить</strong>) было выслано смс с кодом подтверждения. Пожалуйста, введите код в поле ниже.
+    </p>
+    <div class="sms-confirm">
+        <label class="sms-confirm__input input-txt {%  if result.ERROR_MESSAGE|length > 0 %}input-txt_state_error{% endif %}" data-placeholder="Код подтверждения">
+            <input class="input-txt__field" type="text" name="confirm_code" placeholder="Код подтверждения" />
+            {% if result.ERROR_MESSAGE|length > 0 %}
+                <span class="input-txt__error">{{ result.ERROR_MESSAGE }}</span>
+            {% endif %}
+        </label>
+        {% if result.CHECK_NUMBER == 'N' %}
+        <span class="sms-confirm__resend js-sms-resend">
+            <input class="sms-confirm__resend-input" type="checkbox" name="RESEND"/>
+            <span class="sms-confirm__link">Получить смс повторно</span>
+        </span>
+        {% endif %}
+    </div>
+    <div class="order-form__fieldset-tip">
+        <h3>Приватность</h3>
+        <p>
+            Все введенные вами данные абсолютно конфиденциальны
+            и необходимы только для работы сервиса.
+        </p>
+    </div>
+</fieldset>
+<button class="order-form__next btn btn_with_icons btn_responsive_true" name="con" id="save_number">
+    <span class="btn__icon btn__icon_type_save"></span>Сохранить<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>

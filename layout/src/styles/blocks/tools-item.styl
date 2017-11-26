@@ -1,0 +1,40 @@
+.tools-item
+  position relative
+  margin 0 0 30px 0
+
+  &__pic
+    display none
+
+  &__title
+    display block
+    font-size 15px
+    line-height 25px
+    font-weight normal
+    font-family Medium
+    margin 0 0 10px 0
+
+  &__list
+    margin 0
+    padding 0
+    list-style none
+    line-height 24px
+
+    li
+      padding 3px 0
+
+  @media screen and (min-width: 830px)
+    padding 0 0 0 130px
+    margin 0 0 55px 0
+    position relative
+    min-height 130px
+
+    &__pic
+      display block
+      position absolute
+      left 0
+      top 0
+
+h3 + .tools-item
+  @media screen and (min-width: 830px)
+    margin-top 45px
+

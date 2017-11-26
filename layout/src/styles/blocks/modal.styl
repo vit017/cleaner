@@ -1,0 +1,165 @@
+.fade
+  opacity 0
+  transition opacity 0.15s linear
+
+  &.in
+    opacity 1
+
+.modal-open
+  overflow hidden
+
+  &.page-overflow .page-wrapper
+  &.page-overflow .page-footer
+    overflow-y scroll
+
+.modal-backdrop
+  position fixed
+  top 0
+  right 0
+  bottom 0
+  left 0
+  z-index 1040
+  overflow hidden
+  background-color rgba(7, 177, 154, 0.8)
+  -webkit-overflow-scrolling touch
+  opacity 1
+
+  &.modal-absolute
+    position absolute
+    z-index 940
+
+  &.fade
+    opacity 0
+
+  &.fade.in
+    opacity 1
+
+
+.modal-scrollable
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+  overflow-y scroll
+  -webkit-overflow-scrolling touch
+
+.modal
+  outline 0
+  position absolute
+  top 50%
+  left 0
+  overflow visible
+  z-index 1050
+  width 100%
+  font-size basefont
+
+  .loading-mask
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+    background #ffffff
+    border-radius 6px
+
+  &.fade
+    opacity 0
+    top -100%
+    transition opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out
+
+  &.fade.in
+    opacity 1
+    top 50%
+
+  &.modal-absolute
+    position absolute
+    z-index 950
+
+  &__body
+    position relative
+    max-height none
+    overflow visible
+    background-color #ffffff
+    margin 20px 0
+    padding 40px 20px
+    & > :last-child
+      margin-bottom 0
+
+  &__title
+    margin 0 0 25px 0
+    font-family Medium
+    font-size 25px
+    line-height 1
+
+    &_noup
+      text-transform none
+
+    &_nospac
+      letter-spacing normal
+
+  &__close
+    position absolute
+    right 0
+    top 0
+    width 40px
+    height 40px
+    background url64('../images/icons/icon-25.svg') center center no-repeat
+    cursor pointer
+
+    &:hover
+      background-image url64('../images/icons/icon-26.svg')
+
+  @media screen and (min-width: 830px)
+    width w = 770px
+    left 50%
+    margin-left -385px
+
+    &__body
+      padding 50px 70px
+
+    &__title
+      font-size 30px
+
+.modal-overflow
+  .modal__body
+    -webkit-overflow-scrolling touch
+
+  &.modal
+    opacity 1
+    top 1%
+
+  &.modal.fade
+    opacity 0
+    top -100%
+
+  &.modal.fade.in
+    opacity 1
+    top 1%
+
+.loading-spinner
+  position absolute
+  top 50%
+  left 50%
+  margin -12px 0 0 -12px
+
+
+.animated
+  animation-duration 1s
+  animation-fill-mode both
+
+
+@keyframes shake
+  0%, 100% {transform: translateX(0);}
+  10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+  20%, 40%, 60%, 80% {transform: translateX(10px);}
+
+
+.shake
+  animation-name shake
+
+
+
+
+
+

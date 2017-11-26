@@ -1,0 +1,122 @@
+<div class="page-blocks__item-controls">
+    <a class="btn btn_type_third btn_size_small" href="/user/history/"><span class="btn__icon btn__icon_type_back"></span>Все уборки</a>
+</div>44444
+{#<pre>
+    {{ dump(result) }}
+</pre>#}
+<div class="order-detail">
+    {% set date = result.DATETIME.DATE.VALUE|date("d.m.y") %}
+    <div class="order-detail__header clearfix">
+        <h2 class="order-detail__title">
+            {% if result.DAYS_BEFORE == 1 %}
+                Уборка уже завтра33
+            {% elseif result.DAYS_BEFORE == 0 %}
+                Уборка уже сегодня
+            {% else %}
+                <span class="lowercase">{{ date|formatDate('DD MMMM YYYY') }}</span>
+            {% endif %}
+        </h2>
+        <div class="order-detail__header-content">
+            {% if result.STATUS_ID == 'F' %}
+                <span class="status">Выполнен</span>
+                {% if result.REVIEW|length  %}
+                    <a class="comment-link" href="/user/history/comments.php?ORDER={{ result.ID }}">
+                    <span class="rating">
+                        {% for i in range(1, 5) %}
+                            <i class="rating__item {% if i <= result.REVIEW.PROPERTY_MARK_VALUE %}rating__item_active{% endif %}">&nbsp;</i>
+                        {% endfor %}
+                    </span>
+                    </a>
+                {% else %}
+                    <a class="comment-link" href="/user/history/comments.php?ORDER={{ result.ID }}">Оставить отзыв</a>
+                {% endif %}
+            {% elseif result.STATUS_ID == 'C' or result.STATUS_ID == 'M'%}
+                <span class="status status_canceled">Отменен</span>
+            {% else %}
+                <span class="status status_waiting">Ожидается</span>
+            {% endif %}
+
+
+            {% if result.CAN_CANCEL == 'Y' and ('tomorrow'|date('U') < result.DATETIME.DATE.PRINT|date('U')) and result.STATUS_ID != 'C' and result.STATUS_ID != 'M' %}
+                <div class="cabinet__cancel" style="padding:0">
+                    <a href="{{ result.URL_TO_CANCEL }}" class="cancel-link">Отменить уборку</a>
+                </div>
+            {% endif%}
+        </div>
+    </div>
+    <div class="order-detail__content">
+        <div class="order-item">
+            <h4 class="order-item__title order-item__title_date">Дата и время</h4>
+            <p class="order-item__param">{{ result.WEEK_DAY }}, <span class="lowercase">{{ date|formatDate('DD F') }}</span></p>
+            <p class="order-item__param">с {{ result.DATETIME.TIME.PRINT_VALUE }} по {{ result.DATETIME.TIME_TO.PRINT_VALUE }} <span class="grey">({{ result.DATETIME.DURATION.PRINT_VALUE }})</span></p>
+        </div>
+        <div class="order-item">
+            <h4 class="order-item__title order-item__title_params">Параметры квартиры</h4>
+            <p class="order-item__param">
+                {% for item in result.BASKET.MAIN %}
+                    {{ item.NAME_FORMATED }} {% if not loop.last %} + {% endif %}
+                {% endfor %}
+            </p>
+
+            {% if result.BASKET.ADDITIONAL %}
+                <p class="order-item__param"><span class="order-item__param-name">Дополнительно:</span>
+                    {% for arBasketItem in result.BASKET.ADDITIONAL %}
+                        {{ arBasketItem.NAME }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+            {% endif %}
+        </div>
+        <div class="order-item">
+            <h4 class="order-item__title order-item__title_contacts">Контактные данные</h4>
+            <p class="order-item__param"><span class="order-item__param-name">Город: </span>{{ result.DATETIME.PERSONAL_CITY.VALUE }}</p>
+            <p class="order-item__param"><span class="order-item__param-name">Адрес: </span>{{ result.DATETIME.PERSONAL_STREET.VALUE }}</p>
+            <p class="order-item__param"><span class="order-item__param-name">Телефон: </span>{{ result.DATETIME.PERSONAL_PHONE.VALUE }}</p>
+            <p class="order-item__param"><span class="order-item__param-name">Ваше имя: </span>{{ result.DATETIME.NAME.VALUE }}</p>
+        </div>
+        {% if result.CLEANER and result.DAYS_BEFORE <= 1 %}
+            <div class="order-item">
+                <h4 class="order-item__title order-item__title_cleaner">Ваш клинер</h4>
+                <p class="order-item__param order-item__param_cleaner clearfix">
+                    <span class="order-item__param-pic">
+                        <img src="{{ result.CLEANER.PHOTO }}"/>
+                    </span>
+                    <a href="/cleaner/?ID={{ result.CLEANER.ID }}&BACK_URL=/user/history/?ID={{ result.ID }}">
+                        {{ result.CLEANER.NAME }}
+                    </a>
+                </p>
+            </div>
+        {% else %}
+            <div class="order-item">
+                <h4 class="order-item__title order-item__title_cleaner">Ваш клинер</h4>
+                <p class="order-item__param order-item__param_cleaner clearfix">
+                  <span class="order-item__param-pic">
+                    <img src="/layout/assets/images/content/cleaner-unknown.png"/>
+                  </span>
+                    Ваш клинер будет назначен
+                    за день до уборки.
+                </p>
+            </div>
+        {% endif %}
+
+        <div class="order-item">
+            <h4 class="order-item__title order-item__title_price">Стоимость</h4>
+            <p class="order-item__param"> {{ result.PRICE_FORMATED }} <span class="rouble">Р</span> за {{ result.PRICE_TIME_FORMATED }}
+                <span class="grey" style="text-transform: lowercase;">(оплата {% if result.PAY_SYSTEM.ID==2 %}картой{% else %}наличными{% endif %})</span></p>
+            {% if result.DISCOUNT_VALUE>0 %}
+                <p class="order-item__param">Промокод: -{{ result.DISCOUNT_VALUE_FORMATED }} <span class="rouble">Р</span></p>
+            {% endif %}
+            {% if result.PAID_BY_FREE_HOURS > 0 %}
+                <p class="order-item__param">Использовано бонусов: {{ result.SUM_PAID_TIME_FORMATED }}</p>
+            {% endif %}
+            <p class="order-item__param">Итого: {{ result.NEED_TO_PAY_FORMATED }} <span class="rouble">Р</span>
+                {% if result.NEED_TO_PAY > 0 %}
+                    <span class="grey" style="text-transform: lowercase;"> ({% if result.PAY_SYSTEM.ID==2 %}списывается{% else %}оплата {% endif %} после выполнения заказа)</span>
+                {% endif %}
+            </p>
+            {% if result.NEED_CARD|length and result.STATUS_ID == 'F' %}
+                <p class="order-item__param">Оплачено</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+

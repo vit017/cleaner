@@ -1,0 +1,102 @@
+.input-txt
+  display inline-block
+  vertical-align top
+  position relative
+  background #ffffff
+  text-align left
+
+  &_width_full
+    width 100%
+
+  &_bg_grey
+    background #eff1f1
+
+  &__field
+    display block
+    width 100%
+    min-height 50px
+    border-radius 0
+    box-shadow none
+    -webkit-appearance none
+    border 2px solid #c2c5c5
+    color #000000
+    font-family Medium
+    font-size 20px
+    line-height 1.5
+    padding 8px 20px
+    text-align left
+    position relative
+    background transparent
+
+    &_area
+      height 200px
+      resize vertical
+      font-size 15px
+      line-height 22px
+      font-family Regular
+      padding 10px 20px
+
+    &:focus
+      outline none
+      border-color #6e7677
+
+    &::-webkit-input-placeholder
+      color #c2c5c5
+
+    &:-moz-placeholder
+      color #c2c5c5
+
+    &::-moz-placeholder
+      color #c2c5c5
+
+    &:-ms-input-placeholder
+      color #c2c5c5
+
+    &:disabled
+      opacity 0.25
+      cursor default
+
+  &::after
+    content attr(data-placeholder)
+    display inline-block
+    vertical-align top
+    position absolute
+    left 17px
+    top -6px
+    padding 0 7px
+    z-index 1
+    font-family Medium
+    font-size 10px
+    line-height 1.5
+    color #c2c5c5
+    background inherit
+    opacity 0
+    transform translateY(-5px)
+    transition all 0.2s ease-in-out
+    pointer-events none
+
+  &_placeholder_small
+    &::after
+      transform translateY(0)
+      opacity 1
+
+  &_state_focused
+    &::after
+      color #6e7677
+
+  &_state_error
+
+    .input-txt__field
+      border-color #f0b9c8
+
+
+  &__error
+    display block
+    font-family Medium
+    font-size 12px
+    line-height 1
+    color #ea4c6c
+    margin 15px 0 0 0
+
+
+

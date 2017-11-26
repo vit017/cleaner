@@ -1,0 +1,15 @@
+opacity-ie(n)
+  -ms-filter unquote('"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')"')
+  filter unquote('alpha(opacity=' + round(n * 100) + ')')
+
+.clearfix
+  zoom 1
+
+.clearfix
+  &:after
+  &:before
+    content ""
+    display table
+    line-height 0
+  &:after
+    clear both

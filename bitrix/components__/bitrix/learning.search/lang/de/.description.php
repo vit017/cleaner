@@ -1,0 +1,6 @@
+<?
+$MESS["LEARNING_SEARCH_COMPLEX_NAME"] = "Kurse suchen";
+$MESS["LEARNING_SEARCH_COMPLEX_DESC"] = "Kurse suchen";
+$MESS["LEARNING_SERVICE"] = "e-Learning";
+$MESS["LEARNING_SEARCH_SERVICE"] = "Suchen";
+?>

@@ -1,0 +1,66 @@
+---
+title: Заказ уборки - Оплата
+---
+
+<div class="container">
+
+    <h1 class="page-title">Оплата заказа</h1>
+
+    <section class="order">
+        <div class="page-block order__content">
+            <form class="order-form" action="">
+                <fieldset class="order-form__fieldset">
+                    <h2 class="order-form__fieldset-title">Оплата картой</h2>
+                    <div class="payment-card">
+                        <div class="payment-card__content">
+                            <div class="payment-card__field payment-card__field_number">
+                                <label class="input-txt input-txt_width_full">
+                                    <input type="text" class="input-txt__field" placeholder="Номер карты" autofocus />
+                                </label>
+                            </div>
+                            <div class="payment-card__field payment-card__field_dates">
+                                <span class="payment-card__field-tip">
+                                    дата <br/>
+                                    окончания
+                                </span>
+                                <label class="input-txt">
+                                    <input type="text" class="input-txt__field" placeholder="ММ"/>
+                                </label>
+                                <span class="payment-card__field-divider">/</span>
+                                <label class="input-txt">
+                                    <input type="text" class="input-txt__field" placeholder="ГГ"/>
+                                </label>
+                            </div>
+                            <div class="payment-card__field payment-card__field_owner">
+                                <label class="input-txt input-txt_width_full">
+                                    <input type="text" class="input-txt__field" placeholder="Владелец карты"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="payment-card__additional">
+                            <div class="payment-card__field payment-card__field_cvv">
+                                <label class="input-txt">
+                                    <input type="text" class="input-txt__field" placeholder="CVV"/>
+                                </label>
+                                <span class="payment-card__field-tip">
+                                    Трехзначное число <br/>
+                                    на обратной стороне карты
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-form__fieldset-tip order-form__fieldset-tip_mobile-visible">
+                        <h3>Безопасность</h3>
+                        <p class="mobile-visible">
+                            Передача информации защищена сертификатом SSL. Сайт в полной мере отвечает стандартам безопасности платежных систем Visa и Master Card (PCI Compliancy)
+                        </p>
+                    </div>
+                </fieldset>
+                <button class="order-form__next btn btn_with_icons btn_responsive_true">
+                    <span class="btn__icon btn__icon_type_pay"></span>Оплатить
+                </button>
+            </form>
+        </div>
+    </section>
+
+</div>

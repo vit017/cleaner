@@ -1,0 +1,67 @@
+.page-blocks
+  position relative
+
+  &__item
+    display block
+
+    &_type_main
+      background #ffffff
+      padding 0 0 40px 0
+
+    &_type_aside
+      margin 0 -20px
+      padding 25px 20px 40px 20px
+      background colorGrey
+
+    &-controls
+      display none
+
+  @media screen and (min-width: 930px)
+
+    &__item
+
+      &-controls
+        display block
+
+        .btn
+          transform translateY(0)
+
+      &_type_main
+        padding 45px 70px 60px 70px
+
+        .page-blocks__item-controls:first-child
+          margin -45px 0 25px -70px
+
+      &_type_aside
+        margin 0
+        padding 45px 70px 60px 70px
+
+  @media screen and (min-width: 1200px)
+    display flex
+
+    &__item
+
+      &_type_main
+        width 870px
+        min-width 870px
+
+      &_type_aside
+        width 300px
+        padding 35px 30px 60px 30px
+        background rgba(255, 255, 255, 0.5)
+
+        .aside-nav__item_active
+          &::before
+            content ""
+            display block
+            position absolute
+            left -30px
+            top 50%
+            width 9px
+            height 20px
+            margin -(@height/2) 0 0 0
+            background url64('../images/icons/arrow_white.svg') 0 0 no-repeat
+
+        .btn_width_full
+          padding-left 0
+          padding-right 0

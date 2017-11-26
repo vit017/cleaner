@@ -1,0 +1,52 @@
+<fieldset class="order-form__fieldset">
+    <h2 class="order-form__fieldset-title">Способ оплаты</h2>
+    <div class="order-form__fieldset-tip">
+        <h3>Простота и безопасность</h3>
+        <p>
+            Оплата наличными. Мы принимаем оплату наличными по факту уборки, но совсем скоро добавим возможность оплаты банковскими картами.
+        </p>
+    </div>
+
+    {% if result.PAY_SYSTEM|length > 0 %}
+
+        {% for arPaySystem in result.PAY_SYSTEM %}
+
+            <label class="payment-type">
+                <input class="payment-type__input" {% if arPaySystem.ID == 3 %}disabled{% endif %} type="radio" value="{{ arPaySystem.ID }}" name="PAY_SYSTEM_ID" id="ID_PAY_SYSTEM_ID_{{ arPaySystem.ID }}" {% if arPaySystem.CHECKED == 'Y' %} checked {% endif %}/>
+                <span class="payment-type__content">
+                  <span class="payment-type__content-title">{{ arPaySystem.PSA_NAME }}</span>
+                  <span class="payment-type__content-desc">
+                    {{ arPaySystem.DESCRIPTION }}
+                  </span>
+                    {% if arPaySystem.ID == 3 %}
+                        <span class="input-error filled input-error__item parsley-custom-error-message">
+                        Данный способ оплаты временно недоступен. Мы работаем над устранением проблемы. Приносим свои извинения за возможные неудобства.
+                    </span>
+
+                    {% endif %}
+
+                    {% if arPaySystem.ID == 2 %}
+                        <img src="/layout/assets/images/content/cards.png" alt="">
+                    {% endif %}
+                </span>
+
+            </label>
+
+        {% endfor %}
+
+    {% endif %}
+
+</fieldset>
+{% if result.ERROR_TIME == 'Y' %}
+    <div id="time-picker-error">
+        <span class="input-error filled" id="" style="margin-bottom:20px;">
+            <span class="input-error__item parsley-custom-error-message">
+                К сожалению, выбранное вами время уже занято.
+                <strong class="link" data-step="32" onclick="document.order_form.CurrentStep.value='1'; document.order_form.BACK.value='Y'; document.order_form.submit();">Изменить</strong>
+            </span>
+        </span>
+    </div>
+{% endif %}
+<button class="order-form__next btn btn_with_icons btn_responsive_true" name="contButton" id="enter_card">
+    Подтвердить<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>

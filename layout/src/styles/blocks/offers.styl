@@ -1,0 +1,99 @@
+.offers
+  display block
+  position relative
+  padding 0
+  margin 0 0 40px 0
+  list-style none
+  font-size 0
+
+  &__item
+    display block
+    width 280px
+    position relative
+    margin 0 0 25px 0
+    padding 0 0 0 70px
+    font-size 13px
+    line-height 22px
+    color #898989
+    font-family Regular
+    min-height 50px
+
+    p
+      font-size 13px
+      line-height 22px
+
+    &-title
+      display block
+      font-family Medium
+      font-size 15px
+      line-height 20px
+      color #000000
+      margin 0 0 5px 0
+
+    &-icon
+      display block
+      margin 0 auto
+      width 50px
+      height 50px
+      position absolute
+      left 0
+      top 0
+      background-size 40px 40px
+      background-position center center
+      background-repeat no-repeat
+
+      &_calendar
+        background-image url64('../images/for-cleaners/01.svg')
+
+      &_money
+        background-image url64('../images/for-cleaners/02.svg')
+
+      &_learn
+        background-image url64('../images/for-cleaners/03.svg')
+
+      &_clothes
+        background-image url64('../images/for-cleaners/04.svg')
+
+      &_eco
+        background-image url64('../images/for-cleaners/05.svg')
+
+      &_metro
+        background-image url64('../images/for-cleaners/06.svg')
+
+      &_order_mint
+        background-image url('../images/icons/order.svg');
+
+      &_insurance_mint
+        background-image url('../images/icons/insurance.svg')
+
+      &_warranty_mint
+        background-image url('../images/icons/warrenty.svg')
+
+      &_price_mint
+        background-image url('../images/icons/price.svg')
+
+
+  @media screen and (min-width: 750px)
+    width 730px
+    margin 30px 0 60px -10px
+
+    &__item
+      display inline-block
+      vertical-align top
+      width 230px
+      margin 0 0 0 10px
+      text-align center
+      padding 0 10px
+
+      &-icon
+        width 100px
+        height 100px
+        margin 0 auto 30px
+        background-size 80px 80px
+        position relative
+
+      &-title
+        font-size 20px
+        line-height 30px
+
+

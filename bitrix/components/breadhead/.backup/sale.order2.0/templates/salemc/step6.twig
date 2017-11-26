@@ -1,0 +1,180 @@
+{% if result.PAY_SYSTEM.ACTION_FILE|length > 0 %}
+
+    {% if result.PAY_SYSTEM.NEW_WINDOW == 'Y' %}
+        {% set url = result.ORDER.ACCOUNT_NUMBER|url_encode(true) %}
+        {% set paymentUrl = params.PATH_TO_PAYMENT~'?ORDER_ID='~url %}
+        <script language="JavaScript">
+            window.open('{{ paymentUrl }}');
+        </script>
+
+    {% else %}
+
+        {{ includeFile(result.PAY_SYSTEM.PATH_TO_ACTION) }}
+
+    {% endif %}
+
+
+
+    <div class="row">
+        <div class="col-lg-10 order_steps">
+            <ul class="nav nav-tabs nav-justified hidden-xs">
+                <li class="params"><a class="v"><span data-step="1"></span>Параметры помещения</a></li>
+                <li class="date_time"><a class="v"><span data-step="2"></span>Дата и время</a></li>
+                <li class="your_data" onclick="document.order_form.CurrentStep.value='2'; document.order_form.BACK.value='Y'; document.order_form.submit();"><a class="v"><span data-step="3"></span>Ваши данные</a></li>
+                <li class="order_check"><a class="v"><span data-step="4"></span>Проверка заказа</a></li>
+                <li class="paying"><a class="v"><span data-step="5"></span>Оплата</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade text-center message in active" id="thnx">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4 class="text-uppercase">Спасибо!</h4>
+                            <b>Ваш заказ оформлен</b>
+                            <p>Подробную информацию о заказе вы найдете в&nbsp;личном кабинете.</p>
+                            <button onclick="location.href='/user/'" class="btn btn-default" type="button"><div class="pic key"></div>Войти &gt;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 visible-lg">
+            <a data-toggle="modal" data-target="#places" class="faq">Где мы наводим чистоту</a><br>
+            <a data-toggle="modal" data-target="#tools" class="faq">Чем мы наводим чистоту</a><br>
+        </div>
+    </div>
+
+    <!-- ВСПЛЫВАШКА "Где мы наводим чистоту" -->
+    <div id="places" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-body">
+                    <h2>Что входит в уборку</h2>
+                    <div class="clean-content">
+                        <h3 class="clean-content_title">Комната</h3>
+                        <div class="clearfix">
+                            <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_bedroom_pointed.jpg">
+                            <ol class="clean-content_list">
+                                <li>Протираем поверхности и плинтус</li>
+                                <li>Убираем мусор</li>
+                                <li>Заправляем постель</li>
+                                <li>Убираем пыль со светильников</li>
+                                <li>Поправляем небольшие вещи</li>
+                                <li>Пылесосим, моем пол</li>
+                                <li>Чистим зеркала и стеклянные поверхности</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="clean-content">
+                        <h3 class="clean-content_title">Кухня</h3>
+                        <div class="clearfix">
+                            <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_kitchen_pointed.jpg">
+                            <ol class="clean-content_list">
+                                <li>Протираем стол и столешницу</li>
+                                <li>Моем снаружи холодильник, духовой шкаф и плиту</li>
+                                <li>Пылесосим, моем пол</li>
+                                <li>Чистим раковину</li>
+                                <li>Выносим мусор</li>
+                                <li>Протираем поверхности и плинтус</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="clean-content">
+                        <h3 class="clean-content_title">Ванная</h3>
+                        <div class="clearfix">
+                            <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_bathroom_pointed.jpg">
+                            <ol class="clean-content_list">
+                                <li>Чистим зеркала и стеклянные поверхности</li>
+                                <li>Выносим мусор</li>
+                                <li>Пылесосим, моем пол</li>
+                                <li>Моем и дезинфицируем раковину, ванну, душевую кабину, унитаз</li>
+                                <li>Протираем поверхности</li>
+                                <li>Убираем разводы снаружи шкафа и стен</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="clean-content">
+                        <h3 class="clean-content_title">Коридор</h3>
+                        <div class="clearfix">
+                            <img class="clean-content_pic hidden-sm hidden-xs" src="/img/pic_corridor_pointed.jpg">
+                            <ol class="clean-content_list">
+                                <li>Убирамем пыль со светильников</li>
+                                <li>Пылесосим, моем пол</li>
+                                <li>Протираем поверхности и плинтус</li>
+                                <li>Чистим зеркала и стеклянные поверхности</li>
+                                <li>Расставляем обувь</li>
+                                <li>Выносим мусор</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ВСПЛЫВАШКА "Чем мы наводим чистоту" -->
+    <div id="tools" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-body">
+                    <h2>Чем мы убираем</h2>
+                    <p>
+                        Вы получите лучшую уборку в жизни. <br>
+                        Взгляните на список того, что принесут с собой профессиональные клинеры.
+                    </p>
+                    <h3>Что мы принесем с собой</h3>
+                    <div class="tools-item">
+                        <div class="tools-item_pic pic_1 hidden-xs"></div>
+                        <div class="tools-item_content">
+                            <h4 class="tools-item_title">Экологические средства KIEHL</h4>
+                            <ul class="list-unstyled">
+                                <li>— Средство для пола</li>
+                                <li>— Спрей для ванных комнат</li>
+                                <li>— Спрей для зеркал</li>
+                                <li>— Универсальный спрей для поверхностей</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tools-item">
+                        <div class="tools-item_pic pic_2 hidden-xs"></div>
+                        <div class="tools-item_content">
+                            <h4 class="tools-item_title">Одноразовые расходные материалы</h4>
+                            <ul class="list-unstyled">
+                                <li>— Салфетки для пола</li>
+                                <li>— Губки</li>
+                                <li>— Салфетки из микрофибры</li>
+                                <li>— Перчатки</li>
+                                <li>— Мешки для мусора</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tools-item">
+                        <div class="tools-item_pic pic_3 hidden-xs"></div>
+                        <div class="tools-item_content">
+                            <h4 class="tools-item_title">Инвентарь</h4>
+                            <ul class="list-unstyled">
+                                <li>— Швабра для пола</li>
+                                <li>— Щетка для мытья окон</li>
+                                <li>— Чистящий ролик</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3>Что вам необходимо иметь</h3>
+                    <div class="tools-item">
+                        <div class="tools-item_pic pic_4 hidden-xs"></div>
+                        <div class="tools-item_content">
+                            <ul class="list-unstyled">
+                                <li>— Пылесос</li>
+                                <li>— Утюг</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

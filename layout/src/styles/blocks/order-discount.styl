@@ -1,0 +1,30 @@
+.order-discount
+  border 2px solid colorGrey
+  padding 15px 18px 0 18px
+  margin 0 0 20px 0
+
+  &__item
+    display block
+    margin 0 0 28px 0
+
+    &-title
+      display block
+      font-family Medium
+      font-size 20px
+      line-height 30px
+      font-weight normal
+      margin 0 0 12px 0
+
+  @media screen and (min-width: 930px)
+    padding 27px 38px 38px 38px
+    margin-bottom 40px
+
+    &__item
+      margin 0
+      float left
+    
+      &:first-child
+        margin-right 75px
+
+      .checkbox
+        line-height 50px

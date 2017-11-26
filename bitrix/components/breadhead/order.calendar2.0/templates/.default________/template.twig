@@ -1,0 +1,165 @@
+<style>
+    .order-form__next{ display: none;}
+    /* пока скроем левый код */
+</style>
+<div class="row">
+    <div class="col-lg-10 order_steps">
+        <ul class="nav nav-tabs nav-justified hidden-xs">
+            <li class="params"><a href="/order/basket/" class="v"><span data-step="1"></span>Параметры помещения</a></li>
+            <li class="date_time active"><a><span data-step="2"></span>Дата и время</a></li>
+            <li class="your_data"><a><span data-step="3"></span>Ваши данные</a></li>
+            <li class="order_check"><a><span data-step="4"></span>Проверка заказа</a></li>
+            <li class="paying"><a><span data-step="5"></span>Оплата</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="date_time" class="tab-pane fade in active">
+
+                <div class="row">
+                    <div class="col-sm-12"><h3>Выберете день:</h3></div>
+                    <div class="col-sm-6">
+                        <div id="order_datetimepicker"></div>
+
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-5 hidden-xs">
+                        <div class="hidden-xs" style="height:92px;"></div>
+                        <p><span class="day disabled">25</span>Занято</p>
+                        <p><span class="day today">25</span>Сегодня</p>
+                        <p><span class="day">25</span>Свободно</p>
+                        <p><span class="day active">25</span>Выбрано</p>
+                    </div>
+                    <div class="col-sm-12"><h3>Выберете время:</h3></div>
+                    <div class="col-sm-12">
+                        <input type="radio" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" value="8" id="time_900"><label for="time_900" class="radio_label">9:00</label>
+                        <input type="radio" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" value="10" id="time_1000"><label for="time_1000" class="radio_label">10:00</label>
+                        <input type="radio" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" value="12" id="time_1200"><label for="time_1200" class="radio_label">12:00</label>
+                        <input type="radio" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" value="14" id="time_1400"><label for="time_1400" class="radio_label">14:00</label>
+                        <input type="radio" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" value="1600" id="time_1600"><label for="time_1600" class="radio_label">16:00</label>
+                        <input type="radio" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" value="16" id="time_1700"><label for="time_1700" class="radio_label">18:00</label>
+                        <input disabled type="radio" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" value="20" id="time_2000"><label for="time_1700" class="radio_label">20:00</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-default">
+                            <i class="icon map_marker"></i>Добавить адрес >
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--
+   <div style="display: none" class="col-lg-2 visible-lg">
+       <a href="/gde-my-navodim-chistotu/" class="faq">Где мы наводим чистоту</a><br>
+       <a href="#" class="faq">Чем мы наводим чистоту</a><br>
+       <a href="#" class="faq">Что такое реулярные уборки</a>
+   </div>-->
+</div>
+
+<fieldset class="order-form__fieldset" style="display: none">
+    <h2 class="order-form__fieldset-title">Выберите дату</h2>
+    <div class="order-calendar">
+        <input class="order-calendar__date" name="ORDER_PROP_{{ result.PROP_DATE_CODE }}" id="datasend">
+
+        <script>
+            {% for key,date in result.DATE_TIME %}
+            {% for key, time in date %}
+            // alert({{ time.TIME }});
+            {% endfor %}
+
+            {% endfor %}
+
+            var daysAvailable =  [
+                {% for key,date in result.DATE_TIME %}
+
+                {
+                    date: '{{ key }}',
+                    timing: [
+                        {% if loop.last %}
+                        {% for key, time in date %}
+                        {name: {{ time.TIME }}, disable: {% if time.AV == 'N' %}'true'{% else %}  {% if "now"|date("H")<time.TIME %} 'false' {% else %} 'true' {% endif %}    {% endif %}} ,
+                        {% endfor %}
+                        {% else %}
+                        {% for key, time in date %}
+                        {name: {{ time.TIME }}, disable: {% if time.AV == 'Y' %}'false'{% else %}'true'{% endif %}} ,
+                        {% endfor %}
+                        {% endif %}
+
+                    ]
+                }{% if not loop.last %},{% endif %}
+
+                {% endfor %}
+            ];
+        </script>
+        <div class="order-calendar__content">
+
+        </div>
+        <div class="order-calendar__tip">
+            <ul class="calendar-tip">
+                <li class="calendar-tip__item">
+                    <span class="calendar-tip__item-icon calendar-tip__item-icon_type_today">10</span><span class="calendar-tip__item-dash">—</span>сегодня
+                </li>
+                <li class="calendar-tip__item">
+                    <span class="calendar-tip__item-icon">10</span><span class="calendar-tip__item-dash">—</span>занято
+                </li>
+                <li class="calendar-tip__item">
+                    <span class="calendar-tip__item-icon calendar-tip__item-icon_type_available">10</span><span class="calendar-tip__item-dash">—</span>свободно
+                </li>
+                <li class="calendar-tip__item">
+                    <span class="calendar-tip__item-icon calendar-tip__item-icon_type_selected">10</span><span class="calendar-tip__item-dash">—</span>выбрано
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="order-form__fieldset-tip">
+        <h3>Трудимся без устали</h3>
+        <p>
+            Мы работаем по будням и выходным без перерывов на обед.
+        </p>
+    </div>
+</fieldset>
+<fieldset class="order-form__fieldset" style="display: none">
+    <h2 class="order-form__fieldset-title">Выберите время</h2>
+    <div class="time-picker clearfix">
+        <label class="time-picker__item">
+            <input class="time-picker__item-control" type="radio" value="08" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" disabled required="required" data-parsley-error-message="Выберите дату и время уборки" data-parsley-errors-container="#time-picker-error">
+            <span class="time-picker__item-content">08:00</span>
+        </label>
+        <label class="time-picker__item">
+            <input class="time-picker__item-control" type="radio" value="10" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" disabled>
+            <span class="time-picker__item-content">10:00</span>
+        </label>
+        <label class="time-picker__item">
+            <input class="time-picker__item-control" type="radio" value="12" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" disabled>
+            <span class="time-picker__item-content">12:00</span>
+        </label>
+        <label class="time-picker__item">
+            <input class="time-picker__item-control" type="radio" value="14" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" disabled>
+            <span class="time-picker__item-content">14:00</span>
+        </label>
+        <label class="time-picker__item">
+            <input class="time-picker__item-control" type="radio" value="16" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" disabled>
+            <span class="time-picker__item-content">16:00</span>
+        </label>
+        <label class="time-picker__item">
+            <input class="time-picker__item-control" type="radio" value="18" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" disabled>
+            <span class="time-picker__item-content">18:00</span>
+        </label>
+        <label class="time-picker__item">
+            <input class="time-picker__item-control" type="radio" value="20" name="ORDER_PROP_{{ result.PROP_TIME_CODE }}" disabled>
+            <span class="time-picker__item-content">20:00</span>
+        </label>
+    </div>
+    <div id="time-picker-error">
+
+    </div>
+    <div class="order-form__fieldset-tip">
+        <h3>Суровая реальность</h3>
+        <p>
+            Клинер может немного задержаться. К сожалению, мы не властны над пробками.
+        </p>
+    </div>
+</fieldset>

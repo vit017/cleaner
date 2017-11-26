@@ -1,0 +1,323 @@
+<?php
+
+/*
+ * Реализация тестового адаптера
+ */
+
+/**
+ * Тестовый адаптер - нужен для проведения тестирования
+ */
+class TaxiTestAdapter extends TaxiSmsAdapter
+{
+    /*
+     * MAIN
+     */
+
+    /**
+     * Широта центра при разбросе машин
+     * @var float
+     */
+    public $lat = 43.591381073;
+
+    /**
+     * Долгота центра при разбросе машин
+     * @var float
+     */
+    public $lon = 39.7270584106;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->label = 'Внутренний тестовый адаптер';
+        $this->key = 'test';
+        $this->defaultCity = 'Сочи';
+
+        /* ! TODO */
+//        $this->addComponents(array(
+//            'errorEmulation' => array(
+//                'class' => 'TaxiTestCriticalErrorsEmulator',
+//                'options' => array(
+//                ),
+//            ),
+//        ));
+
+
+        $this->useSmsAuthorization = true;
+    }
+
+    /*
+     * ITaxiFunctions
+     */
+
+    public function callCost($fromCity, $fromStreet, $fromHouse, $fromHousing, $fromPorch, $fromLat, $fromLon, $toCity, $toStreet, $toHouse, $toHousing, $toPorch, $toLat, $toLon, $clientName, $phone, $priorTime, $customCarId, $customCar, $carType, $carGroupId, $tariffGroupId, $comment)
+    {
+        return null;
+    }
+
+    public function getCoords($address = null)
+    {
+        return null;
+    }
+
+    /**
+     *
+     * @return null
+     */
+    private function criticalErrorEmulation()
+    {
+        switch (rand(0, 4)) {
+            case 0:
+                $this->errorEmulation->badDie();
+                break;
+            case 1:
+                $this->errorEmulation->exception();
+                break;
+            case 2:
+                $this->errorEmulation->outOfMemory();
+                break;
+            case 3:
+                $this->errorEmulation->stackError();
+                break;
+            case 4:
+                return null;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Запрос на получение списка свободных/несвободных машин для распределения заказа
+     * @return TaxiCarInfo[]
+     */
+    public function findCars($filterParam = null)
+    {
+//        if (rand(1, 10) == 5) {
+//            return $this->criticalErrorEmulation();
+//        }
+
+        $cars = array();
+        $count = rand(1, 10);
+        $first = true;
+        for ($i = 1; $i <= $count; $i++) {
+            $car = new TaxiCarInfo();
+
+            $car->id = 54 + $i;
+
+            $car->lat = $this->lat + rand(0, 10000) / 100000;
+            $car->lon = $this->lon + rand(0, 10000) / 100000;
+            $car->crewId = null;
+            $car->crewCode = null;
+            if ($first) {
+                $car->isFree = true;
+                $first = false;
+            } else {
+                $car->isFree = rand(0, 1) == 0;
+            }
+
+            $car->statusCode = 'not_defined_test';
+
+            $car->color = 'тест_цвет';
+            $car->number = 'гс' . rand(1000, 9999);
+            $car->description = 'тестКалина';
+
+            $cars[] = $car;
+        }
+        return $cars;
+    }
+
+    /**
+     * Поиск для подсказки по улицам
+     * @param string $streetPart - первая часть улицы, может быть регистронезависимой
+     * @param integer $maxLimit - ограничение на выдачу результата
+     * @param string $city - Ограничить поиск улиц в этом городе\нас пункте - 'Йошкар-Ола'
+     * @return array - array('Ленина', 'Лещенко', 'Левая', 'Листовая', ... )
+     */
+    public function findStreets($streetPart, $maxLimit = 50, $city = null)
+    {
+        $res = array();
+        for ($i = 1; $i <= $maxLimit; $i++) {
+            $res[] = $streetPart . '__' . rand(10000, 10000000);
+        }
+        return $res;
+    }
+
+    /**
+     * Запрос информации о тарифах,
+     * см. доки
+     * @return TaxiTariffInfo[]
+     */
+    public function findTariffs()
+    {
+        $tarifs = array();
+
+        $tmp = new TaxiTariffInfo();
+        $tmp->label = 'Загородный';
+        $tmp->id = '22';
+        $tmp->groupId = '0';
+
+        $tmp = new TaxiTariffInfo();
+        $tmp->label = 'Обычный';
+        $tmp->id = '1';
+        $tmp->groupId = '0';
+
+        $tmp = new TaxiTariffInfo();
+        $tmp->label = 'Ночной (тест)';
+        $tmp->id = '23';
+        $tmp->groupId = '44';
+
+        $tarifs[] = $tmp;
+
+        return $tarifs;
+    }
+
+    /**
+     * Создание заказа
+     * @param string $fromCity - город, может быть необходимость в строгом задании 'ЙОШКАР-ОЛА'
+     * @param string $fromStreet - улица, или место - 'Ленина ул.' - может быть необходимо доп. преобразование
+     * @param string $fromHouse - номер дома - '88б'
+     * @param string $fromHousing - корпус - 'к.2' - ! может необходимо преобразование!
+     * @param string $fromPorch - подъезд - 'последний' '4'
+     * @param string $fromLat - широта точки откуда (опционально) в виде строки '45.2222'
+     * @param string $fromLon - долгото точки откуда (опционально) в виде строки '45.2222'
+     * @param string $toCity - Куда- город, может быть необходимость в строгом задании 'ЙОШКАР-ОЛА'
+     * @param string $toStreet - Куда улица, или место - 'Ленина ул.' - может быть необходимо доп. преобразование
+     * @param string $toHouse - Куда номер дома - '88б'
+     * @param string $toHousing - Куда корпус - 'к.2' - ! может необходимо преобразование!
+     * @param string $toPorch - Куда подъезд - 'последний' '4'
+     * @param string $toLat - Куда широта точки откуда (опционально)
+     * @param string $toLon - Куда долгото точки откуда (опционально)
+     * @param string $clientName - Фио клиента - 'Иванов Иван'
+     * @param string $phone - '89001002030' - 11 цифровой телефон с 8 - кой
+     * @param string $priorTime - Время предварительного заказа, строго в формате '21.11.2013 16:30:00' + будет попытка автопреобразования
+     * @param string $customCarId - ИД машины, при ручном выборе машины
+     * @param string $customCar - Текстовое описание машины ("Выбрать авто: Ваз 2110 гос.номер ке555р, позывной 2445") при ручном выборе машины
+     * @param string $carType - тип машины - в разработке, может уходить в комментарий ??
+     * @param string $carGroupId - ИД группы машины, может иногда использоваться, например в такси мастер
+     * @param string $tariffGroupId - ИД группы тарифа, который выбран, например при выборе типа машины - минибен, тут может быть
+     * другая тарифная группа
+     * @param string $comment - комментарий - может включать флаги "С собой животное" и т.д.
+     * @return integer - ИД созданного заказа - 3211201, или Null - если ничего не удалось создать
+     */
+    public function createOrder($fromCity, $fromStreet, $fromHouse, $fromHousing, $fromPorch, $fromLat, $fromLon, $toCity, $toStreet, $toHouse, $toHousing, $toPorch, $toLat, $toLon, $clientName, $phone, $priorTime, $customCarId, $customCar, $carType, $carGroupId, $tariffGroupId, $comment)
+    {
+        return 5551100 . rand(11, 99);
+    }
+
+    /**
+     * Получить инфу по заказу
+     * @param integer $orderId - ИД заказа
+     * @return TaxiOrderInfo - информация о заказе
+     */
+    public function getOrderInfo($orderId)
+    {
+        $info = new TaxiOrderInfo();
+
+        if (rand(0, 3) === 2) {
+            return 'sdfdsfdsf';
+        }
+
+        $info->comment = 'тест - Салон для собаки';
+        $info->id = $orderId;
+        $info->cost = '200';
+        $info->statusLabel = 'заказ принят, ожидание машины';
+        $info->rawFrom = 'г.Сочи ул. Телегина, 24а-3';
+
+        if (rand(0, 1) === 1) {
+            $info->statusLabel = 'назначен водитель';
+            $info->carId = 55;
+
+            $car = $this->getCurrentCarInfo($orderId);
+            $info->carInfo = $car;
+        }
+
+        return $info;
+    }
+
+    /**
+     * Информация об одном водителе (координаты, машина, цвет, гос номер)
+     * более подробная может быт, чем в findFreeCars
+     * @param integer $carId - ИД машины
+     * @return TaxiCarInfo - информация о машине
+     */
+    public function getCarInfo($carId)
+    {
+        $car = new TaxiCarInfo();
+
+        $car->color = 'красная';
+        $car->crewCode = '333';
+        $car->driverId = '231';
+        $car->driverName = 'Иван';
+
+        $car->isFree = false;
+        $car->lat = 43.591381073 + rand(0, 1000) / 100000;
+        $car->lon = 39.7270584106 + rand(0, 1000) / 100000;
+        $car->crewId = null;
+        $car->crewCode = null;
+        $car->isFree = rand(0, 1) == 0;
+        $car->statusCode = 'not_defined_test';
+        $car->id = $carId;
+
+        $car->color = 'тест_цвет';
+        $car->number = 'гс' . rand(1000, 9999);
+        $car->description = 'Ваз 2101';
+
+        return $car;
+    }
+
+    /**
+     * Сменить статус заказа на другой
+     * @param integer $orderId - ИД заказа
+     * @param integer $statusCode - новый статус в рамкам стороннего АПИ (!)
+     * @return boolean - true, если удалось сменить статус заказа
+     */
+    public function changeOrderStatus($orderId, $statusCode)
+    {
+        return rand(0, 1) == 0;
+    }
+
+    /**
+     * Отменить заказ
+     * @param integer $orderId - ИД заказа
+     * @return boolean - true, если удалось сменить статус заказа
+     */
+    public function rejectOrder($orderId)
+    {
+        return true;
+//        return rand(0, 1) == 0;
+    }
+
+    /**
+     * Запрос информации по текущему аккаунту пользователя, если поддерживается вход,
+     * запрос авторизации через СМС и т.д.
+     * @return TaxiAutorizationInfo - информация об авторизации
+     */
+    public function getAccountInfo()
+    {
+        return false;
+    }
+
+    /**
+     * Тестовый лог для СМС
+     * @return \TaxiLog
+     */
+    public function getSmsLog()
+    {
+        $log = new TaxiLog($this);
+        $log->fileName = 'test_REAL_Sms.log';
+        return $log;
+    }
+
+    /**
+     * Отправка реального СМС через СМС сервисы
+     * @param string $toPhone - на телефон - '89001001010'
+     * @param string $message - сообщение без префикса службы - 'Введите код 5533'
+     */
+    public function sendRealSms($toPhone, $message)
+    {
+        return $this->smsLog->info("TEST - SENDING_REAL_SMS to {$toPhone} : \n {$message}");
+    }
+
+}

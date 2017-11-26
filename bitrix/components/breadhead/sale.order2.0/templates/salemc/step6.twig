@@ -1,0 +1,129 @@
+{{ paymentUrl }}
+
+{% if result.PAY_SYSTEM.ACTION_FILE|length > 0 %}
+
+    {% if result.PAY_SYSTEM.NEW_WINDOW == 'Y' %}
+        {% set url = result.ORDER.ACCOUNT_NUMBER|url_encode(true) %}
+        {% set paymentUrl = params.PATH_TO_PAYMENT~'?ORDER_ID='~url %}
+        <script language="JavaScript">
+            window.open('{{ paymentUrl }}');
+        </script>
+
+    {% else %}
+
+        {{ includeFile(result.PAY_SYSTEM.PATH_TO_ACTION) }}
+
+    {% endif %}
+
+
+    <div class="container">
+
+        <div class="order-final">
+            <h1 class="order-final__title">Спасибо!</h1>
+            <div class="order-final__msg">
+                <h2 class="order-final__msg-title">Ваш заказ принят</h2>
+                <p class="order-final__msg-text">
+                    Вы всегда можете просмотреть детали заказа в вашем личном кабинете.
+                </p>
+            </div>
+            <a onclick="yaCounter38469730.reachGoal('private_office_button_step7');" href="/user/" class="order-form__next btn btn_with_icons btn_responsive_true">
+                <span class="btn__icon btn__icon_type_user"></span>В личный кабинет<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+            </a>
+            <br>
+            <br>
+            <br>
+            <div class="bonuses">
+                <h3 class="bonuses__title">Ваши бонусы</h3>
+                <p class="bonuses__item">
+                    <span class="bonuses__item-name">Бонусы:</span> {{ result.bonus }} <span class="rouble">Р</span>
+                </p>
+                <p class="bonuses__item">
+                    <span class="bonuses__item-name">Приглашённых друзей:</span> {{ result.friends }}
+                </p>
+                <div class="bonuses__invite">
+                    <p class="bonuses__invite-txt">Пригласите друзей заказать уборку и получите Вместе с ними по 500 рублей скидки на заказ!</p>
+                    <input type="hidden" name="USER_ID" value="{{ result.user_id }}">
+                    <div class="bonuses__invite-btns clearfix">
+                        <a target="_blank" href="http://vk.com/share.php?url={{result.urlVk}}&title={{result.SHARE_TITLE}}&description={{result.SHARE_DESCRIPTION}}&image={{result.FULL_SERVER_NAME}}/layout/assets/images/sm-image1.jpg" class="btn btn_with_icons" style="background: transparent;">
+                            <!-- <span class="btn__icon btn__icon_type_vk"></span>Вконтакте -->
+                            <img src="/layout/assets/images/icon_sprite_social_04.png">
+                        </a>
+                        <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u={{result.urlFb}}" class="btn btn_with_icons" style="background: transparent;">
+                            <!-- <span class="btn__icon btn__icon_type_fb"></span>Фейсбук -->
+                            <img src="/layout/assets/images/icon_sprite_social_02.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+{% endif %}
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    var mainProduct = {
+        "id": "{{ result.BASKET_ITEMS.MAIN[0].ID }}",
+        "name": "{{ result.BASKET_ITEMS.MAIN[0].NAME }}",
+        "price": {{ result.BASKET_ITEMS.MAIN[0].PRICE }},
+        "category": "Площадь",
+        "quantity": 1
+    };
+    var products = [];
+    products.push(mainProduct);
+    {% if result.BASKET_ITEMS.ADDITIONAL %}
+        {% for baskItem in result.BASKET_ITEMS.ADDITIONAL %}
+        products.push({
+            "id": "{{ baskItem.ID }}",
+            "name": "{{ baskItem.NAME }}",
+            "price": {{ baskItem.PRICE }},
+            "category": "Дополнительные услуги",
+            "quantity": {{ baskItem.QUANTITY }}
+        });
+        {% endfor %}
+    {% endif %}
+
+
+    dataLayer.push({
+        "ecommerce": {
+            "purchase": {
+                "actionField": {
+                    "id" : "{{ result.ORDER.ID }}"
+                },
+                "products": products
+            }
+        }
+    });
+
+    function initGA(products){
+        setTimeout(function(){
+            if (typeof ga == 'undefined') {
+                initGA(products);
+            } else {
+                ga('require', 'ec');
+                for (p in products) {
+                    ga('ec:addProduct', products);
+                }
+                ga('ec:setAction', 'purchase', {
+                    'id': '{{ result.ORDER.ID }}'  ,
+                    'step': 2
+                });
+                ga('send', 'pageview');
+            }
+        }, 50);
+    }
+    initGA(products);
+
+
+    window._retag_data = {
+        "ad_order": '{{ result.ORDER.ID }}',
+    };
+    window._retag = window._retag || [];
+    window._retag.push({code: "9ce8887126"});
+</script>
+{% if (result.actionPayImgPath) %}
+    <img src="{{ result.actionPayImgPath }}" height="1" width="1">
+{% endif %}

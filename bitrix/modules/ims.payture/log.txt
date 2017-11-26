@@ -1,0 +1,39 @@
+Host: demo.imshost.ru
+Date: 2015-07-02 18:25:33
+Module: ims.payture
+array (
+  0 => 'Pay',
+  1 => '43k4EIM',
+  2 => '48600.00',
+  3 => '4860000',
+  4 => '411111xxxxxx1112',
+  5 => NULL,
+  6 => 'True',
+  7 => 'MerchantPay',
+  8 => 'MerchantImedianet',
+  9 => '43',
+)
+    require_once
+	/var/www/ims/data/www/imedianet.ru/bitrix/tools/payture/result.php:2
+----------
+Host: demo.imshost.ru
+Date: 2015-07-02 18:34:09
+Module: ims.payture
+Не удалось найти данные о заказе по ID 43
+    require_once
+	/var/www/ims/data/www/imedianet.ru/bitrix/tools/payture/result.php:2
+----------
+Host: demo.imshost.ru
+Date: 2015-07-02 18:42:26
+Module: ims.payture
+NULL
+    require_once
+	/var/www/ims/data/www/imedianet.ru/bitrix/tools/payture/result.php:2
+----------
+Host: demo.imshost.ru
+Date: 2015-07-02 18:47:53
+Module: ims.payture
+NULL
+    require_once
+	/var/www/ims/data/www/imedianet.ru/bitrix/tools/payture/result.php:2
+----------

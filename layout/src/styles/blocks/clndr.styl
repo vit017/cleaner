@@ -1,0 +1,124 @@
+.clndr
+  position relative
+  display block
+  max-width 430px
+  min-width 280px
+  margin 0 -7px
+  user-select none
+
+  &-controls
+    position relative
+    height 50px
+    background colorGrey
+    font-size 20px
+    line-height 1.5
+    font-family Medium
+    margin 0 7px 15px 7px
+
+    .month
+      display block
+      padding 11px 50px 9px 50px
+      text-align center
+
+      &:first-letter
+        text-transform uppercase
+
+  &-control-button
+    display inline-block
+    vertical-align top
+    position absolute
+    left 0
+    top 0
+
+    &.rightalign
+      right 0
+      left auto
+
+  &-previous-button
+  &-next-button
+    display inline-block
+    vertical-align top
+    width 50px
+    height 50px
+    background-color btnBgColor
+    background-position center center
+    background-repeat no-repeat
+    font-size 0
+    color transparent
+    user-select none
+    cursor pointer
+    transition all 0.3s ease
+
+    &:hover
+      background-color btnBgColorHover
+
+    &:active
+      background-color btnBgColorActive
+
+    &.inactive
+      opacity 0.5
+      cursor default
+
+  &-previous-button
+    background-image url64('../images/icons/icon-13.svg')
+
+  &-next-button
+    background-image url64('../images/icons/icon-14.svg')
+
+  &-table
+    width 100%
+    text-align center
+    border-spacing 7px
+    border-collapse separate
+    font-size 12px
+    line-height 32px
+
+    .day
+      border 1px solid colorGrey
+      color #c2c5c5
+      background #ffffff
+      transition all 0.3s ease
+      cursor default
+
+      &.inactive
+        border 1px solid colorGrey !important
+        color #c2c5c5 !important
+        background #ffffff !important
+        cursor default !important
+
+      &.event
+        background colorGrey
+        cursor pointer
+        color baseColor
+
+        &:hover
+          background #e2e4e4
+          border-color #e2e4e4
+
+      &.today
+        background #c2c5c5
+        border-color #c2c5c5
+        color baseColor
+        font-family Medium
+
+        &.event:hover
+          background #e2e4e4
+          border-color #e2e4e4
+
+      &.selected
+        font-family Medium !important
+        background #f8cc69 !important
+        color baseColor !important
+        border-color #f8cc69 !important
+        cursor default
+
+  @media screen and (min-width: 450px)
+    margin 0 -10px
+
+    &-controls
+      margin 0 10px 3px 10px
+
+    &-table
+      font-size 15px
+      line-height 48px
+      border-spacing 10px

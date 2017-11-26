@@ -1,0 +1,2 @@
+<?php
+$MESS['SALE_CASHBOX_OFDRU_OFD_NAME'] = 'OFD.RU';

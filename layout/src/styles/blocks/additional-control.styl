@@ -1,0 +1,167 @@
+.additional-control
+  display block
+  position relative
+  font-family Medium
+  font-size 0
+  line-height 14px
+  margin -1px 0 0 -1px
+  min-width 280px
+
+  &__item
+    display inline-block
+    vertical-align top
+    font-size 9px
+    padding 1px 0 0 1px
+    position relative
+    width 33.3%
+    height 125px
+    z-index 1
+    text-align center
+
+    &-content
+      position absolute
+      left 1px
+      top 1px
+      right 0
+      bottom 0
+
+    &-input
+      position absolute
+      left 0
+      top 0
+      opacity 0
+
+      &:checked
+
+        & ~ .additional-control__item-bg
+          border-color #f8cc69
+          &::after
+            content ""
+            position absolute
+            right 4px
+            top 4px
+            display inline-block
+            vertical-align top
+            width 10px
+            height 8px
+            background url64('../images/icons/icon-23.svg') 0 0 no-repeat
+
+        & ~ .additional-control__item-title
+          opacity 1
+
+    &-bg
+      background colorGrey
+      position absolute
+      left 0
+      top 0
+      right 0
+      bottom 0
+      border 2px solid transparent
+      z-index -1
+      transition all opacity 0.3s ease
+
+    &-title
+      display block
+      padding 0
+      opacity 0.6
+      background-position center 14px
+      background-repeat no-repeat
+      transition opacity 0.3s ease
+
+      img
+        display block
+        margin 13px auto
+        max-height 57px
+        max-width 100%
+
+    //&_type_fridge
+    //  background-image url64('../images/icons/fridge.svg')
+
+    //&_type_locker
+    //  background-image url64('../images/icons/cupboard.svg')
+
+    //&_type_cooker
+    //  background-image url64('../images/icons/cooker.svg')
+
+    &-tip
+      display block
+      text-align center
+      font-family Regular
+      font-size 13px
+      position absolute
+      top 100%
+      left 0
+      right 0
+
+    &_size_small
+      height 95px !important
+      font-size 18px
+
+      .additional-control__item-bg
+        border-width 2px !important
+
+  @media screen and (min-width: 480px)
+
+    &__item
+      font-size 12px
+
+    @media screen and (min-width: 620px)
+  margin -10px 0 0 -10px
+
+  &__item
+    padding 10px 0 0 10px
+    font-size 15px
+    line-height 20px
+    height 195px
+
+    &-content
+      left 10px
+      top 10px
+
+    &-input
+      position absolute
+      left 0
+      top 0
+      opacity 0
+
+      &:checked
+
+        & ~ .additional-control__item-bg
+          border-color #f8cc69
+          &::after
+            background-image url64('../images/icons/icon-24.svg')
+            top 10px
+            right 10px
+            width 19px
+            height 15px
+
+    &-bg
+      border-width 4px
+
+    &-title
+      background-position center 30px
+
+      img
+        margin 26px auto
+
+    &-tip
+      left 10px
+
+  @media screen and (min-width: 930px)
+  margin -20px 0 0 -20px
+
+  &__item
+    padding 20px 0 0 20px
+
+    &-content
+      left 20px
+      top 20px
+
+      &:hover
+        cursor pointer
+
+        .additional-control__item-title
+          opacity 1
+
+    &-tip
+      left 20px

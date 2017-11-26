@@ -1,0 +1,52 @@
+{#<pre>
+    {{ dump(result.ORDER_BY_STATUS) }}
+</pre>#}
+{% if result.ORDER_BY_STATUS %}
+
+    <ul class="orders-list">
+        {% for key, value in result.ORDERS %}
+            {% for val in value %}
+                <li class="orders-list__item">
+                    {#<pre>
+                       {{ dump(val.ORDER) }}
+                    </pre>#}
+                    <a class="orders-list__item-link" href="{{ val.URL_TO_DETAIL }}" title="Подробнее">
+                        <span class="orders-list__item-date">{{ val.WEEK_DAY }}, <span class="lowercase">{{ val.DATE|formatDate('DD F') }}</span></span>
+                        {% if val.STATUS_ID == '6C' %}
+                            <span class="orders-list__item-status orders-list__item-status_uncompleted">Не выполнен</span>
+                        {% elseif val.STATUS_ID == 'F' %}
+                            <span class="orders-list__item-status orders-list__item-status_completed">Выполнен</span>
+                        {% elseif val.STATUS_ID == 'CANCELED' or val.STATUS_ID == 'C' or val.STATUS_ID == 'M' %}
+                            <span class="orders-list__item-status orders-list__item-status_canceled">Отменен</span>
+                        {% else %}
+                            <span class="orders-list__item-status orders-list__item-status_waiting">Ожидается</span>
+                        {% endif %}
+                    </a>
+                    {% if val.MARK|length or val.REVIEW|length  %}
+                        <div class="orders-list__item-addition">
+                            <a class="orders-list__item-comment" style="width:150px;" href="/user/history/comments.php?ORDER={{ val.ID }}">
+                            <span class="rating">
+                                {% for i in range(1, 5) %}
+                                    <i class="rating__item {% if i <= val.MARK %}rating__item_active{% endif %}">&nbsp;</i>
+                                {% endfor %}
+                            </span>
+                            </a>
+                        </div>
+                    {% elseif val.STATUS_ID == 'F' %}
+                        <div class="orders-list__item-addition">
+                            <a class="orders-list__item-comment" style="width:150px;" href="/user/history/comments.php?ORDER={{ val.ID }}">Оставить отзыв</a>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        {% endfor %}
+
+    </ul>
+
+{% else %}
+
+    <h3>
+        У вас еще не было ни одного заказа. <a href="/order/basket/">Заказать уборку</a>
+    </h3>
+
+{% endif %}

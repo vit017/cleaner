@@ -1,0 +1,86 @@
+.payment-card
+  display block
+  max-width 500px
+  position relative
+
+  &__content
+    background #eff1f1
+    padding 20px 20px 40px 20px
+    margin 0 0 20px 0
+
+
+  &__additional
+    margin 0 0 20px 0
+
+  &__field
+    margin 20px 0 0 0
+
+    &_owner
+    &_dates
+      max-width 300px
+
+    &_dates
+      text-align right
+
+      .input-txt
+        width 60px
+
+        &__field
+          padding-left 5px
+          padding-right 5px
+          text-align center
+
+    &_cvv
+
+      .input-txt
+        width 80px
+
+        &__field
+          padding-left 5px
+          padding-right 5px
+          text-align center
+
+      .payment-card__field-tip
+        margin 0 0 0 10px
+
+    &-tip
+      font-size 12px
+      line-height 15px
+      text-align left
+      display inline-block
+      margin 0 10px 0 0
+      padding 10px 0
+
+    &-divider
+      color #c2c5c5
+      display inline-block
+      font-size 30px
+      line-height 1
+      margin 0 10px
+
+    &:first-child
+      margin-top 0
+      
+  @media screen and (min-width: 930px)
+    width 500px
+
+    &__content
+      padding 110px 40px 40px 40px
+
+    &__additional
+      position absolute
+      left 100%
+      top 110px
+      margin 0 0 0 40px
+
+    &__field
+      &_cvv
+        .payment-card__field-tip
+          display block
+          margin 10px 0 0 0
+          min-width 170px
+
+
+  @media screen and (min-width: 1200px)
+    &__content
+      margin 0

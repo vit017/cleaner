@@ -1,0 +1,180 @@
+.order-form
+  position relative
+
+  &__fieldset
+    border none
+    padding 0
+    margin 0 0 30px 0
+    position relative
+
+    p:last-child
+      margin-bottom 0
+
+    &-title
+      display block
+      margin 0 0 21px 0
+
+      & + .order-form__fieldset-tip
+        margin-top -7px
+
+    &-tip
+      font-size 15px
+      line-height 20px
+      display none
+
+      &_mobile-visible
+        display block
+
+      p
+      h3
+        display none
+        margin 0 0 25px 0
+
+      .mobile-visible
+        display block
+
+      a
+        display inline-block
+        vertical-align top
+        line-height 28px
+
+      &:last-child
+        margin-bottom -10px
+
+        p
+          margin 0 !important
+
+    &:last-of-type
+      .order-form__fieldset-tip
+        &:last-child
+          margin-bottom 0
+
+  @media screen and (max-width: 480px)
+    &__next
+      width 100%
+
+    @media screen and (min-width: 930px)
+
+      &__fieldset
+        margin 0 0 45px 0
+
+        &:last-of-type
+          margin-bottom 55px
+
+        &-title
+          margin 0 0 30px 0
+
+      @media screen and (min-width: 1200px)
+        &__fieldset
+
+          & > p
+            max-width 530px
+            margin 0 0 25px 0
+            line-height 25px
+
+          &-tip
+            display block
+            margin 0 0 0 100px !important
+            width 270px
+            position absolute
+            left 100%
+            top 7px
+            line-height 25px
+
+            &::before
+              content ""
+              display block
+              position absolute
+              left -30px
+              top 5px
+              width 9px
+              height 20px
+              background url64('../images/icons/arrow_white.svg') 0 0 no-repeat
+
+            p
+            h3
+              display block
+
+            h3
+              margin 0 0 15px 0
+
+            p
+              margin 0 0 10px 0
+
+              & + h3
+                margin-top 42px
+
+            a
+              display inline-block
+              vertical-align top
+              line-height 28px
+
+            &:last-child
+              //margin-bottom -10px
+
+              p
+                margin 0 0 10px 0 !important
+
+
+        .count-input-wrapper
+          & + .order-form__fieldset-tip
+            margin-top 2px
+
+            @media screen and (min-width: 620px)
+            margin-top 25px
+
+
+        .order-form__contacts
+          max-width 500px
+
+          &-block
+            margin 0 0 20px 0
+
+            &:last-of-type
+              margin-bottom 0
+
+          &-input
+            display inline-block
+            vertical-align top
+            margin 0 0 10px 0
+            width 100%
+            position relative
+
+            &:last-of-type
+              margin-bottom 0
+
+            &-tip
+              display inline-block
+              vertical-align top
+              color #6e7677
+              font-family Regular
+              font-size 13px
+              line-height 20px
+              margin 5px 0 0 0
+
+              @media screen and (min-width: 800px)
+              position absolute
+              left 100%
+              top 0
+              margin 0 0 0 30px
+              width 200px
+
+          &-title
+            margin-bottom 7px
+
+          &-tip
+            display block
+            margin-bottom 15px
+
+          @media screen and (min-width: 620px)
+            &-block
+              margin 0 0 30px 0
+
+            &-input
+              margin-bottom 20px
+
+            &-title
+              margin-bottom 15px
+
+            &-tip
+              margin-bottom 25px

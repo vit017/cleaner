@@ -1,0 +1,13 @@
+<?
+$PERM["user"]["*"]="D";
+$PERM["online"]["*"]="R";
+$PERM["desktop_app"]["*"]="R";
+$PERM["order"]["G5"]="D";
+$PERM["manager"]["*"]="D";
+$PERM["manager"]["G7"]="R";
+$PERM["cleaners"]["*"]="D";
+$PERM["cleaners"]["G5"]="R";
+$PERM["cleaners"]["G7"]="R";
+$PERM["statistics"]["9"]="R";
+$PERM["/"]["*"]="R";
+?>

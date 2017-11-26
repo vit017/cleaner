@@ -1,0 +1,95 @@
+---
+title: Настройки
+---
+
+<div class="container">
+
+  <h1 class="page-title">Настройки</h1>
+
+  <section class="page-blocks clearfix">
+    <div class="page-blocks__item page-blocks__item_type_main">
+      <form class="settings-form" action="">
+        <h2 class="settings-form__title">Адрес</h2>
+        <label class="settings-form__input input-txt" data-placeholder="Город">
+          <input class="input-txt__field" type="text" placeholder="Город" value="Санкт-Петербург" disabled/>
+          <span class="settings-form__input-tip">
+            Сейчас мы работаем только
+            в Санкт-Петербурге
+          </span>
+        </label>
+        <label class="settings-form__input input-txt" data-placeholder="Адрес">
+          <input class="input-txt__field" type="text" placeholder="Адрес" />
+        </label>
+        <div class="settings-form__controls">
+          <button class="btn btn_type_second">Сохранить</button>
+        </div>
+      </form>
+      <form class="settings-form" action="">
+        <h2 class="settings-form__title">Параметры квартиры</h2>
+        <div class="count-input-wrapper clearfix">
+          <div class="count-input-wrapper__item">{{> rooms-input}}</div>
+          <div class="count-input-wrapper__item">{{> bathrooms-input}}</div>
+        </div>
+        <div class="additional-control">
+          <label class="additional-control__item">
+            <input class="additional-control__item-input" type="checkbox" checked/>
+            <span class="additional-control__item-bg"></span>
+            <span class="additional-control__item-title additional-control__item-title_type_fridge">Помыть <br/> холодильник</span>
+          </label>
+          <label class="additional-control__item">
+            <input class="additional-control__item-input" type="checkbox"/>
+            <span class="additional-control__item-bg"></span>
+            <span class="additional-control__item-title additional-control__item-title_type_cooker">Почистить <br/>плиту</span>
+          </label>
+          <label class="additional-control__item">
+            <input class="additional-control__item-input" type="checkbox"/>
+            <span class="additional-control__item-bg"></span>
+            <span class="additional-control__item-title additional-control__item-title_type_locker">Убраться <br/>в шкафах</span>
+          </label>
+        </div>
+      </form>
+      <form class="settings-form" action="">
+        <h2 class="settings-form__title">Личные данные</h2>
+        <label class="settings-form__input input-txt" data-placeholder="Ваше имя">
+          <input class="input-txt__field" type="text" placeholder="Ваше имя" value="Валентина Корнеплодовна"/>
+        </label>
+        <label class="settings-form__input input-txt" data-placeholder="E-mail">
+          <input class="input-txt__field" type="text" placeholder="E-mail" value="korneplodovna@mail.ru" />
+        </label>
+        <label class="settings-form__input input-txt" data-placeholder="Телефон">
+          <input class="input-txt__field" type="text" placeholder="Телефон" value="+7 (921) 269-85-47"/>
+        </label>
+        <div class="settings-form__controls">
+          <button class="btn btn_type_second">Сохранить</button>
+        </div>
+      </form>
+      <form class="settings-form" action="">
+        <h2 class="settings-form__title">Смена пароля</h2>
+        <label class="settings-form__input input-txt" data-placeholder="Текущий пароль">
+          <input class="input-txt__field" type="password" placeholder="Текущий пароль"/>
+        </label>
+        <label class="settings-form__input input-txt" data-placeholder="Новый пароль">
+          <input class="input-txt__field" type="password" placeholder="Новой пароль"/>
+        </label>
+        <div class="settings-form__controls">
+          <button class="btn btn_type_second">Сохранить</button>
+        </div>
+      </form>
+    </div>
+    <div class="page-blocks__item page-blocks__item_type_aside">
+      <nav class="aside-nav">
+        <span class="aside-nav__item">
+          <a class="aside-nav__item-link" href="#">Личный кабинет</a>
+        </span>
+        <span class="aside-nav__item">
+          <a class="aside-nav__item-link" href="#">История заказов</a>
+        </span>
+        <span class="aside-nav__item aside-nav__item_active">
+          <a class="aside-nav__item-link" href="#">Настройки</a>
+        </span>
+      </nav>
+      <a class="btn btn_width_full btn_responsive_true" href="#">Заказать уборку</a>
+    </div>
+  </section>
+
+</div>

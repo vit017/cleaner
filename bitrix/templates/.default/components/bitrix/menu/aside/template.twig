@@ -1,0 +1,14 @@
+<nav class="aside-nav">
+    {% for navItem in result %}
+        <span class="aside-nav__item {% if navItem.SELECTED %}aside-nav__item_active{% endif %}">
+            {% if navItem.SELECTED %}
+                <span class="aside-nav__item-link">{{ navItem.TEXT }}</span>
+            {% else %}
+                <a class="aside-nav__item-link" href="{{ navItem.LINK }}">{{ navItem.TEXT }}</a>
+            {% endif %}
+        </span>
+    {% endfor %}
+    <span class="aside-nav__item ">
+        <a class="aside-nav__item-link" href="/?logout=yes">Выйти</a>
+    </span>
+</nav>

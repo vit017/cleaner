@@ -1,0 +1,46 @@
+.hidden-desktop
+  @media screen and (min-width: 1200px)
+    display none
+
+.visible-desktop
+  display none
+  @media screen and (min-width: 1200px)
+    display block
+
+.clearfix
+  &::after
+  &::before
+    content ""
+    display table
+    line-height 0
+  &::after
+    clear both
+
+.hide-text
+  font 0/0 a
+  color transparent
+  text-shadow none
+  //background-color transparent
+  border 0
+
+.hide
+  display none
+
+.invisible
+  visibility hidden
+
+.pull-left
+  float left
+
+.pull-right
+  float right
+
+.txt-left
+  text-align left
+
+.txt-center
+  text-align center
+
+.txt-right
+  text-align right
+

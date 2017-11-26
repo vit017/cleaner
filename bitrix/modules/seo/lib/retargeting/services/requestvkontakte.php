@@ -1,0 +1,23 @@
+<?
+
+namespace Bitrix\Seo\Retargeting\Services;
+
+use \Bitrix\Seo\Retargeting\Request;
+
+class RequestVkontakte extends Request
+{
+	const TYPE_CODE = 'vkontakte';
+
+	public function query(array $params = array())
+	{
+		$url = 'https://api.vk.com/method/';
+		$url .= $params['endpoint'];
+
+		$clientParameters = is_array($params['fields']) ? $params['fields'] : array();
+		$clientParameters = $clientParameters + array('access_token' => $this->adapter->getToken());
+
+		$url .= '?' . http_build_query($clientParameters, "", "&");
+
+		return $this->client->get($url);
+	}
+}

@@ -1,0 +1,5 @@
+<?
+$MESS ['LEARNING_COURSE_DETAIL_URL_NAME'] = "URL - detailierte Kursbeschreibung";
+$MESS ['LEARNING_TEST_ID_VARIABLE_NAME'] = "Test ID";
+$MESS ['LEARNING_TEST_DETAIL_URL_NAME'] = "URL - Test";
+?>

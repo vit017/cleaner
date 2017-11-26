@@ -1,0 +1,53 @@
+{{ getComponent("breadhead:order.calendar2.0", ".default", {'ORDER_ID': false, 'arResult' : result}, {'HIDE_ICON': true}) }}
+<button class="order-form__next btn btn_with_icons btn_responsive_true" id="enter_contactinfo">
+    <span  onclick="yaCounter38469730.reachGoal('add_adress_button_2step');class="btn__icon btn__icon_type_place 12312"></span>Добавить адрес<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    var mainProduct = {
+        "id": "{{ result.BASKET_ITEMS.MAIN[0].ID }}",
+        "name": "{{ result.BASKET_ITEMS.MAIN[0].NAME }}",
+        "price": {{ result.BASKET_ITEMS.MAIN[0].PRICE }},
+        "category": "Площадь",
+        "quantity": 1
+    };
+    var products = [];
+    products.push(mainProduct);
+    {% if result.BASKET_ITEMS.ADDITIONAL %}
+        {% for baskItem in result.BASKET_ITEMS.ADDITIONAL %}
+        products.push({
+            "id": "{{ baskItem.ID }}",
+            "name": "{{ baskItem.NAME }}",
+            "price": {{ baskItem.PRICE }},
+            "category": "Дополнительные услуги",
+            "quantity": {{ baskItem.QUANTITY }}
+        });
+        {% endfor %}
+    {% endif %}
+    dataLayer.push({
+        "ecommerce": {
+            "add": {
+                "products": products
+            }
+        }
+    });
+    function initGA(products){
+        setTimeout(function(){
+            if (typeof ga == 'undefined') {
+                initGA(products);
+            } else {
+                ga('require', 'ec');
+                //
+                for (p in products) {
+                    ga('ec:addProduct', products[p]);
+                }
+                ga('ec:setAction','add', {
+                    'step': 1
+                });
+                ga('send', 'pageview');
+            }
+        }, 50);
+    }
+    initGA(products);
+</script>

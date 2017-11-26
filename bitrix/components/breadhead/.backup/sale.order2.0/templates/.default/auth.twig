@@ -1,0 +1,34 @@
+<fieldset class="order-form__fieldset">
+    <h2 class="order-form__fieldset-title">Ваши данные</h2>
+    <div class="order-form__fieldset-tip">
+        <h3>Приватность</h3>
+        <p>
+            Все введенные вами данные абсолютно конфиденциальны
+            и необходимы только для работы сервиса.
+        </p>
+    </div>
+    <div class="order-login">
+    <span class="order-login__check">
+      <label class="checkbox">
+          <input class="checkbox__input" type="checkbox" name="do_authorize" {% if result.POST.do_authorize %}checked{% endif %} />
+          <span class="checkbox__icon"></span>
+          <span class="checkbox__title">Я уже зарегистрирован</span>
+      </label>
+    </span>
+        <h3 class="order-login__title">Email и пароль</h3>
+        <span class="order-login__tip">Для доступа в личный кабинет</span>
+        <label class="order-login__input input-txt {% if result.ERRORS.USER_LOGIN %}input-txt_state_error{% endif %}" data-placeholder="E-mail">
+            <input class="input-txt__field" type="email" name="USER_LOGIN" value="{{ result.USER_LOGIN }}" placeholder="E-mail" required="required" data-parsley-type="email" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Неправильно введен e-mail" />
+            {% if result.ERRORS.USER_LOGIN %}
+                <span class="input-txt__error">{{ result.ERRORS.USER_LOGIN  }}</span>
+            {% endif %}
+        </label>
+        <label class="order-login__input input-txt" data-placeholder="Пароль">
+            <input class="input-txt__field" type="password" name="USER_PASSWORD" placeholder="Пароль"  required="required" data-parsley-minlength="6" data-parsley-error-class="input-txt_state_error" data-parsley-error-message="Минимальная длина пароля - 6 символов"/>
+        </label>
+    </div>
+</fieldset>
+<button class="order-form__next btn btn_with_icons btn_responsive_true">
+    <input type="hidden" name="AUTH" value="Y" />
+    <span class="btn__icon btn__icon_type_place"></span>Далее<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>

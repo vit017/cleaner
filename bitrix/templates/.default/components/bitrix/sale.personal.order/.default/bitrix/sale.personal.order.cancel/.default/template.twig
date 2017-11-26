@@ -1,0 +1,36 @@
+{#<pre>
+    {{ dump(result) }}
+</pre>#}
+
+ <div class="tab-content">
+    <div class="tab-pane fade text-center in active">
+        <div class="col-md-6 center-block well text-center">
+            <div class="page-blocks__item-controls">
+                <a class="btn btn_type_third btn_size_small" href="{{ result.URL_TO_DETAIL }}"><span class="btn__icon btn__icon_type_back"></span>Детали уборки</a>
+            </div>
+            {% if result.ERROR_MESSAGE %}
+                {{ ShowError(result.ERROR_MESSAGE) }}
+            {% else %}
+                <form class="feedback-form" method="post" action="{{ POST_FORM_ACTION_URI }}">
+                    <input type="hidden" name="CANCEL" value="Y">
+                    {{ bitrix_sessid_post() }}
+                    <input type="hidden" name="ID" value="{{ result.ID }}">
+                    <div class="feedback-form__intro clearfix">
+                        <p class="feedback-form__intro-desc">
+                            Вы уверены, что хотите отменить <a href="{{ result.URL_TO_DETAIL }}">заказ #{{ result.ID }}</a>? <br/>
+                            <strong>Отмена заказа необратима.</strong>
+                        </p>
+                    </div>
+                    <fieldset class="feedback-form__fieldset">
+                        <label class="input-txt input-txt_width_full" data-placeholder="Укажите, пожалуйста, причину отмены заказа">
+                            <textarea class="input-txt__field input-txt__field_area"  name="REASON_CANCELED" id="" autofocus="autofocus" placeholder="Укажите, пожалуйста, причину отмены заказа"></textarea>
+                        </label>
+                    </fieldset>
+                    <div class="feedback-form__controls clearfix">
+                        <input type="submit" class="btn btn_type_second" name="action" value="Отменить заказ">
+                    </div>
+                </form>
+            {% endif %}
+            </div>
+        </div>
+     </div>

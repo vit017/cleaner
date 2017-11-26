@@ -1,0 +1,64 @@
+<fieldset class="order-form__fieldset">
+  <h2 class="order-form__fieldset-title">Ваш заказ</h2>
+  <div class="order-form__fieldset-tip">
+    <h3>Редактирование</h3>
+    <p>
+      Ошиблись при заполнении данных? Ничего страшного! Вы можете отредактировать их прямо сейчас.
+    </p>
+  </div>
+  <div class="order-item">
+    <h4 class="order-item__title order-item__title_date">Дата и время</h4>
+    <a class="order-item__edit hide-text" href="#" title="Редактировать">Редактировать</a>
+    <p class="order-item__param">22 апреля 2014</p>
+    <p class="order-item__param">С 14:00 до 18:00 (4 ч)</p>
+  </div>
+  <div class="order-item">
+    <h4 class="order-item__title order-item__title_params">Параметры</h4>
+    <a class="order-item__edit hide-text" href="#" title="Редактировать">Редактировать</a>
+    <p class="order-item__param">2 комнаты + 1 санузел</p>
+    <p class="order-item__param"><span class="order-item__param-name">Дополнительно:</span> чистка плиты и холодильника</p>
+  </div>
+  <div class="order-item">
+    <h4 class="order-item__title order-item__title_contacts">Контактные данные</h4>
+    <a class="order-item__edit hide-text" href="#" title="Редактировать">Редактировать</a>
+    <p class="order-item__param"><span class="order-item__param-name">Адрес:</span> ул. Папанова-Чудина, д. 7, кв. 12</p>
+    <p class="order-item__param"><span class="order-item__param-name">Имя:</span> Вениамин Кочевний</p>
+    <p class="order-item__param"><span class="order-item__param-name">Телефон:</span> +7 (921) 326-95-81</p>
+  </div>
+  <div class="order-discount clearfix">
+    <div class="order-discount__item">
+      <h4 class="order-discount__item-title">Промокод</h4>
+      <div class="promo-code">
+        <label class="promo-code__input input-txt" data-placeholder="Промокод">
+          <input class="input-txt__field" type="text" placeholder="Промокод" />
+        </label>
+        <span class="promo-code__btn btn btn_type_second">Ок</span>
+      </div>
+    </div>
+    <div class="order-discount__item">
+      <h4 class="order-discount__item-title">Бесплатные часы</h4>
+      <label class="checkbox">
+        <input class="checkbox__input" type="checkbox" name="" id="" />
+        <span class="checkbox__icon"></span>
+        <span class="checkbox__title">Использовать (2 из 2)</span>
+      </label>
+    </div>
+  </div>
+  <div class="total">
+    <p class="total__item clearfix">
+      <span class="pull-left">Уборка (4 ч)</span><span class="pull-right">2 800 <span class="rouble">Р</span></span>
+    </p>
+    <p class="total__item clearfix">
+      <span class="pull-left">Промокод</span><span class="pull-right">- 700 <span class="rouble">Р</span></span>
+    </p>
+    <p class="total__item clearfix">
+      <span class="pull-left">Бесплатные часы (2 ч)</span><span class="pull-right">-1 400 <span class="rouble">Р</span></span>
+    </p>
+    <p class="total__item total__item_summary clearfix">
+      <span class="pull-left">Итого</span><span class="pull-right">700 <span class="rouble">Р</span></span>
+    </p>
+  </div>
+</fieldset>
+<button class="order-form__next btn btn_with_icons btn_responsive_true">
+  <span class="btn__icon btn__icon_type_pay"></span>Способ оплаты<span class="btn__icon btn__icon_right btn__icon_type_forward"></span>
+</button>

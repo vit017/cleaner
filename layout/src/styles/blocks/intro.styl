@@ -1,0 +1,53 @@
+.intro
+  position relative
+  height 360px
+  background url('../images/intro/mobile_header_bg.jpg') center top no-repeat
+  padding 60px 0 0 0
+  text-align center
+  @media screen and (min-width: 768px)
+    height 660px
+    background-image url('../images/intro/header_bg3.jpg')
+    background-position center center
+    background-size cover
+    padding-top 195px
+
+    &__btn
+      font-size 30px
+      padding 13px 40px 12px 40px
+      margin-left -30px
+
+  &__logo
+    display block
+    margin 0 auto
+    //width 180px
+    text-align center
+    position relative
+
+    &-title
+      display block
+      width 260px
+      height 70px
+      margin 0 auto 20px
+      background url('../images/intro/intro-logo.png') center 0 no-repeat
+
+    &-txt
+      display block
+      font-family Medium
+      text-align center
+      font-size 17px
+      margin 2px 0 30px 0
+
+    @media screen and (min-width: 768px)
+      //width 370px
+      margin-bottom 50px
+
+      &-title
+        margin-bottom 50px
+
+      &-txt
+        //position absolute
+        //left 10px
+        //bottom 0
+        //text-align left
+        font-size 30px
+        line-height 40px

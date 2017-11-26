@@ -1,0 +1,48 @@
+{#<pre>
+    {{ dump(result) }}
+</pre>
+<pre>
+    {{ dump(params) }}
+</pre>#}
+<div class="auth-block">
+    <form class="auth-form" name="bform" method="post" target="_top" action="{{ result.AUTH_URL }}">
+
+        <div class="">
+            <h1 class="text-uppercase">Забыли пароль?</h1>
+            <div class="row">
+                <div class="col-md-6 center-block well text-center">
+            {% if result.BACKURL != '' %}
+                <input type="hidden" name="backurl" value="{{ result.BACKURL }}" />
+            {% endif %}
+            <input type="hidden" name="AUTH_FORM" value="Y">
+            <input type="hidden" name="TYPE" value="SEND_PWD">
+
+          <!--  <h2 class="auth-form__title">Забыли пароль?</h2>-->
+            {% if params.AUTH_RESULT.TYPE == 'OK' %}
+                <p class="auth-form__txt">
+                    Ссылка на изменение пароля отправлена на вашу почту.
+                    Пожалуйста, перейдите по ней, чтобы изменить пароль.
+                </p>
+            {% else %}
+                <p class="auth-form__txt">
+                    Введите email, который
+                    вы указывали при регистрации
+                    и мы вышлем вам письмо
+                    с инструкциями по смене пароля.
+                </p>
+                <label class="input-txt input-txt_width_full {% if params.AUTH_RESULT.TYPE == 'ERROR' %}input-txt_state_error{% endif %}" data-placeholder="E-mail">
+                    <input class="input-txt__field" type="email" name="USER_LOGIN" value="{{ result.LAST_LOGIN }}" placeholder="E-mail" autofocus="autofocus" />
+                    {% if params.AUTH_RESULT.TYPE == 'ERROR' %}
+                        <span class="input-txt__error">{{ params.AUTH_RESULT.MESSAGE }}</span>
+                    {% endif %}
+                </label>
+                <!--<button class="btn btn_responsive_true" name="send_account_info">Отправить</button>-->
+                <br>
+                <button type="submit" class="btn btn-default">Отправить</button>
+            {% endif %}
+                    </div>
+            </div>
+        </div>
+
+    </form>
+</div>

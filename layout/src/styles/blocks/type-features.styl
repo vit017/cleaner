@@ -1,0 +1,101 @@
+.type-features
+  list-style none
+  padding 45px 20px
+  margin 0
+  position relative
+
+  &_type_desk
+    display none
+
+  &__item
+    display block
+    margin 19px 0 0 30px
+    padding 0 0 0 36px
+    position relative
+
+    &:first-child
+      margin-top 0
+
+    &-number
+      display inline-block
+      vertical-align top
+      width 26px
+      height 26px
+      border 2px solid #ffffff
+      text-align center
+      font-family Medium
+      font-size 10px
+      line-height 22px
+      border-radius 50%
+      margin -13px 10px 0 0
+      position absolute
+      left 0
+      top 50%
+
+
+    &-title
+      display inline-block
+      vertical-align top
+      font-family Medium
+      font-size 15px
+      line-height 26px
+
+    &-desc
+      display none
+
+  @media screen and (min-width: 1200px)
+    display none
+    height 100%
+
+    &_type_desk
+      display block
+      width 1170px
+      margin 0 auto
+
+      .type-features__item
+
+        &-number
+          cursor pointer
+
+        &:hover
+          .type-features__item-number
+            background #f8cc69
+
+          .type-features__item-desc
+            visibility visible
+            opacity 1
+            transform translateY(0)
+
+
+    &__item
+      position absolute
+      margin 0
+
+      &-number
+        display inline-block
+        vertical-align top
+        width 40px
+        height 40px
+        background #23c8ac
+        border-radius 50%
+        border none
+        color transparent
+
+      &-title
+        display none
+
+      &-desc
+        display block
+        position absolute
+        bottom 100%
+        left 0
+        width 396px !important
+        margin 0 0 15px -178px
+        z-index 2
+        visibility hidden
+        opacity 0
+        transform translateY(-10px)
+        transition all 0.3s ease
+
+
+

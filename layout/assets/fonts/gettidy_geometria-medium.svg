@@ -1,0 +1,37 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg>
+<metadata>
+Created by FontForge 20110222 at Tue Apr 29 05:57:09 2014
+ By Orthosie Webhosting
+Digitized data copyright (c) 2010-2011, Google Corporation.
+</metadata>
+<defs>
+<font id="GettidyGeometriaRegular" horiz-adv-x="1024" >
+  <font-face 
+    font-family="GettidyGeometriaRegular"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="2048"
+    panose-1="2 11 8 6 3 5 4 2 2 4"
+    ascent="1638"
+    descent="-410"
+    bbox="54 0 1274 1434"
+    underline-thickness="102"
+    underline-position="-103"
+    unicode-range="U+0020-0420"
+  />
+<missing-glyph 
+ />
+    <glyph glyph-name=".notdef" 
+ />
+    <glyph glyph-name=".null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="682" 
+ />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="Ð" unicode="&#x420;" horiz-adv-x="1356" 
+d="M1145 1317q129 -114 129 -299q0 -187 -129 -307q-125 -119 -350 -119h-392v-148h713v-207h-713v-237h-225v237h-116v207h116v148h-124v207h124v635h617q224 0 350 -117zM776 799q128 0 199.5 56t71.5 159t-71.5 158t-199.5 55h-373v-428h373z" />
+  </font>
+</defs></svg>

@@ -1,0 +1,67 @@
+.payment-type
+  display block
+  margin 0 0 10px 0
+  position relative
+  font-size 15px
+  line-height 25px
+  font-family Regular
+
+  &__input
+    position absolute
+    left 0
+    top 0
+    opacity 0
+
+    &:checked + .payment-type__content
+      background #ffffff
+      border-color colorYellow
+
+      &::before
+        content ""
+        display inline-block
+        vertical-align top
+        position absolute
+        right 10px
+        top 10px
+        width 20px
+        height 15px
+        background url64('../images/icons/icon-24.svg') 0 0 no-repeat
+
+  &__content
+    border 4px solid transparent
+    background colorGrey
+    display block
+    padding 20px 30px 10px 25px
+
+    &-title
+      display block
+      font-family Medium
+      font-size 20px
+      line-height 1
+      margin 0 0 17px 0
+
+    &-desc
+      display block
+
+    img
+      display inline-block
+      vertical-align top
+      margin 22px 0 13px 0
+
+  @media screen and (min-width: 930px)
+    margin-bottom 20px
+
+    &__input
+      &:checked + .payment-type__content
+        &::before
+          top 15px
+
+    &__content
+      padding 30px 25px 25px 35px
+
+      &-desc
+        max-width 420px
+
+      img
+        margin 17px 0 10px 0
+

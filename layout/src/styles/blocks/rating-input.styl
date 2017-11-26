@@ -1,0 +1,65 @@
+.rating-input
+  display inline-block
+  vertical-align top
+  width 280px
+  height 30px
+  color #6e7677
+  font-family Regular
+  font-size 15px
+  line-height 30px
+
+  &__item
+    width 45px
+    height 30px
+    float left
+    cursor pointer
+    display inline-block
+    vertical-align top
+    padding 3px 0 0 0
+    text-align center
+    position relative
+
+    &:first-child
+      width 35px
+      text-align left
+
+    &:last-of-type
+      margin-right 10px
+
+    &::before
+      content ""
+      display inline-block
+      vertical-align top
+      width 25px
+      height 23px
+      background url64('../images/icons/icon-28.svg') 0 0 no-repeat
+      background-size 100% 100%
+      position absolute
+      left 50%
+      top 50%
+      margin -12px 0 0 -13px
+
+    &::after
+      content ""
+      display inline-block
+      vertical-align top
+      width 25px
+      height 23px
+      position absolute
+      left 50%
+      top 50%
+      margin -12px 0 0 -13px
+      background url64('../images/icons/icon-29.svg') 0 0 no-repeat
+      background-size 100% 100%
+      transform scale(0)
+      opacity 0
+      transition all 0.3s ease
+
+    &_active
+      &::after
+        transform scale(1)
+        opacity 1
+
+
+  &__txt
+    margin-left 15px

@@ -1,0 +1,30 @@
+.status
+  display inline-block
+  font-family Regular
+  font-size 15px
+  line-height 2
+  position relative
+  padding 0 0 0 27px
+
+  &::before
+    content ""
+    display inline-block
+    vertical-align top
+    position absolute
+    left 0
+    top 0
+    bottom 0
+    width 27px
+    background url64('../images/icons/icon-22.svg') 0 center no-repeat
+
+  &_waiting
+    &::before
+      background-image url64('../images/icons/icon-27.svg')
+
+  &_canceled
+    &::before
+      background-image url64('../images/icons/icon-25.svg')
+
+  &_uncompleted
+    &::before
+      background-image url64('../images/icons/icon-47.svg')
